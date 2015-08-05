@@ -1,0 +1,34 @@
+{
+  "name": "charming-chino",
+  "version": "1.0.0",
+  "homepage": "https://github.com/charming-chino/charming-chino",
+  "authors": [
+    "Kamron Batman",
+    "Erik Epps",
+    "Phil Keys",
+    "Spencer Miller"
+  ],
+  "description": "A social cooking event platform.",
+  "main": "client/js/app.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "cooking",
+    "social"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "angular-ui": "~0.4.0",
+    "angular-ui-router": "~0.2.15"
+  }
+}
