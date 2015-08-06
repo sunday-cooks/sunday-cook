@@ -1,43 +1,82 @@
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 
-  grunt.initConfig({
+  grunt.initConfig( {
 
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON( 'package.json' ),
 
     jshint: {
-      files: [
-        './server/*.js',
-        './server/*/*.js',
-        './client/*/*.js'
-      ],
+      options: {
+        reporter: require( 'jshint-stylish' ),
+      },
+      dev: [ 'Gruntfile.js', './server/*.js', './server/**/*.js', './test/**/*.js' ],
+      production: [ 'Gruntfile.js', './server/*.js', 'server/**/*.js', './public/**/*.js' ],
+    },
+
+    bower: {
+      dev: {
+        options: {
+          targetDir: './test/lib'
+        },
+      },
+      production: {
+        options: {
+          targetDir: './public/lib'
+        },
+      },
     },
 
     watch: {
       scripts: {
         files: [
           'server/*.js',
-          'server/*/*.js'
+          'server/**/*.js',
+          'client/*',
         ],
         tasks: [
-          'jshint',
-          'mochaTest'
+          'copy:dev',
+          'jshint:dev',
         ]
       }
     },
 
+    copy: {
+      dev: {
+        files: [
+          { expand: true,
+            cwd: 'client/',
+            src: ['**'],
+            dest: 'test/',
+            filter: 'isFile'
+          },
+        ],
+      },
+      production: {
+        files: [
+          { expand: true,
+            cwd: 'client/',
+            src: ['**'],
+            dest: 'public/',
+            filter: 'isFile'
+          },
+        ],
+      },
+    },
+
   });
 
-  grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks( 'grunt-notify' );
+  grunt.loadNpmTasks( 'grunt-contrib-copy' );
+  grunt.loadNpmTasks( 'grunt-injector' );
+  grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+  grunt.loadNpmTasks( 'grunt-contrib-watch' );
+  grunt.loadNpmTasks( 'grunt-bower-task' );
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask( 'nodemon', function () {
 
-  grunt.registerTask('nodemon', function() {
+    var path = require( 'path' );
+    var curDir = path.resolve( process.cwd() );
 
-    var path = require('path');
-    var curDir = path.resolve(process.cwd());
-
-    grunt.util.spawn({
+    grunt.util.spawn( {
       cmd: 'nodemon',
       opts: {
         cwd: curDir,
@@ -46,7 +85,7 @@ module.exports = function(grunt) {
     });
   });
 
-
-  grunt.registerTask('default', ['jshint', 'watch']);
-  grunt.registerTask('dev', ['jshint', 'nodemon']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('dev', ['copy:dev', 'jshint:dev', 'bower:dev', 'nodemon']);
+  grunt.registerTask('production', ['copy:production', 'jshint:production', 'bower:production', 'nodemon']);
 };
