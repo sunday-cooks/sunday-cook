@@ -43,4 +43,8 @@ grunt
 
 ## Contributing
 
+<<<<<<< HEAD
 Sunday Cooking Club welcomes contributors. To begin contributing, please, see the [contributing guidelines](CONTRIBUTING.md).
+=======
+Sunday Cooking Club welcomes contributors. To begin contributing, please, see the [contributing guidelines](CONTRIBUTING.md).
+>>>>>>> [Update] completes first draft of README and PRESS-RELEASE
