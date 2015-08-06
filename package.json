@@ -23,13 +23,13 @@
   "homepage": "https://github.com/charming-chino/charming-chino#readme",
   "dependencies": {
     "bcrypt": "^0.8.4",
+    "bluebird": "^2.9.34",
     "body-parser": "^1.13.3",
+    "bookshelf": "^0.8.1",
     "express": "^4.13.3",
-    "express-session": "^1.11.3",
     "jwt-simple": "^0.3.0",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
-    "q": "^1.4.1",
     "request": "^2.60.0"
   },
   "devDependencies": {
