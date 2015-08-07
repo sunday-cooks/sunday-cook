@@ -4,6 +4,24 @@ module.exports = function( grunt ) {
 
     pkg: grunt.file.readJSON( 'package.json' ),
 
+    express: {
+      options: {
+      },
+      dev: {
+        options: {
+          port: 8000,
+          script: 'server/server.js',
+        }
+      },
+      production: {
+        options: {
+          port: 8000,
+          script: 'server/server.js',
+          node_env: 'production',
+        }
+      },
+    },
+
     jshint: {
       options: {
         reporter: require( 'jshint-stylish' ),
@@ -15,28 +33,67 @@ module.exports = function( grunt ) {
     bower: {
       dev: {
         options: {
-          targetDir: './test/lib'
+          targetDir: './test/lib',
+          production: false,
         },
       },
       production: {
         options: {
-          targetDir: './public/lib'
+          targetDir: './public/lib',
+          production: true,
         },
       },
     },
 
+    injector: {
+      options: {
+        addRootSlash: false,
+      },
+      dev: {
+        options: {
+          destFile : 'test/index.html',
+          ignorePath : 'test/',
+        },
+        files: [ {
+          expand: true,
+          cwd: 'test/',
+          dest: 'test/',
+          src: [ 'css/*.css', 'lib/**/*.js', 'lib/**/*.css',
+            'app/*.js', 'app/**/*.js' ],
+        }, ],
+      },
+      production: {
+        options: {
+          destFile : 'public/index.html',
+          ignorePath : 'public/',
+        },
+        files: [ {
+          expand: true,
+          cwd: 'public/',
+          dest: 'public/',
+          src: [ 'css/*.css', 'lib/**/*.js', 'lib/**/*.css',
+            'app/*.js', 'app/**/*.js' ],
+        }, ],
+      },
+    },
+
     watch: {
-      scripts: {
-        files: [
-          'server/*.js',
-          'server/**/*.js',
-          'client/*',
-        ],
-        tasks: [
-          'copy:dev',
-          'jshint:dev',
-        ]
-      }
+      options: {
+        livereload: true,
+        //atBegin: true,
+      },
+      express: {
+        files:  [ 'server/*.js', 'server/**/*.js' ],
+        tasks:  [ 'dev_build', 'express:dev' ],
+        options: {
+          spawn: false,
+        }
+      },
+    },
+
+    clean: {
+      dev: [ "test" ],
+      production: [ "public" ]
     },
 
     copy: {
@@ -70,22 +127,11 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-contrib-jshint' );
   grunt.loadNpmTasks( 'grunt-contrib-watch' );
   grunt.loadNpmTasks( 'grunt-bower-task' );
+  grunt.loadNpmTasks( 'grunt-contrib-clean' );
+  grunt.loadNpmTasks( 'grunt-express-server' );
 
-  grunt.registerTask( 'nodemon', function () {
-
-    var path = require( 'path' );
-    var curDir = path.resolve( process.cwd() );
-
-    grunt.util.spawn( {
-      cmd: 'nodemon',
-      opts: {
-        cwd: curDir,
-        stdio: 'inherit',
-      }
-    });
-  });
-
-  grunt.registerTask('default', ['watch']);
-  grunt.registerTask('dev', ['copy:dev', 'jshint:dev', 'bower:dev', 'nodemon']);
-  grunt.registerTask('production', ['copy:production', 'jshint:production', 'bower:production', 'nodemon']);
+  grunt.registerTask( 'default', [ 'dev' ] );
+  grunt.registerTask( 'dev_build', [ 'clean:dev', 'copy:dev', 'jshint:dev', 'bower:dev', 'injector:dev' ] );
+  grunt.registerTask( 'dev', [ 'dev_build', 'express:dev', 'watch:express' ] );
+  grunt.registerTask( 'production', [ 'clean:production', 'copy:production', 'jshint:production', 'bower:production', 'express:production' ] );
 };
