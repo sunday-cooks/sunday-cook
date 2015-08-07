@@ -55,7 +55,7 @@ module.exports = function( grunt ) {
           expand: true,
           cwd: 'test/',
           dest: 'test/',
-          src: [ '../bower.json', 'app/*.js', 'app/**/*.js' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', '/app/**/*.css' ],
         }, ],
       },
       production: {
@@ -67,7 +67,7 @@ module.exports = function( grunt ) {
           expand: true,
           cwd: 'public/',
           dest: 'public/',
-          src: [ '../bower.json', 'app/*.js', 'app/**/*.js' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', '/app/**/*.css' ],
         }, ],
       },
     },
@@ -114,6 +114,39 @@ module.exports = function( grunt ) {
       },
     },
 
+  sass: {
+    dev: {
+      files: [{
+        expand: true,
+        cwd: 'lib/',
+        src: ['*.scss'],
+        dest: 'test/',
+        ext: '.css'
+      }, {
+        expand: true,
+        cwd: 'client/styles/',
+        src: ['*.scss'],
+        dest: 'test/',
+        ext: '.css'
+      }],
+    },
+    production: {
+      files: [{
+        expand: true,
+        cwd: 'lib/',
+        src: ['*.scss'],
+        dest: 'public/',
+        ext: '.css'
+      }, {
+        expand: true,
+        cwd: 'client/styles/',
+        src: ['*.scss'],
+        dest: 'public/',
+        ext: '.css'
+      }],
+    },
+  }
+
   });
 
   grunt.loadNpmTasks( 'grunt-notify' );
@@ -124,9 +157,10 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks( 'grunt-bower-task' );
   grunt.loadNpmTasks( 'grunt-contrib-clean' );
   grunt.loadNpmTasks( 'grunt-express-server' );
+  grunt.loadNpmTasks( 'grunt-contrib-sass' );
 
   grunt.registerTask( 'default', [ 'dev' ] );
-  grunt.registerTask( 'dev_build', [ 'clean:dev', 'copy:dev', 'jshint:dev', 'bower:dev', 'injector:dev' ] );
+  grunt.registerTask( 'dev_build', [ 'clean:dev', 'copy:dev', 'jshint:dev', 'bower:dev', 'sass:dev', 'injector:dev' ] );
   grunt.registerTask( 'dev', [ 'dev_build', 'express:dev', 'watch:express' ] );
-  grunt.registerTask( 'production', [ 'clean:production', 'copy:production', 'jshint:production', 'bower:production', 'express:production' ] );
+  grunt.registerTask( 'production', [ 'clean:production', 'copy:production', 'jshint:production', 'bower:production', 'sass:production', 'express:production' ] );
 };
