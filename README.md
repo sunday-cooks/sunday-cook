@@ -37,7 +37,6 @@
 With [Grunt](http://gruntjs.com/), [Bower](http://bower.io/), and [npm](https://www.npmjs.com/#getting-started) installed globally, install dependencies by running the following commands from the terminal:
 ```
 npm install
-bower install
 grunt
 ```
 
