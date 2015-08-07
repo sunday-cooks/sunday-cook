@@ -12,6 +12,7 @@ module.exports = function( grunt ) {
       },
       production: {
         options: {
+          background: false,
           script: 'server/server.js',
           node_env: 'production',
         }
@@ -61,7 +62,7 @@ module.exports = function( grunt ) {
       production: {
         options: {
           destFile : 'public/index.html',
-          ignorePath : 'public/',
+          ignorePath : [ 'public/' ],
         },
         files: [ {
           expand: true,
@@ -78,7 +79,7 @@ module.exports = function( grunt ) {
         //atBegin: true,
       },
       express: {
-        files:  [ 'server/*.js', 'server/**/*.js' ],
+        files:  [ 'server/*.js', 'server/**/*.js', 'client/**' ],
         tasks:  [ 'dev_build', 'express:dev' ],
         options: {
           spawn: false,
@@ -162,5 +163,6 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'default', [ 'dev' ] );
   grunt.registerTask( 'dev_build', [ 'clean:dev', 'copy:dev', 'jshint:dev', 'bower:dev', 'sass:dev', 'injector:dev' ] );
   grunt.registerTask( 'dev', [ 'dev_build', 'express:dev', 'watch:express' ] );
-  grunt.registerTask( 'production', [ 'clean:production', 'copy:production', 'jshint:production', 'bower:production', 'sass:production', 'express:production' ] );
+  grunt.registerTask( 'prod_build', [ 'clean:production', 'copy:production', 'jshint:production', 'bower:production', 'sass:production', 'injector:production' ] );
+  grunt.registerTask( 'prod', [ 'prod_build', 'express:production' ] );
 };
