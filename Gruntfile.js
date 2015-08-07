@@ -5,17 +5,13 @@ module.exports = function( grunt ) {
     pkg: grunt.file.readJSON( 'package.json' ),
 
     express: {
-      options: {
-      },
       dev: {
         options: {
-          port: 8000,
           script: 'server/server.js',
         }
       },
       production: {
         options: {
-          port: 8000,
           script: 'server/server.js',
           node_env: 'production',
         }
