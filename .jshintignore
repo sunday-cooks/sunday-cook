@@ -1,0 +1,4 @@
+test/lib/**/*.js
+test/lib/**/*.css
+public/lib/**/*.js
+public/lib/**/*.js
