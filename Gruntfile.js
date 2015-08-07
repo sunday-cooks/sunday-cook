@@ -44,18 +44,18 @@ module.exports = function( grunt ) {
     injector: {
       options: {
         addRootSlash: false,
+        bowerPrefix: 'bower:',
       },
       dev: {
         options: {
           destFile : 'test/index.html',
-          ignorePath : 'test/',
+          ignorePath : [ 'test/' ]
         },
         files: [ {
           expand: true,
           cwd: 'test/',
           dest: 'test/',
-          src: [ 'css/*.css', 'lib/**/*.js', 'lib/**/*.css',
-            'app/*.js', 'app/**/*.js' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js' ],
         }, ],
       },
       production: {
@@ -67,8 +67,7 @@ module.exports = function( grunt ) {
           expand: true,
           cwd: 'public/',
           dest: 'public/',
-          src: [ 'css/*.css', 'lib/**/*.js', 'lib/**/*.css',
-            'app/*.js', 'app/**/*.js' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js' ],
         }, ],
       },
     },

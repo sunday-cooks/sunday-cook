@@ -28,3 +28,4 @@ node_modules
 bower_components
 public
 test
+lib
