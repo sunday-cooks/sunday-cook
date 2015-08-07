@@ -1,6 +1,4 @@
-var app = require( './express/express.js' );
+module.exports = app = require('./express/express.js');
 
-
-// Listen!
-console.log( 'Listening on port 8000!' );
+console.log( 'Express server listening on port 8000' );
 app.listen( 8000 );
