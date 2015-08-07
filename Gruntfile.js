@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function( grunt ) {
 
   grunt.initConfig( {
@@ -30,14 +32,21 @@ module.exports = function( grunt ) {
     bower: {
       dev: {
         options: {
-          targetDir: './test/lib',
+          targetDir: './test/',
           production: false,
+          layout: function(type, component, source) {
+            console.log('source', path.parse(source).dir);
+            return path.parse(source).dir;
+          }
         },
       },
       production: {
         options: {
-          targetDir: './public/lib',
+          targetDir: './public/',
           production: true,
+          layout: function(type, component, source) {
+            return source;
+          }
         },
       },
     },
@@ -50,7 +59,7 @@ module.exports = function( grunt ) {
       dev: {
         options: {
           destFile : 'test/index.html',
-          ignorePath : [ 'test/' ]
+          ignorePath : [ 'test' ],
         },
         files: [ {
           expand: true,
