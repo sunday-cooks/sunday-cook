@@ -13,10 +13,11 @@ if ( app.isDev() ) {
   app.use( morgan( 'dev' ) );
 }
 
-// Body parser
-app.use( bodyParser.urlencoded( { extended: true } ) );
 // JSON support for body parsing
 app.use( bodyParser.json() );
+
+// Body parser
+app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // Initialize our routes
 require( './routes.js' )( app, express );
