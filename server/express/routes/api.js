@@ -1,9 +1,5 @@
-var api = function (app, express) {
-  var router = express.Router();
-
-  //Api routes go here.
-
-  return router;
+var api = function ( router ) {
+  require( '../api/users' )( router );
 };
 
 
