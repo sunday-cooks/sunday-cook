@@ -8,10 +8,8 @@ var routes = function ( app, express ) {
     app.use( express.static( path.join( __dirname,'../../test' ) ) );
   }
 
-  // Routes
-  var router = require( './routes/api.js' )( app, express );
+  var router = require( './routes/api.js', express.Router() );
 
-  // Applying the routes
   app.use( '/api', router );
 };
 

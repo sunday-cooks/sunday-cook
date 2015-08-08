@@ -1,9 +1,8 @@
-var api = function (app, express) {
-  var router = express.Router();
+var partials = require( 'express-partials' );
+var path = require( 'path' );
 
-  //Api routes go here.
-
-  return router;
+var api = function ( router ) {
+  require( '../api/users' )( router );
 };
 
 
