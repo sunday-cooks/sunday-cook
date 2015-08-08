@@ -1,3 +1,9 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+azure.err
+iisnode.yml
+
 # Logs
 logs
 *.log
@@ -24,6 +30,8 @@ build/Release
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+.Spotlight-V100
+.Trashes
 node_modules
 bower_components
 public

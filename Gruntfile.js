@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function( grunt ) {
 
   grunt.initConfig( {
@@ -30,33 +32,39 @@ module.exports = function( grunt ) {
     bower: {
       dev: {
         options: {
-          targetDir: './test/lib',
+          targetDir: './test/',
           production: false,
+          layout: function(type, component, source) {
+            return path.parse(source).dir;
+          }
         },
       },
       production: {
         options: {
-          targetDir: './public/lib',
+          targetDir: './public/',
           production: true,
+          layout: function(type, component, source) {
+            return path.parse(source).dir;
+          }
         },
       },
     },
 
     injector: {
       options: {
-        addRootSlash: false,
+        //addRootSlash: false,
         bowerPrefix: 'bower:',
       },
       dev: {
         options: {
           destFile : 'test/index.html',
-          ignorePath : [ 'test/' ]
+          ignorePath : [ 'test' ],
         },
         files: [ {
           expand: true,
           cwd: 'test/',
           dest: 'test/',
-          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', '/app/**/*.css' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', 'styles/**/*.css' ],
         }, ],
       },
       production: {
@@ -68,7 +76,7 @@ module.exports = function( grunt ) {
           expand: true,
           cwd: 'public/',
           dest: 'public/',
-          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', '/app/**/*.css' ],
+          src: [ '../bower.json', 'app/*.js', 'app/**/*.js', 'styles/**/*.css' ],
         }, ],
       },
     },
