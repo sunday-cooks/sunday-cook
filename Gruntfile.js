@@ -35,7 +35,6 @@ module.exports = function( grunt ) {
           targetDir: './test/',
           production: false,
           layout: function(type, component, source) {
-            console.log('source', path.parse(source).dir);
             return path.parse(source).dir;
           }
         },
@@ -45,7 +44,7 @@ module.exports = function( grunt ) {
           targetDir: './public/',
           production: true,
           layout: function(type, component, source) {
-            return source;
+            return path.parse(source).dir;
           }
         },
       },
