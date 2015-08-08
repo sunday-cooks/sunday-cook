@@ -1,11 +1,18 @@
-var db = require('../config');
-var bcrypt = require('bcrypt');
-var Promise = require('bluebird');
+var db = require( '../config' );
+var Event = require( './event' );
+
+var bcrypt = require( 'bcrypt' );
+var Promise = require( 'bluebird' );
 
 var User = db.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
-  initialize: function(){
+
+  events: function() {
+    return this.hasMany( Event );
+  }
+
+  initialize: function() {
     //this.on('creating', this.hashPassword);
   },
   /*comparePassword: function(attemptedPassword, callback) {
