@@ -219,3 +219,20 @@ db.knex.schema.hasTable('chatmessages' ).then( function ( exists ) {
     });
   }
 });
+
+/**
+ * Notes Table
+ */
+
+db.knex.schema.hasTable('notes' ).then( function ( exists ) {
+  if ( !exists ) {
+    db.knex.schema.createTable( 'notes', function ( notes ) {
+      note.increments( 'id' ).primary();
+      note.string( 'note' );
+      note.timestamps();
+    }).then( function ( table ) {
+      console.log( 'Created Table: notes' );
+    });
+  }
+});
+
