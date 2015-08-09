@@ -4,7 +4,7 @@
   "description": "A social cooking event platform.",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt dev_build --verbose"
   },
   "repository": {
     "type": "git",
