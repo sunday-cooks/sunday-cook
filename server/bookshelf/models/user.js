@@ -10,7 +10,7 @@ var User = db.Model.extend({
 
   events: function() {
     return this.hasMany( Event );
-  }
+  },
 
   initialize: function() {
     //this.on('creating', this.hashPassword);
