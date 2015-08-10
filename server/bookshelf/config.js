@@ -89,7 +89,7 @@ db.knex.schema.hasTable( 'events' ).then( function ( exists ) {
 
 db.knex.schema.hasTable( 'events_ingredients' ).then( function ( exists ) {
   if ( !exists ) {
-    db.knex.schema.createTable( 'event_ingredients', function ( event_ing ) {
+    db.knex.schema.createTable( 'events_ingredients', function ( event_ing ) {
 
       event_ing.integer( 'qty' );
 
