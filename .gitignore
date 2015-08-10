@@ -4,6 +4,9 @@
 azure.err
 iisnode.yml
 
+# Environmental Variables
+.env
+
 # Logs
 logs
 *.log
