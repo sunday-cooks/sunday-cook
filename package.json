@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/charming-chino/charming-chino#readme",
   "dependencies": {
-    "bcrypt": "^0.8.4",
     "bluebird": "^2.9.34",
     "body-parser": "^1.13.3",
     "bookshelf": "^0.8.1",
