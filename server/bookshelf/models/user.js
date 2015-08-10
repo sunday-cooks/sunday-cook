@@ -9,11 +9,7 @@ var User = db.Model.extend({
 
   events: function() {
     return this.hasMany( Event );
-  },
-
-  initialize: function() {
-    //this.on('creating', this.hashPassword);
-  },
+  }
 }, {
 
   fetchUser: function( email ) {
@@ -39,6 +35,7 @@ var User = db.Model.extend({
   },
 
   fbAuthentication: function( req, accessToken, refreshToken, profile, done ) {
+    console.log('profile', profile);
     User.fetchUserbyFBId( profile.id )
     .then( function( user ) {
       if ( !req.user || req.user.email === user.get( 'email' ) ) {
@@ -52,10 +49,14 @@ var User = db.Model.extend({
 
       if ( user ) {
         user.set( 'fb_id', profile.id );
-        user.set( 'first_name', profile.first_name );
-        user.set( 'last_name', profile.last_name );
+        user.set( 'first_name', profile.name.givenName );
+        user.set( 'last_name', profile.name.familyName );
         user.set( 'gender', profile.gender );
+        if (profile.emails && profile.emails.length > 0) {
+          user.set( 'email', profile.emails[0].value );
+        }
         user.save();
+
         return done( null, req.user );
       }
 
