@@ -21,9 +21,7 @@ db.knex.schema.hasTable( 'users' ).then( function ( exists ) {
     db.knex.schema.createTable( 'users', function ( user ) {
       user.increments( 'id' ).primary();
       user.string( 'email', 100 ).unique();
-      user.string( 'password', 100 );
       user.string( 'fb_id' ).unique(); // Facebook Profile Id
-      user.string( 'profilepic' ); // Profile picture URL
       user.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: users' );
