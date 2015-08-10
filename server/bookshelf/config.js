@@ -226,7 +226,7 @@ db.knex.schema.hasTable('chatmessages' ).then( function ( exists ) {
 
 db.knex.schema.hasTable('notes' ).then( function ( exists ) {
   if ( !exists ) {
-    db.knex.schema.createTable( 'notes', function ( notes ) {
+    db.knex.schema.createTable( 'notes', function ( note ) {
       note.increments( 'id' ).primary();
       note.string( 'note' );
       note.timestamps();
