@@ -1,10 +1,10 @@
 var knex = require( 'knex' )({
   client: 'postgres',
   connection: {
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'sundaycook',
+    host: process.env.pg_host,
+    user: process.env.pg_user,
+    password: process.env.pg_password,
+    database: process.env.pg_database,
     charset: 'utf8',
   },
 });
@@ -89,7 +89,7 @@ db.knex.schema.hasTable( 'events' ).then( function ( exists ) {
 
 db.knex.schema.hasTable( 'events_ingredients' ).then( function ( exists ) {
   if ( !exists ) {
-    db.knex.schema.createTable( 'event_ingredients', function ( event_ing ) {
+    db.knex.schema.createTable( 'events_ingredients', function ( event_ing ) {
 
       event_ing.integer( 'qty' );
 
@@ -226,7 +226,7 @@ db.knex.schema.hasTable('chatmessages' ).then( function ( exists ) {
 
 db.knex.schema.hasTable('notes' ).then( function ( exists ) {
   if ( !exists ) {
-    db.knex.schema.createTable( 'notes', function ( notes ) {
+    db.knex.schema.createTable( 'notes', function ( note ) {
       note.increments( 'id' ).primary();
       note.string( 'note' );
       note.timestamps();

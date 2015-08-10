@@ -1,5 +1,5 @@
 var db = require('../bookshelf/config');
-var Chat = require('../bookshelf/models/chat');
+var Chat = require('../bookshelf/models/chatmessage');
 
 module.exports = function(io) {
   io.sockets.on('connection', function (socket) {
