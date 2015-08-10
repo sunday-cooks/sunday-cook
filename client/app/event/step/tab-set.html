@@ -1,0 +1,10 @@
+<div role="tabpanel" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <ul class="mdl-tabs__tab-bar" style="justify-content:left;" role="tablist">
+    <li role="presentation" ng-repeat="tab in tabset.tabs" class="mdl-tabs__tab" ng-class="{ is-active: tab.active }">
+      <a class="mdl-tabs__tab" href="" role="tab" ng-click="tabset.select(tab)">{{tab.heading}}</a>
+    </li>
+  </ul>
+
+  <ng-transclude>
+  </ng-transclude>
+</div>
