@@ -50,6 +50,6 @@
     "grunt-notify": "^0.4.1",
     "grunt-util": "^0.5.3",
     "jshint-stylish": "^2.0.1"
-  }
+  },
   "engines": { "node": "0.12.x" }
 }
