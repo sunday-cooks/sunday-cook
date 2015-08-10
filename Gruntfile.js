@@ -35,8 +35,7 @@ module.exports = function( grunt ) {
           targetDir: './test/',
           production: false,
           layout: function(type, component, source) {
-            console.log('source', source);
-            console.log('sourcedir', path.parse(source).dir);
+            console.log('Found component', component, 'at', source);
             return path.parse(source).dir;
           }
         },
