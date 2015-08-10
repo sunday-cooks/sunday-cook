@@ -1,6 +1,7 @@
-var express     = require( 'express' ),
-    morgan      = require( 'morgan' ), // used for logging incoming request
-    bodyParser  = require( 'body-parser' );
+var express           = require( 'express' ),
+    morgan            = require( 'morgan' ),
+    bodyParser        = require( 'body-parser' ),
+    session           = require( 'express-session' );
 
 // Initialize express
 var app = express();
@@ -18,6 +19,14 @@ app.use( bodyParser.json() );
 
 // Body parser
 app.use( bodyParser.urlencoded( { extended: true } ) );
+
+app.use( session( {
+  secret: 'we are kittens',
+  resave: true,
+  saveUninitialized: true,
+} ) );
+
+require( './passport' )( app );
 
 // Initialize our routes
 require( './routes.js' )( app, express );

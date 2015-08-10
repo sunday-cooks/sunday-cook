@@ -1,10 +1,19 @@
-var passport = require('passport');
-var fb = require('passport-facebook');
+var passport  = require( 'passport' );
 
-module.exports = function ( router ) {
+module.exports = function ( app, router ) {
 
-  // router.post( '/signin', );
-  // router.post( '/signup',  );
-  // router.get( '/signedin',  );
+  app.get( '/auth/facebook', passport.authenticate( 'facebook', {
+    scope: [ 'public_profile', 'email' ],
+  } ) );
 
+  app.get( '/auth/facebook/callback',
+    passport.authenticate( 'facebook', {
+      failureRedirect: '/',
+      successRedirect: '/',
+      session: false
+  } ),
+    function ( req, res ) {
+      /** change this to go back to the previous url */
+      res.redirect('/');
+  });
 };

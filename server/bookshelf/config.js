@@ -1,10 +1,10 @@
 var knex = require( 'knex' )({
   client: 'postgres',
   connection: {
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: 'sundaycook',
+    host: process.env.pg_host,
+    user: process.env.pg_user,
+    password: process.env.pg_password,
+    database: process.env.pg_database,
     charset: 'utf8',
   },
 });
@@ -21,9 +21,10 @@ db.knex.schema.hasTable( 'users' ).then( function ( exists ) {
     db.knex.schema.createTable( 'users', function ( user ) {
       user.increments( 'id' ).primary();
       user.string( 'email', 100 ).unique();
-      user.string( 'password', 100 );
       user.string( 'fb_id' ).unique(); // Facebook Profile Id
-      user.string( 'profilepic' ); // Profile picture URL
+      user.string( 'first_name');
+      user.string( 'last_name');
+      user.string( 'gender' );
       user.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: users' );

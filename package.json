@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/charming-chino/charming-chino#readme",
   "dependencies": {
-    "bcrypt": "^0.8.4",
     "bluebird": "^2.9.34",
     "body-parser": "^1.13.3",
     "bookshelf": "^0.8.1",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "jwt-simple": "^0.3.0",
@@ -51,5 +51,7 @@
     "grunt-util": "^0.5.3",
     "jshint-stylish": "^2.0.1"
   },
-  "engines": { "node": "0.12.x" }
+  "engines": {
+    "node": "0.12.x"
+  }
 }
