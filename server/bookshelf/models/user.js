@@ -33,8 +33,33 @@ var User = db.Model.extend({
     .then( function( user ) {
       done( null, user ? user : false );
     })
-    .catch( function( error ){
+    .catch( function( error ) {
       done( error );
+    });
+  },
+
+  fbAuthentication: function( req, accessToken, refreshToken, profile, done ) {
+    User.fetchUserbyFBId( profile.id )
+    .then( function( user ) {
+      if ( !req.user || req.user.email === user.get( 'email' ) ) {
+        return done( null, user );
+      }
+
+      return done( null, false );
+    })
+    .catch( function( error ) {
+      var user = req.user || new User();
+
+      if ( user ) {
+        user.set( 'fb_id', profile.id );
+        user.set( 'first_name', profile.first_name );
+        user.set( 'last_name', profile.last_name );
+        user.set( 'gender', profile.gender );
+        user.save();
+        return done( null, req.user );
+      }
+
+      return done( null, false );
     });
   },
 });
