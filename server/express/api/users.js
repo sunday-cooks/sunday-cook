@@ -12,13 +12,8 @@ module.exports = function ( app, router ) {
       successRedirect: '/',
       session: false
   } ),
-    function( req, res ) {
-      // Successful authentication, redirect home.
+    function ( req, res ) {
+      /** change this to go back to the previous url */
       res.redirect('/');
   });
-
-  // router.post( '/signin', );
-  // router.post( '/signup',  );
-  // router.get( '/signedin',  );
-
 };

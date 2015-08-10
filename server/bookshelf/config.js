@@ -22,6 +22,9 @@ db.knex.schema.hasTable( 'users' ).then( function ( exists ) {
       user.increments( 'id' ).primary();
       user.string( 'email', 100 ).unique();
       user.string( 'fb_id' ).unique(); // Facebook Profile Id
+      user.string( 'first_name');
+      user.string( 'last_name');
+      user.string( 'gender' );
       user.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: users' );
