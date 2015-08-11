@@ -1,0 +1,48 @@
+<div layout layout-sm="column">
+  <md-input-container flex>
+    <label>Step Name</label>
+    <input ng-model="formData.steps[stepArr.length - 1].name">
+  </md-input-container>
+  <md-input-container flex>
+    <label>Step Min Duration</label>
+    <input ng-model="formData.steps[stepArr.length - 1].min_duration">
+  </md-input-container>
+  <md-input-container flex>
+    <label>Step Max Duration</label>
+    <input ng-model="formData.steps[stepArr.length - 1].max_duration">
+  </md-input-container>
+</div>
+<div layout layout-sm="column">
+  <md-input-container flex>
+    <label>Step Details</label>
+    <textarea ng-model="formData.steps[stepArr.length - 1].details" columns="1"></textarea>
+  </md-input-container>
+  <md-input-container flex>
+    <label>Step Tips</label>
+    <input ng-model="formData.steps[stepArr.length - 1].tips[stepArr.length - 1]">
+  </md-input-container>
+</div>
+<div layout layout-sm="column">
+  <md-input-container flex data-ng-repeat="step in stepArr">
+    <label>Ingredients You Need</label>
+    <input ng-model="formData.steps[stepArr.length - 1].ingredients[choices.length - 1].index">
+  </md-input-container>
+  <md-input-container flex data-ng-repeat="choice in choices">
+    <label>Quantity</label>
+    <input ng-model="formData.steps[stepArr.length - 1].ingredients[choices.length - 1].quantity">
+  </md-input-container>
+  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-show="showAddChoice(choice)" ng-click="addNewChoice()">
+    <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+  </md-button>
+</div>
+<div layout layout-sm="row">
+  <md-input-container flex data-ng-repeat="step in stepArr">
+    <label>Kitchen Tools You Need</label>
+    <input ng-model="formData.steps[stepArr.length - 1].tools[stepArr.length - 1].index">
+  </md-input-container>
+  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-show="showAddTool(tool)" ng-click="addNewTool()">
+    <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+  </md-button>
+</div>
+<md-button flex class="md-raised md-primary" ui-sref="createEvent.step" ng-click="addNewStep()">Add Step</md-button>
+<md-button flex class="md-raised md-primary">Submit</md-button>

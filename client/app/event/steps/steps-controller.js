@@ -18,9 +18,9 @@ angular.module("steps", ['ngMaterial'])
       { name: 'Bluetooth', extraScreen: 'Bluetooth menu', icon: 'device:bluetooth', enabled: false },
     ];
     $scope.messages = [
-      {id: 1, title: "Message A", selected: false},
-      {id: 2, title: "Message B", selected: true},
-      {id: 3, title: "Message C", selected: true},
+      { id: 1, title: "Message A", selected: false },
+      { id: 2, title: "Message B", selected: true },
+      { id: 3, title: "Message C", selected: true },
     ];
     $scope.people = [
       { name: 'Janet Perkins', img: 'img/100-0.jpeg', newMessage: true },

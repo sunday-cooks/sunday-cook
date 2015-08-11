@@ -4,38 +4,44 @@ angular.module('app', [
   'ngMaterial',
   'ngMdIcons',
   'createEvent',
+  'ngAnimate'
   ])
-  .config(function ($urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider) {
-    $urlRouterProvider.otherwise('/');
+  .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider ) {
+    $urlRouterProvider.otherwise( '/' );
 
-    var customBlueMap =     $mdThemingProvider.extendPalette('light-blue', {
+    var customBlueMap = $mdThemingProvider.extendPalette( 'light-blue', {
         'contrastDefaultColor': 'light',
-        'contrastDarkColors': ['50'],
+        'contrastDarkColors': [ '50' ],
         '50': 'ffffff'
       });
-      $mdThemingProvider.definePalette('customBlue', customBlueMap);
-      $mdThemingProvider.theme('default')
-        .primaryPalette('customBlue', {
+      $mdThemingProvider.definePalette( 'customBlue', customBlueMap );
+      $mdThemingProvider.theme( 'default' )
+        .primaryPalette( 'customBlue', {
           'default': '500',
           'hue-1': '50'
         })
-        .accentPalette('pink');
-      $mdThemingProvider.theme('input', 'default')
-            .primaryPalette('grey');
+        .accentPalette( 'pink' );
+      $mdThemingProvider.theme( 'input', 'default' )
+            .primaryPalette( 'grey' );
 
     $stateProvider
-      .state('event', {
+      .state( 'event', {
         url: '/',
         templateUrl: "app/event/event.html",
         controller: "eventCtrl"
       })
-      .state('createEvent', {
+      .state( 'createEvent', {
         url: '/create-event',
         templateUrl: "app/create/create-event.html",
         controller: "createCtrl"
+      })
+      .state( 'createEvent.event', {
+        url: '/event-details',
+        templateUrl: "app/create/event-details.html",
+      })
+      .state( 'createEvent.step', {
+        url: '/step-details',
+        templateUrl: "app/create/step-details.html",
       });
 
   });
-  // .controller('MainCtrl', function ($scope) {
-
-  // });

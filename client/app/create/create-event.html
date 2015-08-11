@@ -1,79 +1,19 @@
-<!-- <form>
-  <input type="text" placeholder="Event Name">
-  <input type="text" placeholder="About the Cook">
-  <input type="text" placeholder="Ingredients You Need">
-  <input type="text" placeholder="Kitchen Tools">
-  <input type="text" placeholder="Step Name">
-  <input type="text" placeholder="Step Details">
-  <input type="text" placeholder="Step Tips">
-  <input type="text" placeholder="Step Ingredients">
-  <input type="text" placeholder="Step Tools">
-  <input type="submit">
-</form> -->
-
- <md-content layout-padding>
-    <form name="userForm">
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>Event Name</label>
-          <input ng-model="user.event">
-        </md-input-container>
-        <md-input-container flex>
-          <label>Chef Name</label>
-          <input ng-model="user.chef">
-        </md-input-container>
-      </div>
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>About the Cook</label>
-          <textarea ng-model="user.biography" columns="1"></textarea>
-        </md-input-container>
-      </div>
-      <div layout layout-sm="column">
-        <md-input-container flex>
-          <label>Ingredients You Need</label>
-          <input ng-model="user.totalingredients">
-        </md-input-container>
-        <md-input-container flex>
-          <label>Kitchen Tools</label>
-          <input ng-model="user.kitchentools">
-        </md-input-container>
-      </div>
-      <br/>
-      <!-- <md-button class="md-raised md-primary" ng-click="toggleStep()">Toggle Step</md-button> -->
-      <div class="stepOne" md-component-id="stepOne">
-	      <div layout layout-sm="column">
-	        <md-input-container flex>
-	          <label>Step One Name</label>
-	          <input ng-model="user.stepname">
-	        </md-input-container>
-	        <md-input-container flex>
-	          <label>Step One Duration</label>
-	          <input ng-model="user.stepduration">
-	        </md-input-container>
-	      </div>
-	      <div layout layout-sm="column">
-	        <md-input-container flex>
-	          <label>Step One Details</label>
-	          <textarea ng-model="user.details" columns="1"></textarea>
-	        </md-input-container>
-	        <md-input-container flex>
-	          <label>Step One Tips</label>
-	          <input ng-model="user.tips">
-	        </md-input-container>
-	      </div>
-	      <div layout layout-sm="column">
-	        <md-input-container flex>
-	          <label>Step One Ingredients</label>
-	          <input ng-model="user.ingredients">
-	        </md-input-container>
-	        <md-input-container flex>
-	          <label>Step One Tools</label>
-	          <input ng-model="user.tools">
-	        </md-input-container>
-	      </div>
-      </div>
-      <md-button flex class="md-raised md-primary">Add Step</md-button>
-      <md-button flex class="md-raised md-primary">Submit</md-button>
-    </form>
-    </md-content>
+<md-content layout-padding>
+  <div class="page-header text-center">
+    <h2>Create an Event</h2>
+    <div id="status-buttons" class="text-center">
+      <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ui-sref=".event">Event Details
+        <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ui-sref=".step">Step Details
+        <ng-md-icon icon="cake" style="fill: lightseagreen" size="24"></ng-md-icon>
+      </md-button>
+    </div>
+  </div>
+  <form name="userForm" ng-submit="processForm()">
+    <div id="form-views" ui-view></div>
+    <pre>
+      {{ formData }}
+    </pre>   
+  </form>
+</md-content>
