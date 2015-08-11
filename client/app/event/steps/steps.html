@@ -1,58 +1,7 @@
-<div class="mdl-cell mdl-cell--12-col">
-  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="box-shadow: none; border: 0;">
-    <thead>
-      <tr>
-        <th class="mdl-data-table__cell--non-numeric"></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-        <td>25</td>
-        <td>$2.90</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-        <td>50</td>
-        <td>$1.25</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-        <td>10</td>
-        <td>$2.35</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-        <td>25</td>
-        <td>$2.90</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-        <td>50</td>
-        <td>$1.25</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-        <td>10</td>
-        <td>$2.35</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-        <td>25</td>
-        <td>$2.90</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-        <td>50</td>
-        <td>$1.25</td>
-      </tr>
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-        <td>10</td>
-        <td>$2.35</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<md-list ng-controller="ListCtrl">
+  <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
+  <md-list-item ng-repeat="topping in toppings">
+    <p> {{ topping.name }} </p>
+    <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+  </md-list-item>
+</md-list>
