@@ -2,7 +2,6 @@
 <html ng-app="app">
 <head>
   <title></title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- injector:bower:css -->
   <!-- endinjector -->
 
@@ -14,47 +13,58 @@
   }
 </style>
 </head>
-<body>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">Roasted Chicken</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
+<body layout="row">
+  <div class="" layout="column" layout-margin layout-fill>
+    <div>
+      <md-content>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+              <ng-md-icon icon="menu" style="fill: #FFFFFF" size="24"></ng-md-icon>
+            </md-button>
+            <h2>
+              <span>Toolbar with Icon Buttons</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <ng-md-icon icon="cake" style="fill: #FFFFFF" size="24"></ng-md-icon>
 
-          <a class="mdl-navigation__link">Help!</a>
-          <a class="mdl-navigation__link">Phil K.</a>
-        </nav>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+              <ng-md-icon icon="more_vert" style="fill: #FFFFFF" size="24"></ng-md-icon>
+
+            </md-button>
+          </div>
+        </md-toolbar>
+      </md-content>
+      <div>
+        <md-content>
+          <md-tabs md-dynamic-height>
+            <md-tab label="one">
+            </md-tab>
+            <md-tab label="two">
+            </md-tab>
+            <md-tab label="three">
+            </md-tab>
+          </md-tabs>
+        </md-content>
       </div>
-      <!-- Tabs -->
-      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Home</a>
-        <a href="#scroll-tab-2" class="mdl-layout__tab">About the cook</a>
-        <a href="#scroll-tab-3" class="mdl-layout__tab">Ingredients</a>
-        <a href="#scroll-tab-4" class="mdl-layout__tab">Kitchen Tools</a>
-        <a href="#scroll-tab-5" class="mdl-layout__tab">Result</a>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
     </div>
-    <!-- <div ng-include="'/event/event.html'"></div> -->
-    <main class="mdl-layout__content">
-      <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
-        <div class="page-content">
-          <ui-view></ui-view>
-        </div>
-      </section>
-    </main>
+
+
+    <div class="" layout="column" layout-fill>
+      <main class="content-wrapper" flex>
+        <ui-view></ui-view>
+      </main>
+    </div>
   </div>
 
   <!-- injector:bower:js -->
   <!-- endinjector -->
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script>
+
   <!-- injector:js -->
   <!-- endinjector -->
 </body>
