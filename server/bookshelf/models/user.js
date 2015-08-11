@@ -3,48 +3,48 @@ var Event = require( './event' );
 
 var Promise = require( 'bluebird' );
 
-var User = db.Model.extend({
+var User = db.Model.extend( {
   tableName: 'users',
   hasTimestamps: true,
 
-  events: function() {
+  events: function () {
     return this.hasMany( Event );
   }
 }, {
 
-  fetchUser: function( email ) {
+  fetchUser: function ( email ) {
     return new this( { email: email } ).fetch( { require: true } );
   },
 
-  fetchUserbyFBId: function( fbid ) {
+  fetchUserbyFBId: function ( fbid ) {
     return new this( { fb_id: fbid } ).fetch( { require: true } );
   },
 
-  serializeUser: function( user, done ) {
+  serializeUser: function ( user, done ) {
     done( null, user.get( 'email' ) );
   },
 
-  deserializeUser: function( email, done ) {
+  deserializeUser: function ( email, done ) {
     User.fetchUser( email )
-    .then( function( user ) {
+    .then( function ( user ) {
       done( null, user ? user : false );
     })
-    .catch( function( error ) {
+    .catch( function ( error ) {
       done( error );
     });
   },
 
-  fbAuthentication: function( req, accessToken, refreshToken, profile, done ) {
+  fbAuthentication: function ( req, accessToken, refreshToken, profile, done ) {
     console.log('profile', profile);
     User.fetchUserbyFBId( profile.id )
-    .then( function( user ) {
+    .then( function ( user ) {
       if ( !req.user || req.user.email === user.get( 'email' ) ) {
         return done( null, user );
       }
 
       return done( null, false );
     })
-    .catch( function( error ) {
+    .catch( function ( error ) {
       var user = req.user || new User();
 
       if ( user ) {

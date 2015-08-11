@@ -6,22 +6,22 @@ var StepTool = require( './steptool' );
 var User = require( './user' );
 var StepUser = require( './stepuser' );
 
-var Step = db.Model.extend({
+var Step = db.Model.extend( {
   tableName: 'steps',
 
-  ingredients: function() {
+  ingredients: function () {
     return this.hasMany( Ingredient ).through( IngredientStep );
   },
 
-  tools: function() {
+  tools: function () {
     return this.hasMany( Tool ).through( StepTool );
   },
 
-  tips: function() {
+  tips: function () {
     return this.hasMany( Tip );
   },
 
-  done: function() {
+  done: function () {
     return this.hasOne( User ).through( StepUser );
   }
 

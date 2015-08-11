@@ -8,7 +8,7 @@ var routes = function ( app, express ) {
     app.use( express.static( path.join( __dirname,'../../test' ) ) );
   }
 
-  var router = require( './routes/api' )( app, express.Router() );
+  var router = require( './api' )( app, express.Router() );
 
   app.use( '/api', router );
 };

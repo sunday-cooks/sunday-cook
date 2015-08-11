@@ -5,7 +5,7 @@ var EventIngredient = require( './eventingredient' );
 var Ingredient = db.Model.extend({
   tableName: 'ingredients',
 
-  events: function() {
+  events: function () {
     return this.belongsToMany( Event ).through( EventIngredient );
   },
 
