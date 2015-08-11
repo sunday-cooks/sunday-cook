@@ -1,0 +1,7 @@
+<md-list ng-controller="ListCtrl">
+  <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
+  <md-list-item ng-repeat="topping in toppings">
+    <p> {{ topping.name }} </p>
+    <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+  </md-list-item>
+</md-list>
