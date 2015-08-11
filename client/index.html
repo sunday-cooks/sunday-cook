@@ -1,22 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
   <title></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.9.1/bootstrap-social.css">
   <!-- injector:bower:css -->
   <!-- endinjector -->
 
   <!-- injector:css -->
   <!-- endinjector -->
+<style>
+  body {
+    color: #394453 !important;
+  }
+</style>
 </head>
-<body>
-  <a href="/api/fb" class='btn btn-social btn-facebook'><i class="fa fa-facebook"></i>Sign in</a>
+<body layout="row">
+  <div class="" layout="column" layout-margin layout-fill>
+    <div>
+      <md-content>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+              <ng-md-icon icon="menu" style="fill: #FFFFFF" size="24"></ng-md-icon>
+            </md-button>
+            <h2>
+              <span>Toolbar with Icon Buttons</span>
+            </h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <ng-md-icon icon="cake" style="fill: #FFFFFF" size="24"></ng-md-icon>
+
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+              <ng-md-icon icon="more_vert" style="fill: #FFFFFF" size="24"></ng-md-icon>
+
+            </md-button>
+          </div>
+        </md-toolbar>
+      </md-content>
+      <div>
+        <md-content>
+          <md-tabs md-dynamic-height>
+            <md-tab label="one">
+            </md-tab>
+            <md-tab label="two">
+            </md-tab>
+            <md-tab label="three">
+            </md-tab>
+          </md-tabs>
+        </md-content>
+      </div>
+    </div>
+
+
+    <div class="" layout="column" layout-fill>
+      <main class="content-wrapper" flex>
+        <ui-view></ui-view>
+      </main>
+    </div>
+  </div>
+
   <!-- injector:bower:js -->
   <!-- endinjector -->
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script>
+
   <!-- injector:js -->
   <!-- endinjector -->
 </body>

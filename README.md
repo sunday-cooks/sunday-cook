@@ -48,3 +48,4 @@ grunt
 ## Contributing
 
 Sunday Cooking Club welcomes contributors. To begin contributing, please, see the [contributing guidelines](CONTRIBUTING.md).
+
