@@ -11,10 +11,10 @@ module.exports = function ( app, router ) {
     var eventid = req.params.eventid;
     Event.fetchEvent( eventid )
     .then( function ( event ) {
-      if ( !event ) { next(); } //Failed routing.
+      if ( !event ) { res.sendStatus(400); } //Failed routing.
       else { res.json( event.eventDetails() ); }
-    } );
-  } );
+    });
+  });
 
   router.post( '/events/create', function ( req, res, next ) {
     var data        = req.body,
@@ -23,6 +23,8 @@ module.exports = function ( app, router ) {
         tools       = [],
         tips        = [],
         steps       = [];
+
+    console.log('Data!', data);
 
     // Our user is not logged in.
     if ( !chef ) { res.redirect( '/' ); return; }

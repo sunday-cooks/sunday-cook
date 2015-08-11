@@ -35,7 +35,7 @@ var Event = db.Model.extend( {
         'chef',
         'tools'
         ],
-    } );
+    });
   },
 
   eventDetails: function () {

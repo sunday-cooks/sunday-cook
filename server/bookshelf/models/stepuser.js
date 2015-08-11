@@ -5,6 +5,7 @@ var db    = require( '../config' ),
 var StepUser = db.Model.extend( {
 
   tableName: 'steps_users',
+  hasTimestamps: true,
 
   step: function () {
     return this.belongsTo( Step );
