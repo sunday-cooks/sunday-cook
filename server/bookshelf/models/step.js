@@ -23,9 +23,20 @@ var Step = db.Model.extend( {
   },
 
   done: function () {
-    return this.belongsToMany( User ).through( StepUser );
+    return this.belongsToMany( User ).through( StepUser ).withPivot( 'done' );
   }
 
+}, {
+  fetchStep: function ( id ) {
+    return new this( { id: id } ).fetch( {
+      require: true,
+      withRelated: [
+        'ingredients',
+        'tools',
+        'tips'
+        ],
+    });
+  },
 });
 
 module.exports = Step;

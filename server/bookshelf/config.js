@@ -144,6 +144,9 @@ db.knex.schema.hasTable( 'steps' ).then( function ( exists ) {
 db.knex.schema.hasTable( 'steps_users' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'steps_users', function ( step_user ) {
+
+      step_user.boolean( 'done' );
+
       step_user.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: steps_users' );
