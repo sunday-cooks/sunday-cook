@@ -2,7 +2,8 @@ angular.module('app', [
   'ui.router',
   'event',
   'ngMaterial',
-  'ngMdIcons'
+  'ngMdIcons',
+  'createEvent',
   ])
   .config(function ($urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider) {
     $urlRouterProvider.otherwise('/');
@@ -27,7 +28,13 @@ angular.module('app', [
         url: '/',
         templateUrl: "app/event/event.html",
         controller: "eventCtrl"
+      })
+      .state('createEvent', {
+        url: '/create-event',
+        templateUrl: "app/create/create-event.html",
+        controller: "createCtrl"
       });
+
   });
   // .controller('MainCtrl', function ($scope) {
 
