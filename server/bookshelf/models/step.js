@@ -1,20 +1,21 @@
-var db = require( '../config' );
-var Tip = require( './tip' );
-var Ingredient = require( './ingredient' );
-var Tool = require( './tool' );
-var StepTool = require( './steptool' );
-var User = require( './user' );
-var StepUser = require( './stepuser' );
+var db              = require( '../config' ),
+    Tip             = require( './tip' ),
+    Ingredient      = require( './ingredient' ),
+    IngredientStep  = require( './ingredientstep' ),
+    Tool            = require( './tool' ),
+    StepTool        = require( './steptool' ),
+    User            = require( './user' ),
+    StepUser        = require( './stepuser' );
 
 var Step = db.Model.extend( {
   tableName: 'steps',
 
   ingredients: function () {
-    return this.hasMany( Ingredient ).through( IngredientStep );
+    return this.belongsToMany( Ingredient ).through( IngredientStep ).withPivot( 'qty' );
   },
 
   tools: function () {
-    return this.hasMany( Tool ).through( StepTool );
+    return this.belongsToMany( Tool ).through( StepTool );
   },
 
   tips: function () {
@@ -22,7 +23,7 @@ var Step = db.Model.extend( {
   },
 
   done: function () {
-    return this.hasOne( User ).through( StepUser );
+    return this.belongsToMany( User ).through( StepUser );
   }
 
 });

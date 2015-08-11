@@ -1,11 +1,12 @@
-var db = require( '../config' );
-var Step = require( './step' );
-var User = require( './user' );
-var Ingredient = require( './ingredient' );
-var Tool = require( './tool' );
+var db          = require( '../config' ),
+    Step        = require( './step' ),
+    User        = require( './user' ),
+    Ingredient  = require( './ingredient' ),
+    Tool        = require( './tool' );
 
 var Event = db.Model.extend( {
   tableName: 'events',
+  hasTimestamps: true,
 
   steps: function () {
     return this.hasMany( Step );
