@@ -40,7 +40,7 @@ module.exports = function ( app, router ) {
     // Create our tips models and their promise
     req.body.steps.tips.forEach( function ( tip ) {
       tips.push( new Tip( { text: tip } ).save() );
-    })
+    });
 
     // Create our steps models and their promise
     req.body.steps.forEach( function ( step ) {
@@ -50,7 +50,7 @@ module.exports = function ( app, router ) {
         max_duration: step.max_duration,
         details: step.details,
       } ).save() );
-    })
+    });
 
     Promise.all( ingredients )
     .then( function ( coll ) {
@@ -91,5 +91,5 @@ module.exports = function ( app, router ) {
       event.related( 'tools' ).attach( tools );
       event.related( 'chef' ).attach( chef );
     });
-  }
+  });
 };
