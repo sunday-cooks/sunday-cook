@@ -1,10 +1,11 @@
-var bookshelf = require('./bookshelf/config.js');
+require( 'dotenv' ).load();
+var bookshelf = require( './bookshelf/config.js' );
 
-module.exports = app = require('./express/express.js');
+module.exports = app = require( './express/express.js' );
 
 console.log( 'Express server listening on port 8000' );
 var server = app.listen( 8000 );
 
-var io = require('socket.io').listen(server);
+var io = require( 'socket.io' ).listen( server );
 
-require('./chat/chat.js')(io);
+require( './chat/chat.js' )( io );
