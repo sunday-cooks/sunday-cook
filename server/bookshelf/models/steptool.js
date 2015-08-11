@@ -1,6 +1,6 @@
-var db = require( '../config' );
-var Step = require( './step' );
-var Tool = require( './tool' );
+var db    = require( '../config' ),
+    Step  = require( './step' ),
+    Tool  = require( './tool' );
 
 var StepTool = db.Model.extend( {
 

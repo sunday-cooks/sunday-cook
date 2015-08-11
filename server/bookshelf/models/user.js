@@ -1,7 +1,6 @@
-var db = require( '../config' );
-var Event = require( './event' );
-
-var Promise = require( 'bluebird' );
+var db      = require( '../config' ),
+    Event   = require( './event' ),
+    Promise = require( 'bluebird' );
 
 var User = db.Model.extend( {
   tableName: 'users',

@@ -1,6 +1,6 @@
-var db = require( '../config' );
-var Event = require( './event' );
-var User = require( './user' );
+var db    = require( '../config' ),
+    Event = require( './event' ),
+    User  = require( './user' );
 
 var Note = db.Model.extend( {
   tableName: 'notes',

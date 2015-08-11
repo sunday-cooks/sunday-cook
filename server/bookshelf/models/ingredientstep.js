@@ -1,6 +1,6 @@
-var db = require( '../config' );
-var Step = require('./step');
-var Ingredient = require( './ingredient' );
+var db          = require( '../config' ),
+    Step        = require('./step' ),
+    Ingredient  = require( './ingredient' );
 
 var IngredientStep = db.Model.extend({
 

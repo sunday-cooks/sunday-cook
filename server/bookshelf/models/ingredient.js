@@ -1,6 +1,6 @@
-var db = require( '../config' );
-var Event = require( './event' );
-var EventIngredient = require( './eventingredient' );
+var db              = require( '../config' ),
+    Event           = require( './event' ),
+    EventIngredient = require( './eventingredient' );
 
 var Ingredient = db.Model.extend({
   tableName: 'ingredients',

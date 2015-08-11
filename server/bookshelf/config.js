@@ -1,4 +1,4 @@
-var knex = require( 'knex' )({
+var knex = require( 'knex' )( {
   client: 'postgres',
   connection: {
     host: process.env.pg_host,

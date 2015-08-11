@@ -1,6 +1,6 @@
-var db = require( '../config' );
-var Step = require( './step' );
-var User = require( './user' );
+var db    = require( '../config' ),
+    Step  = require( './step' ),
+    User  = require( './user' );
 
 var StepUser = db.Model.extend( {
 
