@@ -40,3 +40,4 @@ bower_components
 public
 test
 lib
+.sass-cache/*
