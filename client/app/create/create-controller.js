@@ -1,4 +1,4 @@
-angular.module( "createEvent", [ 'ngMaterial', '$http' ] )
+angular.module( "createEvent", [ 'ngMaterial' ] )
  
   .controller( "createCtrl", function ( $scope, $http ) {
     $scope.formData = { };
