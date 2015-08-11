@@ -90,6 +90,8 @@ module.exports = function ( app, router ) {
       event.related( 'ingredients' ).attach( ingredients );
       event.related( 'tools' ).attach( tools );
       event.related( 'chef' ).attach( chef );
+
+      res.status(201).json( { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
     });
   });
 };
