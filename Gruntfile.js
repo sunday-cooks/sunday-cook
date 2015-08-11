@@ -106,20 +106,20 @@ module.exports = function( grunt ) {
         files: [
           { expand: true,
             cwd: 'client/',
-            src: ['**'],
+            src: ['**', '!**/*.scss'],
             dest: 'test/',
             filter: 'isFile'
-          },
+          }
         ],
       },
       production: {
         files: [
           { expand: true,
             cwd: 'client/',
-            src: ['**'],
+            src: ['**', '!**/*.scss'],
             dest: 'public/',
             filter: 'isFile'
-          },
+          }
         ],
       },
     },
@@ -134,8 +134,8 @@ module.exports = function( grunt ) {
         ext: '.css'
       }, {
         expand: true,
-        cwd: 'client/styles/',
-        src: ['*.scss'],
+        cwd: 'client/',
+        src: ['**/*.scss'],
         dest: 'test/',
         ext: '.css'
       }],
@@ -149,8 +149,8 @@ module.exports = function( grunt ) {
         ext: '.css'
       }, {
         expand: true,
-        cwd: 'client/styles/',
-        src: ['*.scss'],
+        cwd: 'client/',
+        src: ['**/*.scss'],
         dest: 'public/',
         ext: '.css'
       }],
