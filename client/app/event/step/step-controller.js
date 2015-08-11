@@ -1,31 +1,25 @@
-angular.module("step", ['tabs'])
-  .controller("stepCtrl", function ($scope) {
-    $scope.tabs = [
-      {
-        title: 'About',
-
-      },
-    ];
+angular.module("step", ['ngMaterial', 'stepPercent'])
+  .controller("stepCtrl", function ($scope, $log) {
+    var tabs = [
+          { title: 'One', content: "Tabs will become paginated if there isn't enough room for them."},
+          { title: 'Two', content: "You can swipe left and right on a mobile device to change tabs."},
+          { title: 'Three', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
+        ],
+        selected = null,
+        previous = null;
+    $scope.tabs = tabs;
+    $scope.selectedIndex = 2;
+    $scope.$watch('selectedIndex', function(current, old){
+      previous = selected;
+      selected = tabs[current];
+      if ( old + 1 && (old != current)) $log.debug('Goodbye ' + previous.title + '!');
+      if ( current + 1 )                $log.debug('Hello ' + selected.title + '!');
+    });
   })
   .directive('step', function () {
     return {
-      restrict: 'EA',
+      restrict: 'E',
       templateUrl: 'app/event/step/step.html'
-    };
-  })
-  .directive('progressBar', function () {
-    return {
-      restrict: 'EA',
-      templateUrl: 'app/event/step/progress-bar.html',
-      // link: function ($scope, element, attributes) {
-      //   // var divElement = angular.element(element[0].querySelector('#find-me'));
-      //   var elem = angular.element(element[0].querySelector('#p1'));
-      //   console.log(elem);
-      //   elem.addEventListener('mdl-componentupgraded', function() {
-      //     this.MaterialProgress.setProgress(33);
-      //     this.MaterialProgress.setBuffer(87);
-      //   });
-      // }
     };
   })
 ;

@@ -1,26 +1,14 @@
-<div class="mdl-cell mdl-cell--12-col">
-  <div class="mdl-cell mdl-cell--12-col" style="padding: 10px 0;">
-    <progress-bar></progress-bar>
-  </div>
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--10-col">
-      <div>
-        <span>
-          <i class="material-icons" style="position: relative; top: 5px;">keyboard_arrow_left</i>
-          <h5 style="display: inline; margin-top: 0; font-weight: 300;">Step <span class="" style="color:#3f51b5; font-weight: 400;">4 </span>of 15</h5>
-          <i class="material-icons" style="position: relative; top: 5px;">keyboard_arrow_right</i>
-        </span>
-        <h3 style="margin-top: 12px; margin-bottom: 10px;">Beat the chicken down</h3>
-      </div>
-    </div>
-    <div class="mdl-cell mdl-cell--2-col">
-      <!-- Accent-colored raised button with ripple -->
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width: 100%;">
-        Next step
-      </button>
-    </div>
-  </div>
-  <div class="mdl-cell mdl-cell--12-col">
-    <tab-set></tab-set>
-  </div>
+<step-percent></step-percent>
+<div class="sample tabsdemoDynamicTabs" ng-controller="stepCtrl" layout="column">
+  <md-content class="md-padding">
+    <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="">
+      <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+        <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
+          <div ng-bind="tab.content"></div>
+          <br>
+          <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>
