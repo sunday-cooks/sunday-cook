@@ -1,0 +1,19 @@
+<md-content layout-padding>
+  <div class="page-header text-center">
+    <h2>Create an Event</h2>
+    <div id="status-buttons" class="text-center">
+      <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ui-sref=".event">Event Details
+        <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ui-sref=".step">Step Details
+        <ng-md-icon icon="cake" style="fill: lightseagreen" size="24"></ng-md-icon>
+      </md-button>
+    </div>
+  </div>
+  <form name="userForm" ng-submit="processForm()">
+    <div id="form-views" ui-view></div>
+    <pre>
+      {{ formData }}
+    </pre>   
+  </form>
+</md-content>
