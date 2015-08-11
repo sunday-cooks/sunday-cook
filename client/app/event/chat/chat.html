@@ -1,3 +1,19 @@
-<div flex="40" style="height: 400px;">
-  chat
+<div flex="40" style="height: 400px;" ng-controller="ChatController as chatCtrl">
+  <md-content>
+    <md-toolbar class="chat-header">SCC Chat</md-toolbar>
+    <div style="height: 300px; overflow: scroll;">
+      <md-list>
+        <md-list-item ng-repeat="chat in chatCtrl.chats | orderBy:'createdOn':true ">
+          <span>{{ chat.text }} | {{ chat.createdOn | date:'HH:mm:ss' }}</span>
+        </md-list-item>
+      </md-list> <!-- end of list -->
+    </div>
+
+    <md-input-container>
+      <label>Add something to the mix</label>
+      <form ng-submit="chatCtrl.sendChat(chatCtrl.chat.chatText)">
+        <input type="text" ng-model="chatCtrl.chat.chatText">
+      </form>
+    </md-input-container> <!-- end of input container -->
+  </md-content> <!-- end of content container -->
 </div>
