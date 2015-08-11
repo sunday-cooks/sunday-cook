@@ -2,18 +2,17 @@ var passport  = require( 'passport' );
 
 module.exports = function ( app, router ) {
 
-  app.get( '/auth/facebook', passport.authenticate( 'facebook', {
+  router.get( '/fb', passport.authenticate( 'facebook', {
     scope: [ 'public_profile', 'email' ],
   } ) );
 
-  app.get( '/auth/facebook/callback',
+  router.get( '/fb/callback',
     passport.authenticate( 'facebook', {
       failureRedirect: '/',
-      successRedirect: '/',
-      session: false
+      successRedirect: '/'
   } ),
     function ( req, res ) {
-      /** change this to go back to the previous url */
+      // change this to go back to the previous url
       res.redirect('/');
   });
 };

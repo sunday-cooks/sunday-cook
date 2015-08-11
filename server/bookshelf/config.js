@@ -1,4 +1,4 @@
-var knex = require( 'knex' )({
+var knex = require( 'knex' )( {
   client: 'postgres',
   connection: {
     host: process.env.pg_host,
@@ -110,7 +110,6 @@ db.knex.schema.hasTable( 'events_tools' ).then( function ( exists ) {
 
       event_tool.integer( 'qty' );
 
-      event_tool.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: events_tools' );
     });
@@ -127,13 +126,10 @@ db.knex.schema.hasTable( 'steps' ).then( function ( exists ) {
       step.increments( 'id' ).primary();
 
       step.string( 'name' );
+      step.string( 'details' );
       step.integer( 'minDuration' );
       step.integer( 'maxDuration' );
 
-      step.string( 'goal' );
-      step.string( 'prep' );
-
-      step.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: steps' );
     });
@@ -166,7 +162,6 @@ db.knex.schema.hasTable('tips' ).then( function ( exists ) {
 
       tip.string( 'text' );
 
-      tip.timestamps();
     }  ).then( function ( table ) {
       console.log( 'Created Table: tips' );
     });
