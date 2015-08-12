@@ -4,17 +4,14 @@ var express           = require( 'express' ),
     session           = require( 'express-session' ),
     SessionStore      = require( 'express-sql-session' )( session ),
     http              = require( 'http' ),
-    socket            = require( 'socket.io' ),
-    passportSocketIo  = require( 'passport.socketio' ),
-    cookieParser      = require( 'cookie-parser' );
+    passportSocketIo  = require( 'passport.socketio' );
 
 // Initialize express
 var app = express();
 var server = http.Server( app );
-var io = socket( server );
+var io = require( 'socket.io' )( server );
 
-// NOTE: not sure where to place this line in the file
-require( '../chat/chat.js' )(io);
+require( '../chat/chat' )( io );
 
 app.isDev = function () { return app.get( 'env' ) === 'development'; };
 app.isProd = function () { return app.get(' env' ) === 'production'; };
@@ -23,13 +20,6 @@ app.isProd = function () { return app.get(' env' ) === 'production'; };
 if ( app.isDev() ) {
   app.use( morgan( 'dev' ) );
 }
-
-// JSON support for body parsing
-app.use( bodyParser.json() );
-
-// Body parser
-app.use( bodyParser.urlencoded( { extended: true } ) );
-
 
 // Sessions
 var options = {
@@ -51,14 +41,20 @@ app.use( session( {
   key: 'sundayCook',
   secret: 'we are kittens',
   store: sessionStore,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
 } ) );
 
 require( './passport' )( app );
 
+// JSON support for body parsing
+app.use( bodyParser.json() );
+
+// Body parser
+app.use( bodyParser.urlencoded( { extended: true } ) );
+
 // IO middleware
-io.use( passportSocketIo.authorize({
+io.use( passportSocketIo.authorize( {
   key: 'sundayCook',
   secret: 'we are kittens',
   store: sessionStore,

@@ -34,7 +34,6 @@ var User = db.Model.extend( {
   },
 
   fbAuthentication: function ( req, accessToken, refreshToken, profile, done ) {
-    console.log('profile', profile);
     User.fetchUserbyFBId( profile.id )
     .then( function ( user ) {
       if ( !req.user || req.user.email === user.get( 'email' ) ) {
@@ -56,7 +55,7 @@ var User = db.Model.extend( {
         }
         user.save();
 
-        return done( null, req.user );
+        return done( null, user );
       }
 
       return done( null, false );
