@@ -1,10 +1,8 @@
-angular.module( "chat", ['btford.socket-io', 'ngCookies'] )
+angular.module( "chat", ['btford.socket-io'] )
   .factory( 'socketService', function( socketFactory ) {
     return socketFactory();
   })
-  .controller( "ChatController", ['socketService', '$cookies',function (socketService, $cookies) {
-    var kookie = $cookies;
-    console.log(kookie);
+  .controller( "ChatController", ['socketService',function (socketService) {
     // save reference to this
     var vm = this;
     // temporary container for chats
@@ -14,18 +12,16 @@ angular.module( "chat", ['btford.socket-io', 'ngCookies'] )
     // Controller methods
     function sendChat( chat ) {
       vm.chat.timeStamp = new Date();
-      socketService.emit( 'new chat', {createdOn: vm.chat.timeStamp, text: vm.chat.chatText } );
+      socketService.emit( 'new chat', {createdOn: vm.chat.timeStamp, text: vm.chat.chatText, name: vm.chat.name } );
       vm.chat.chatText = '';
     }
     // Socket events
     socketService.on( 'new chat', function(newChat) {
       vm.chats.push(newChat);
-      console.log( 'New chat received from the server: ', newChat);
-      console.log(vm.chats);
     });
 
-    socketService.on( 'connection', function() {
-      console.log( 'Connected' );
+    socketService.on('user name', function( name ) {
+      vm.chat.name = name.first_name + ' ' + name.last_name;
     });
     // make methods available in the view
     vm.sendChat = sendChat;
