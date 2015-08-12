@@ -1,7 +1,8 @@
 var express           = require( 'express' ),
     morgan            = require( 'morgan' ),
     bodyParser        = require( 'body-parser' ),
-    session           = require( 'express-session' );
+    session           = require( 'express-session' ),
+    SessionStore      = require( 'express-sql-session' )( session );
 
 // Initialize express
 var app = express();
@@ -20,8 +21,25 @@ app.use( bodyParser.json() );
 // Body parser
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
+// Sesions
+var options = {
+  client: 'postgres',
+  connection: {
+    host: process.env.pg_host,
+    user: process.env.pg_user,
+    password: process.env.pg_password,
+    database: process.env.pg_database,
+    charset: 'utf8',
+  },
+  table: 'sessions',
+  expires: 365 * 24 * 60 * 60 * 1000
+};
+
+var sessionStore = new SessionStore(options);
+
 app.use( session( {
   secret: 'we are kittens',
+  store: sessionStore,
   resave: true,
   saveUninitialized: true,
 } ) );
