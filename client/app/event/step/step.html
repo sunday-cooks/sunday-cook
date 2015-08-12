@@ -1,14 +1,92 @@
 <step-percent></step-percent>
-<div class="sample tabsdemoDynamicTabs" ng-controller="stepCtrl" layout="column">
-  <md-content class="md-padding">
-    <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="">
-      <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
-        <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
-          <div ng-bind="tab.content"></div>
-          <br>
-          <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button>
+<div ng-controller="stepCtrl">
+  <md-content class="md-padding md-default-theme">
+    <div layout="row">
+      <div flex="80">
+        <div layout="row">
+          <div flex>
+            <div layout="column">
+              <div style="display: block">
+                <md-button ng-click="prevStep()" class="md-icon-button"  style="height: 30px; width: 30px;">
+                  <ng-md-icon class="md-icon-step-next" icon="keyboard_arrow_left" style="fill: #7F90A6" size="24"></ng-md-icon>
+                </md-button>
+                <span> step <b>{{step.number}}</b> of {{stepsLength}}</span>
+                <md-button ng-click="nextStep()" class="md-icon-button" style="height: 30px; width: 30px; margn: 0;">
+                  <ng-md-icon class="md-icon-step-next" icon="keyboard_arrow_right" style="fill: #7F90A6" size="24"></ng-md-icon>
+                </md-button>
+              </div>
+              <h2 style="display: inline-block; font-weight: 400; font-size: 28px; margin-top: 0; margin-bottom: 0; margin-right: 10px;">{{step.title}}</h2>
+            </div>
+          </div>
         </div>
-      </md-tab>
-    </md-tabs>
+      </div>
+      <button class="md-primary md-button md-default-theme" ng-click="markComplete()" layout-align="end"> Mark Complete </button>
+    </div>
   </md-content>
+  <div class="sample tabsdemoDynamicTabs"  layout="column">
+    <md-content class="md-padding" style="padding-top: 0;">
+      <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="">
+        <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+
+          <div class="demo-tab tab{{$index%4}}" label="{{$index%4}}"  style="padding: 25px; text-align: center;">
+            <div ng-switch on="tab.title">
+              <div ng-switch-when="About">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Step Details</h4>
+                    <md-list-item class="md-1-line " ng-repeat="step in tab.steps" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        {{ step }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                  <div flex>
+                    <h4>Tips</h4>
+                    <md-list-item class="md-1-line" ng-repeat="tip in tab.tips" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        {{ tip }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-switch-when="Ingredients">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Ingredients</h4>
+                    <md-list-item class="md-1-line " ng-repeat="ingredients in tab.ingredients" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        <h4>{{ ingredients.name }}</h4>
+                        {{ ingredients.description }}
+                        {{ ingredients.image }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-switch-when="Tools">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Tools</h4>
+                    <md-list-item class="md-1-line " ng-repeat="tools in tab.tools" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        <h4>{{ tools.name }}</h4>
+                        {{ tools.description }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-bind="tab.content" ng-switch-default>
+                What the fuck
+              </div>
+            </div>
+            <!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button> -->
+          </div>
+
+
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div>
 </div>

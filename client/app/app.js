@@ -20,9 +20,9 @@ angular.module('app', [
           'default': '500',
           'hue-1': '50'
         })
-        .accentPalette( 'pink' );
-      $mdThemingProvider.theme( 'input', 'default' )
-            .primaryPalette( 'grey' );
+        .accentPalette('customBlue');
+      $mdThemingProvider.theme('input', 'default')
+            .primaryPalette('grey');
 
     $stateProvider
       .state( 'event', {

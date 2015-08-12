@@ -1,7 +1,13 @@
 <md-list ng-controller="ListCtrl">
-  <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
-  <md-list-item ng-repeat="topping in toppings">
-    <p> {{ topping.name }} </p>
-    <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
-  </md-list-item>
+  <md-list-item ng-click="changeToStep(step.number)" ng-repeat="step in steps">
+  <small>{{ step.number }}</small>
+      <md-icon md-svg-icon="{{}}"></md-icon>
+      <p> {{ step.title }} </p>
+      <p>  {{ step.min_duration }} </p>
+      <md-switch class="md-secondary" ng-model="step.isComplete"></md-switch>
+    </md-list-item>
+<!--     <md-list-item ng-click="navigateTo('data usage', $event)">
+      <md-icon md-svg-icon="cached"></md-icon>
+      <p>Data Usage</p>
+    </md-list-item> -->
 </md-list>
