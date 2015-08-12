@@ -12,7 +12,7 @@ module.exports = function ( app, router ) {
     var eventid = req.params.eventid;
     Event.fetchEvent( eventid )
     .then( function ( event ) {
-      if ( !event ) { res.sendStatus(400); } //Failed routing.
+      if ( !event ) { res.sendStatus( 400 ); }
       else { res.json( event.eventDetails() ); }
     });
   });
@@ -20,8 +20,6 @@ module.exports = function ( app, router ) {
   router.post( '/events/create', function ( req, res, next ) {
     var data        = req.body,
         chef        = req.user;
-
-    console.log('Data!', data);
 
     // Our user is not logged in.
     if ( !chef ) { res.redirect( '/' ); return; }
