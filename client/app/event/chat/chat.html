@@ -4,7 +4,7 @@
     <div style="height: 300px; overflow: scroll;">
       <md-list>
         <md-list-item ng-repeat="chat in chatCtrl.chats | orderBy:'createdOn':true ">
-          <span>{{ chat.text }} | {{ chat.createdOn | date:'HH:mm:ss' }}</span>
+          <span>{{ chat.name }} says: {{ chat.text }} | {{ chat.createdOn | date:'HH:mm:ss' }}</span>
         </md-list-item>
       </md-list> <!-- end of list -->
     </div>

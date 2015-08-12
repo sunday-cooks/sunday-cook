@@ -4,8 +4,7 @@ angular.module('app', [
   'ngMaterial',
   'ngMdIcons',
   'createEvent',
-  'ngAnimate',
-  'ngCookies'
+  'ngAnimate'
   ])
   .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider ) {
     $urlRouterProvider.otherwise( '/' );
