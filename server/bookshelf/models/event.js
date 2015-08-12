@@ -24,7 +24,20 @@ var Event = db.Model.extend( {
 
   tools: function () {
     return this.belongsToMany( Tool ).through( EventTool );
-  }
+  },
+
+  eventDetails: function () {
+    var event = {};
+
+    event.name = this.get( 'name' );
+    event.description = this.get( 'description' );
+    event.ingredients = this.related( 'ingredients' ).toJSON();
+    event.steps = this.related( 'steps' ).toJSON();
+    event.chef = this.related( 'chef' ).toJSON();
+    event.tools = this.related( 'tools' ).toJSON();
+
+    return event;
+  },
 
 }, {
 
@@ -39,20 +52,6 @@ var Event = db.Model.extend( {
         ],
     });
   },
-
-  eventDetails: function () {
-    var event = {};
-    //Data is going to go here
-
-    event.name = this.get( 'name' );
-    event.description = this.get( 'description' );
-    event.ingredients = this.related( 'ingredients' ).toJSON();
-    event.steps = this.related( 'steps' ).toJSON();
-    event.chef = this.related( 'chef' ).toJSON();
-    event.tools = this.related( 'tools' ).toJSON();
-
-    return event;
-  }
 
 });
 
