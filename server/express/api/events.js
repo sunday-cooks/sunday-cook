@@ -4,7 +4,8 @@ var Event       = require( '../../bookshelf/models/event' ),
     Tip         = require( '../../bookshelf/models/tip' ),
     Step        = require( '../../bookshelf/models/step' ),
     User        = require( '../../bookshelf/models/user' ),
-    Promise     = require( 'bluebird' );
+    Promise     = require( 'bluebird' ),
+    _           = require( 'lodash' );
 
 module.exports = function ( app, router ) {
   router.get( '/events/:eventid', function( req, res, next ) {
@@ -18,11 +19,7 @@ module.exports = function ( app, router ) {
 
   router.post( '/events/create', function ( req, res, next ) {
     var data        = req.body,
-        chef        = req.user,
-        ingredients = [],
-        tools       = [],
-        tips        = [],
-        steps       = [];
+        chef        = req.user;
 
     console.log('Data!', data);
 
@@ -30,28 +27,28 @@ module.exports = function ( app, router ) {
     if ( !chef ) { res.redirect( '/' ); return; }
 
     // Create our ingredients models and their promise
-    req.body.ingredients.forEach( function ( ingredient ) {
-      ingredients.push( new Ingredient( ingredient ).save() );
+    var ingredients = _.map( data.ingredients, function ( ingredient ) {
+      return new Ingredient( { name: ingredient.name, buy_url: ingredient.buy_url } ).save();
     });
 
     // Create our tools models and their promise
-    req.body.tools.forEach( function ( tool ) {
-      tools.push( new Tool( tool ).save() );
+    var tools = _.map( data.tools, function ( tool ) {
+      return new Tool( tool ).save();
     });
 
     // Create our tips models and their promise
-    req.body.steps.tips.forEach( function ( tip ) {
-      tips.push( new Tip( { text: tip } ).save() );
+    var tips = _.map( data.steps.tips, function ( tip ) {
+      return new Tip( { text: tip } ).save();
     });
 
     // Create our steps models and their promise
-    req.body.steps.forEach( function ( step ) {
-      steps.push( new Step( {
+    var steps = _.map( data.steps, function( step ) {
+      return new Step( {
         name: step.name,
         min_duration: step.min_duration,
         max_duration: step.max_duration,
         details: step.details,
-      } ).save() );
+      } ).save();
     });
 
     Promise.all( ingredients )
@@ -70,25 +67,31 @@ module.exports = function ( app, router ) {
     .then( function ( coll ) {
       coll.forEach( function( step_model, index ) {
         var step = data.steps[index];
-        var step_ingredients = step.ingredients.map( function ( ingredient ) {
-          return { ingredient_id: ingredients[ingredient.index].get( 'id' ), qty: ingredient.qty };
+        var step_ingredients = _.map( step.ingredients, function ( ingredient ) {
+          return { ingredient_id: ingredients[ingredient.index|0].get( 'id' ), qty: ingredient.qty };
         });
 
         step_model.related( 'ingredients' ).attach( step_ingredients );
 
-        var step_tools = step.tools.map( function ( tool ) {
-          return tools[tool.index].get( 'id' );
+        var step_tools = _.map( step.tools, function ( tool ) {
+          return tools[tool.index|0].get( 'id' );
         });
 
         step_model.related( 'tools' ).attach( step_tools );
-        step_model.related( 'tips' ).attach( tips );
+
+        _.each( tips, function( tip ) {
+          tip.related( 'step' ).create( step_model );
+        });
       });
 
       steps = coll;
-      return new Event( { name: data.event, description: data.biography } ).save();
+      return new Event( { name: data.name, description: data.description } ).save();
     })
     .then( function( event ) {
-      event.related( 'steps' ).attach( steps );
+      _.each( steps, function( step ) {
+          event.related( 'steps' ).create( step );
+        });
+
       event.related( 'ingredients' ).attach( ingredients );
       event.related( 'tools' ).attach( tools );
       event.related( 'chef' ).attach( chef );

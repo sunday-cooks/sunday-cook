@@ -1,8 +1,10 @@
-var db          = require( '../config' ),
-    Step        = require( './step' ),
-    User        = require( './user' ),
-    Ingredient  = require( './ingredient' ),
-    Tool        = require( './tool' );
+var db              = require( '../config' ),
+    Step            = require( './step' ),
+    User            = require( './user' ),
+    Ingredient      = require( './ingredient' ),
+    EventIngredient = require( './eventingredient' ),
+    Tool            = require( './tool' ),
+    EventTool       = require( './eventtool' );
 
 var Event = db.Model.extend( {
   tableName: 'events',
@@ -17,11 +19,11 @@ var Event = db.Model.extend( {
   },
 
   ingredients: function () {
-    return this.hasMany( Ingredient );
+    return this.belongsToMany( Ingredient ).through( EventIngredient ).withPivot( 'qty' );
   },
 
   tools: function () {
-    return this.hasMany( Tool );
+    return this.belongsToMany( Tool ).through( EventTool );
   }
 
 }, {

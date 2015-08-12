@@ -30,6 +30,7 @@
     "express-session": "^1.11.3",
     "jwt-simple": "^0.3.0",
     "knex": "^0.8.6",
+    "lodash": "^3.10.1",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
     "passport-facebook": "^2.0.0",
