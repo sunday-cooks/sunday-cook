@@ -3,15 +3,12 @@ var express           = require( 'express' ),
     bodyParser        = require( 'body-parser' ),
     session           = require( 'express-session' ),
     SessionStore      = require( 'express-sql-session' )( session ),
-    http              = require( 'http' ),
-    passportSocketIo  = require( 'passport.socketio' );
+    http              = require( 'http' );
 
 // Initialize express
 var app = express();
 var server = http.Server( app );
 var io = require( 'socket.io' )( server );
-
-require( '../chat/chat' )( io );
 
 app.isDev = function () { return app.get( 'env' ) === 'development'; };
 app.isProd = function () { return app.get(' env' ) === 'production'; };
@@ -38,42 +35,23 @@ var options = {
 var sessionStore = new SessionStore(options);
 
 app.use( session( {
-  key: 'sundayCook',
-  secret: 'we are kittens',
+  key: process.env.session_key,
+  secret: process.env.session_secret,
   store: sessionStore,
   resave: false,
   saveUninitialized: true,
 } ) );
 
-require( './passport' )( app );
+var passport = require( './passport' )( app );
+// console.log("Let's find out what the value of passport is: ", passport);
+
+require( '../chat/chat' )( app, io, passport, sessionStore );
 
 // JSON support for body parsing
 app.use( bodyParser.json() );
 
 // Body parser
 app.use( bodyParser.urlencoded( { extended: true } ) );
-
-// IO middleware
-io.use( passportSocketIo.authorize( {
-  key: 'sundayCook',
-  secret: 'we are kittens',
-  store: sessionStore,
-  success: onAuthorizeSuccess,
-  fail: onAuthorizeFail,
-}));
-
-function onAuthorizeSuccess( data, accept ) {
-  console.log( 'Successful connecto to Socket.io' );
-  accept();
-}
-
-function onAuthorizeFail( data, message, error, accept ) {
-  console.log( 'Failed connection to Socket.io' );
-  console.log( message );
-  if ( error ) {
-    accept( new Error( message ) );
-  }
-}
 
 // Initialize our routes
 require( './routes.js' )( app, express );
