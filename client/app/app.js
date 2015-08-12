@@ -5,6 +5,7 @@ angular.module('app', [
   'ngMdIcons',
   'createEvent',
   'ngAnimate',
+  'ngCookies'
   ])
   .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider ) {
     $urlRouterProvider.otherwise( '/' );

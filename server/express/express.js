@@ -2,10 +2,19 @@ var express           = require( 'express' ),
     morgan            = require( 'morgan' ),
     bodyParser        = require( 'body-parser' ),
     session           = require( 'express-session' ),
-    SessionStore      = require( 'express-sql-session' )( session );
+    SessionStore      = require( 'express-sql-session' )( session ),
+    http              = require( 'http' ),
+    socket            = require( 'socket.io' ),
+    passportSocketIo  = require( 'passport.socketio' ),
+    cookieParser      = require( 'cookie-parser' );
 
 // Initialize express
 var app = express();
+var server = http.Server( app );
+var io = socket( server );
+
+// NOTE: not sure where to place this line in the file
+require( '../chat/chat.js' )(io);
 
 app.isDev = function () { return app.get( 'env' ) === 'development'; };
 app.isProd = function () { return app.get(' env' ) === 'production'; };
@@ -21,7 +30,8 @@ app.use( bodyParser.json() );
 // Body parser
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
-// Sesions
+
+// Sessions
 var options = {
   client: 'postgres',
   connection: {
@@ -38,6 +48,7 @@ var options = {
 var sessionStore = new SessionStore(options);
 
 app.use( session( {
+  key: 'sundayCook',
   secret: 'we are kittens',
   store: sessionStore,
   resave: true,
@@ -46,8 +57,32 @@ app.use( session( {
 
 require( './passport' )( app );
 
+// IO middleware
+io.use( passportSocketIo.authorize({
+  key: 'sundayCook',
+  secret: 'we are kittens',
+  store: sessionStore,
+  success: onAuthorizeSuccess,
+  fail: onAuthorizeFail,
+}));
+
+function onAuthorizeSuccess( data, accept ) {
+  console.log( 'Successful connecto to Socket.io' );
+  accept();
+}
+
+function onAuthorizeFail( data, message, error, accept ) {
+  console.log( 'Failed connection to Socket.io' );
+  console.log( message );
+  if ( error ) {
+    accept( new Error( message ) );
+  }
+}
+
 // Initialize our routes
 require( './routes.js' )( app, express );
+
+server.listen( 8000 );
 
 // Export express
 module.exports = app;

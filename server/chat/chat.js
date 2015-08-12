@@ -4,6 +4,8 @@ var Chat = require('../bookshelf/models/chatmessage');
 module.exports = function( io ) {
   io.sockets.on( 'connection', function ( socket ) {
     console.log( 'A new cook has joined the chatroom' );
+    var user = socket.client.request.user;
+    console.log(user);
     // console.log(socket);
     // join event
     socket.on( 'join', function( room ) {
