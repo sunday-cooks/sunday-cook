@@ -1,4 +1,4 @@
-var knex = require( 'knex' )({
+var knex = require( 'knex' )( {
   client: 'postgres',
   connection: {
     host: process.env.pg_host,
@@ -91,8 +91,10 @@ db.knex.schema.hasTable( 'events' ).then( function ( exists ) {
 db.knex.schema.hasTable( 'events_ingredients' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'events_ingredients', function ( event_ing ) {
-
-      event_ing.integer( 'qty' );
+      event_ing.increments( 'id' ).primary();
+      event_ing.integer( 'event_id' );
+      event_ing.integer( 'ingredient_id' );
+      event_ing.string( 'qty' );
 
     }).then( function ( table ) {
       console.log( 'Created Table: events_ingredients' );
@@ -107,10 +109,10 @@ db.knex.schema.hasTable( 'events_ingredients' ).then( function ( exists ) {
 db.knex.schema.hasTable( 'events_tools' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'events_tools', function ( event_tool ) {
+      event_tool.increments( 'id' ).primary();
+      event_tool.integer( 'event_id' );
+      event_tool.integer( 'tool_id' );
 
-      event_tool.integer( 'qty' );
-
-      event_tool.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: events_tools' );
     });
@@ -126,14 +128,12 @@ db.knex.schema.hasTable( 'steps' ).then( function ( exists ) {
     db.knex.schema.createTable( 'steps', function ( step ) {
       step.increments( 'id' ).primary();
 
+      step.integer( 'event_id' );
       step.string( 'name' );
-      step.integer( 'minDuration' );
-      step.integer( 'maxDuration' );
+      step.string( 'details' );
+      step.integer( 'min_duration' );
+      step.integer( 'max_duration' );
 
-      step.string( 'goal' );
-      step.string( 'prep' );
-
-      step.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: steps' );
     });
@@ -148,6 +148,11 @@ db.knex.schema.hasTable( 'steps' ).then( function ( exists ) {
 db.knex.schema.hasTable( 'steps_users' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'steps_users', function ( step_user ) {
+      step_user.increments( 'id' ).primary();
+      step_user.integer( 'step_id' );
+      step_user.integer( 'user_id' );
+      step_user.boolean( 'done' );
+
       step_user.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: steps_users' );
@@ -164,9 +169,9 @@ db.knex.schema.hasTable('tips' ).then( function ( exists ) {
     db.knex.schema.createTable( 'tips', function ( tip ) {
       tip.increments( 'id' ).primary();
 
+      tip.integer( 'step_id' );
       tip.string( 'text' );
 
-      tip.timestamps();
     }  ).then( function ( table ) {
       console.log( 'Created Table: tips' );
     });
@@ -180,8 +185,10 @@ db.knex.schema.hasTable('tips' ).then( function ( exists ) {
 db.knex.schema.hasTable('ingredients_steps' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'ingredients_steps', function ( ing_step ) {
-
-      ing_step.integer( 'qty' );
+      ing_step.increments( 'id' ).primary();
+      ing_step.integer( 'ingredient_id' );
+      ing_step.integer( 'step_id' );
+      ing_step.string( 'qty' );
 
     }).then( function ( table ) {
       console.log( 'Created Table: ingredients_steps' );
@@ -196,8 +203,10 @@ db.knex.schema.hasTable('ingredients_steps' ).then( function ( exists ) {
 db.knex.schema.hasTable('steps_tools' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'steps_tools', function ( step_tool ) {
-
-      step_tool.integer( 'qty' );
+      step_tool.increments( 'id' ).primary();
+      step_tool.integer( 'step_id' );
+      step_tool.integer( 'tool_id' );
+      step_tool.string( 'qty' );
 
     }).then( function ( table ) {
       console.log( 'Created Table: steps_tools' );

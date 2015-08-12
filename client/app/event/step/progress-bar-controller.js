@@ -1,22 +1,32 @@
-angular.module("stepPercent", ['ngMaterial'])
-    .controller('progressCtrl', ['$scope', '$interval', function($scope, $interval) {
+angular.module('stepPercent', ['ngMaterial', 'event'])
+    .controller('progressCtrl', function ($scope, stepsModel) {
       $scope.mode = 'query';
-      $scope.determinateValue = 30;
-      $scope.determinateValue2 = 30;
+      var currentStep = stepsModel.currentStep;
+      var stepsLength = stepsModel.steps.length;
 
-      $interval(function() {
-        $scope.determinateValue += 1;
-        $scope.determinateValue2 += 1.5;
-        if ($scope.determinateValue > 100) {
-          $scope.determinateValue = 30;
-          $scope.determinateValue2 = 30;
-        }
-      }, 100, 0, true);
 
-      $interval(function() {
-        $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
-      }, 7200, 0, true);
-    }])
+      function init() {
+        $scope.determinateValue = currentStep / stepsLength * 100;
+        //console.log('PARTY CITYTTTETEFSE', percentage);
+      }
+
+      init();
+      $scope.determinateValue2 = 45;
+      $scope.$on('changedStep', function(event, mass) {
+        currentStep = mass;
+        init();
+      });
+
+      $scope.$on('regressBar', function(event, mass) {
+        currentStep = mass;
+        init();
+      });
+      $scope.$on('progressBar', function(event, mass) {
+        currentStep = mass;
+        init();
+      });
+
+    })
     .directive('stepPercent', function () {
       return {
         restrict: 'E',

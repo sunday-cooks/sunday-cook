@@ -15,7 +15,7 @@ module.exports = function( app ) {
   passport.use( new FacebookStrategy( {
       clientID: process.env.fb_api_id,
       clientSecret: process.env.fb_api_secret,
-      callbackURL: 'http://' + path.join( url_absolute, '/auth/facebook/callback' ),
+      callbackURL: 'http://' + path.join( url_absolute, '/api/fb/callback' ),
       enableProof: false,
       passReqToCallback: true,
       profileFields: [ 'id', 'email', 'first_name', 'gender', 'last_name' ],
