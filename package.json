@@ -15,7 +15,7 @@
     "sunday",
     "social"
   ],
-  "author": "Kamron Batman, Erik Epps, Phil Keys, Spencer Miller",
+  "author": "Kamron Batman, Erik Eppel, Phil Keys, Spencer Miller",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/charming-chino/charming-chino/issues"
@@ -30,13 +30,11 @@
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "express-sql-session": "^1.0.0",
-    "jwt-simple": "^0.3.0",
     "knex": "^0.8.6",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
     "passport-facebook": "^2.0.0",
-    "passport.socketio": "^3.5.1",
     "pg": "^4.4.1",
     "request": "^2.60.0",
     "socket.io": "^1.3.6"
