@@ -24,7 +24,7 @@ var Event = db.Model.extend( {
 
   tools: function () {
     return this.belongsToMany( Tool ).through( EventTool );
-  }
+  },
 
   eventDetails: function () {
     var event = {};
