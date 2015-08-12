@@ -1,8 +1,10 @@
-angular.module( "chat", ['btford.socket-io'] )
+angular.module( "chat", ['btford.socket-io', 'ngCookies'] )
   .factory( 'socketService', function( socketFactory ) {
     return socketFactory();
   })
-  .controller( "ChatController", function (socketService) {
+  .controller( "ChatController", ['socketService', '$cookies',function (socketService, $cookies) {
+    var kookie = $cookies;
+    console.log(kookie);
     // save reference to this
     var vm = this;
     // temporary container for chats
@@ -21,9 +23,13 @@ angular.module( "chat", ['btford.socket-io'] )
       console.log( 'New chat received from the server: ', newChat);
       console.log(vm.chats);
     });
+
+    socketService.on( 'connection', function() {
+      console.log( 'Connected' );
+    });
     // make methods available in the view
     vm.sendChat = sendChat;
-  })
+  }])
   .directive( 'chat', function () {
     return {
       restrict: 'EA',
