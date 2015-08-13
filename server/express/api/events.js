@@ -64,12 +64,26 @@ module.exports = function ( app, router ) {
     })
     .then( function ( coll ) {
       coll.forEach( function( step_model, index ) {
+
         var step = data.steps[index];
-        var step_ingredients = _.map( step.ingredients, function ( ingredient ) {
-          return { ingredient_id: ingredients[ingredient.index|0].get( 'id' ), qty: ingredient.qty };
-        });
+
+        var step_ingredients = _.reduce( step.ingredients, function ( memo, ingredient, index ) {
+          if ( ingredient.value ) {
+            memo.push( { ingredient_id: ingredients[index].get( 'id' ), qty: ingredient.qty } );
+          }
+
+          return memo;
+        }, []);
 
         step_model.related( 'ingredients' ).attach( step_ingredients );
+
+        var step_tools = _.reduce( step.tools, function ( memo, tool, index ) {
+          if ( tool.value ) {
+            memo.push( tools[index].get( 'id' ) );
+          }
+
+          return memo;
+        }, []);
 
         var step_tools = _.map( step.tools, function ( tool ) {
           return tools[tool.index|0].get( 'id' );
@@ -88,7 +102,7 @@ module.exports = function ( app, router ) {
     .then( function( event ) {
       _.each( steps, function( step ) {
           event.related( 'steps' ).create( step );
-        });
+      });
 
       event.related( 'ingredients' ).attach( ingredients );
       event.related( 'tools' ).attach( tools );
