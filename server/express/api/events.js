@@ -85,10 +85,6 @@ module.exports = function ( app, router ) {
           return memo;
         }, []);
 
-        var step_tools = _.map( step.tools, function ( tool ) {
-          return tools[tool.index|0].get( 'id' );
-        });
-
         step_model.related( 'tools' ).attach( step_tools );
 
         _.each( tips, function( tip ) {
