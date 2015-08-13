@@ -1,29 +1,29 @@
-var db              = require( '../config' ),
-    Step            = require( './step' ),
-    User            = require( './user' ),
-    Ingredient      = require( './ingredient' ),
-    EventIngredient = require( './eventingredient' ),
-    Tool            = require( './tool' ),
-    EventTool       = require( './eventtool' );
+var db = require( '../config' );
+require( './step' );
+require( './user' );
+require( './ingredient' );
+require( './eventingredient' );
+require( './tool' );
+require( './eventtool' );
 
 var Event = db.Model.extend( {
   tableName: 'events',
   hasTimestamps: true,
 
   steps: function () {
-    return this.hasMany( Step );
+    return this.hasMany( 'Step' );
   },
 
   chef: function () {
-    return this.belongsTo( User );
+    return this.belongsTo( 'User' );
   },
 
   ingredients: function () {
-    return this.belongsToMany( Ingredient ).through( EventIngredient ).withPivot( 'qty' );
+    return this.belongsToMany( 'Ingredient' ).through( 'EventIngredient' ).withPivot( 'qty' );
   },
 
   tools: function () {
-    return this.belongsToMany( Tool ).through( EventTool );
+    return this.belongsToMany( 'Tool' ).through( 'EventTool' );
   },
 
   eventDetails: function () {
@@ -55,4 +55,4 @@ var Event = db.Model.extend( {
 
 });
 
-module.exports = Event;
+module.exports = db.model( 'Event', Event );

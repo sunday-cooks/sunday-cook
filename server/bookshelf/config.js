@@ -12,6 +12,12 @@ var knex = require( 'knex' )( {
 module.exports = db = require( 'bookshelf' )( knex );
 
 /**
+ * All models/collections will automatically register themselves.
+ */
+
+db.plugin( 'registry' );
+
+/**
  * Users Table
  */
 
@@ -77,6 +83,7 @@ db.knex.schema.hasTable( 'events' ).then( function ( exists ) {
       event.increments( 'id' ).primary();
       event.string( 'name' );
       event.string( 'description' );
+      event.integer( 'user_id' );
       event.timestamps();
     }).then( function ( table ) {
       console.log( 'Created Table: events' );

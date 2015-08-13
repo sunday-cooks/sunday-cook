@@ -1,8 +1,8 @@
 var db = require('../config');
-var Event = require('../models/event');
+require('../models/event');
 
 var Events = db.Collection.extend( {
-  model: Event,
+  model: 'Event',
 });
 
-module.exports = Events;
+module.exports = db.collection( 'Events', Event );

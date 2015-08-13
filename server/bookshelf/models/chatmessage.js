@@ -5,4 +5,4 @@ var ChatMessage = db.Model.extend({
   hasTimestamps: true,
 });
 
-module.exports = ChatMessage;
+module.exports = db.model( 'ChatMessage', ChatMessage );
