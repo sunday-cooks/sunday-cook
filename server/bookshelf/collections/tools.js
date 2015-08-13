@@ -1,8 +1,8 @@
 var db = require('../config');
-var Tool = require('../models/tool');
+require('../models/tool');
 
 var Tools = db.Collection.extend( {
-  model: Tool,
+  model: 'Tool',
 });
 
-module.exports = Tools;
+module.exports = db.collection( 'Tools', Tools );

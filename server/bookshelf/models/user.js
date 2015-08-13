@@ -1,13 +1,13 @@
 var db      = require( '../config' ),
-    Event   = require( './event' ),
     Promise = require( 'bluebird' );
+              require( './event' );
 
 var User = db.Model.extend( {
   tableName: 'users',
   hasTimestamps: true,
 
   events: function () {
-    return this.hasMany( Event );
+    return this.hasMany( 'Event' );
   },
 }, {
 
@@ -63,4 +63,4 @@ var User = db.Model.extend( {
   },
 });
 
-module.exports = User;
+module.exports = db.model( 'User', User );

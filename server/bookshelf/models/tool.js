@@ -4,4 +4,4 @@ var Tool = db.Model.extend( {
   tableName: 'tools',
 });
 
-module.exports = Tool;
+module.exports = db.model( 'Tool', Tool );
