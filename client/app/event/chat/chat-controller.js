@@ -2,11 +2,12 @@ angular.module( "chat", ['btford.socket-io'] )
   .factory( 'socketService', function( socketFactory ) {
     return socketFactory();
   })
-  .controller( "ChatController", ['$scope','socketService',function ($scope, socketService) {
+  .controller( "ChatController", ['$scope','$location','socketService',function ($scope, $location, socketService) {
     // save reference to this
     var vm = this;
-    // temporary container for chats
     console.log("Event ID is ", $scope.eventId);
+    vm.loc = $location.path();
+    // temporary container for chats
     vm.chats = [];
     // chat object
     vm.chat = {};

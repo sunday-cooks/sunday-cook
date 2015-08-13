@@ -9,7 +9,7 @@
       </md-list> <!-- end of list -->
     </div>
 
-    <a href="/api/fb" ng-if="!chatCtrl.chat.name"><md-button class="md-raised md-primary">Log in to Chat</md-button></a>
+    <a href="/api/fb/?redirect={{ chatCtrl.loc }}" ng-if="!chatCtrl.chat.name"><md-button class="md-raised md-primary">Log in to Chat</md-button></a>
 
     <md-input-container ng-if="chatCtrl.chat.name">
       <label>Add something to the mix</label>
