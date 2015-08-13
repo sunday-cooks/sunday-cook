@@ -7,7 +7,8 @@ module.exports = function( app, io, passport, sessionStore ) {
   io.sockets.on( 'connection', function ( socket ) {
     var userObj = socket.client.request.user;
     var firstName,
-        lastName;
+        lastName,
+        eventId;
 
     if ( userObj !== undefined ) {
       // if authenticated, store and emit user info
@@ -19,15 +20,20 @@ module.exports = function( app, io, passport, sessionStore ) {
     } 
 
     // new chat event
+    socket.on( 'event id', function( id ) {
+      eventId = id;
+      socket.join( id );
+    });
+
     socket.on( 'new chat', function( chat ) {
       if ( userObj ) {
         console.log( 'New chat received from client: ', chat );
-        io.emit( 'new chat', chat );
+        io.to( eventId ).emit( 'new chat', chat );
       } else {
         console.log( "Unauthorized user tried to send a message" );
       }
     });
-
+    socket.emit( 'event id?');
     // disconnect event
     socket.on('disconnect', function () {
         firstName = firstName || "A user";

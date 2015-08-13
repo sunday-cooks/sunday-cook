@@ -2,10 +2,11 @@ angular.module( "chat", ['btford.socket-io'] )
   .factory( 'socketService', function( socketFactory ) {
     return socketFactory();
   })
-  .controller( "ChatController", ['socketService',function (socketService) {
+  .controller( "ChatController", ['$scope','socketService',function ($scope, socketService) {
     // save reference to this
     var vm = this;
     // temporary container for chats
+    console.log("Event ID is ", $scope.eventId);
     vm.chats = [];
     // chat object
     vm.chat = {};
@@ -16,8 +17,8 @@ angular.module( "chat", ['btford.socket-io'] )
       vm.chat.chatText = '';
     }
     // Socket events
-    socketService.on( '', function(  ) {
-
+    socketService.on( 'event id?', function(  ) {
+      socketService.emit( 'event id', $scope.eventId );
     });
 
     socketService.on( 'new chat', function(newChat) {
@@ -26,7 +27,7 @@ angular.module( "chat", ['btford.socket-io'] )
 
     socketService.on('user name', function( name ) {
       vm.chat.name = name.first_name + ' ' + name.last_name;
-      socketService.emit( 'event id', { eventId: ""} );
+      console.log("Name", vm.chat.name);
     });
     // make methods available in the view
     vm.sendChat = sendChat;

@@ -6,7 +6,11 @@ angular.module('app', [
   'createEvent',
   'ngAnimate'
   ])
-  .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider ) {
+  .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider, $locationProvider ) {
+
+    // configure $locationProvider
+    $locationProvider.html5Mode(false);
+
     $urlRouterProvider.otherwise( '/' );
 
     var customBlueMap = $mdThemingProvider.extendPalette( 'light-blue', {
@@ -27,7 +31,12 @@ angular.module('app', [
     $stateProvider
       .state( 'event', {
         url: '/',
-        templateUrl: "app/event/event.html",
+        templateUrl: "app/event/event.html", // gallery of events (static page)
+        controller: "eventCtrl"
+      })
+      .state( 'events', {
+        url: '/events/:eventId',
+        templateUrl: "app/event/event.html", // actual app
         controller: "eventCtrl"
       })
       .state( 'createEvent', {
