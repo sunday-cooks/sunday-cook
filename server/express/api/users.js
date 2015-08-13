@@ -16,10 +16,11 @@ module.exports = function ( app, router ) {
       if ( err ) { return next( err ); }
       var redirect = req.session.redirect;
       req.session.redirect = undefined;
-      if ( app.isDev() ) console.log('Authenticated?', user);
       req.logIn( user, function( err ) {
         if ( err ) { return next( err ); }
-        res.redirect( '/#' + redirect );
+        if ( redirect ) {
+          res.redirect( '/#' + redirect );
+        } else { res.redirect( '/' ); }
       });
     })(req, res, next);
   });

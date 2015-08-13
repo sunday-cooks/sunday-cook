@@ -10,11 +10,15 @@ var app = express();
 var server = http.Server( app );
 var io = require( 'socket.io' )( server );
 
-app.isDev = function () { return app.get( 'env' ) === 'development'; };
-app.isProd = function () { return app.get(' env' ) === 'production'; };
+process.isDev = function () { return app.get( 'env' ) === 'development'; };
+process.isProd = function () { return app.get(' env' ) === 'production'; };
+
+process.verb = function () {
+  if ( process.isDev() ) { console.log.apply( this, arguments ); }
+};
 
 // Dev logging
-if ( app.isDev() ) {
+if ( process.isDev() ) {
   app.use( morgan( 'dev' ) );
 }
 

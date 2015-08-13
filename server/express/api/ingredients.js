@@ -7,11 +7,6 @@ module.exports = function ( app, router ) {
     else {
       Ingredients.fetchLike( req.body.value )
       .then( function( ingredients ) {
-
-        if ( !app.isProd() ) {
-          console.log( 'Matched ingredients!', ingredients );
-        }
-
         res.json( ingredients.toJSON() );
       });
     }
