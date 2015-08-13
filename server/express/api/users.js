@@ -3,20 +3,25 @@ var url       = require( 'url' );
 
 module.exports = function ( app, router ) {
 
-  router.get( '/fb', function( req, res, next ) {
+  router.get( '/userInfo', function( req, res, next ) {
+    if ( !req.user ) { res.end(); }
+    else { res.json( req.user.toJSON() ); }
+  });
+
+  router.get( '/fb', function ( req, res, next ) {
     req.session.redirect = url.parse( req.url, true ).query.redirect;
     next();
   },
   passport.authenticate( 'facebook', {
     scope: [ 'public_profile', 'email' ],
-  } ));
+  }));
 
-  router.get( '/fb/callback', function( req, res, next ) {
+  router.get( '/fb/callback', function ( req, res, next ) {
     passport.authenticate( 'facebook', function ( err, user, info ) {
       if ( err ) { return next( err ); }
       var redirect = req.session.redirect;
       req.session.redirect = undefined;
-      req.logIn( user, function( err ) {
+      req.logIn( user, function ( err ) {
         if ( err ) { return next( err ); }
         if ( redirect ) {
           res.redirect( '/#' + redirect );
