@@ -4,27 +4,33 @@ var cookieParser      = require( 'cookie-parser' );
 
 module.exports = function( app, io, passport, sessionStore ) {
 
-  io.sockets.on( 'connection', function ( socket, next ) {
-    // store user info
+  io.sockets.on( 'connection', function ( socket ) {
     var userObj = socket.client.request.user;
-    var firstName = userObj.get('first_name');
-    var lastName = userObj.get( 'last_name' );
-    // emit user's first and last names from individual
-    socket.emit('user name', { first_name: firstName, last_name: lastName });
-    console.log( firstName + ' has joined the chatroom' );
-    // join event
-    socket.on( 'join', function( room ) {
-      socket.join( room );
-    });
+    var firstName,
+        lastName;
+
+    if ( userObj !== undefined ) {
+      // if authenticated, store and emit user info
+      firstName = userObj.get('first_name');
+      lastName = userObj.get( 'last_name' );
+      // emit user's first and last names from individual
+      socket.emit( 'user name', { first_name: firstName, last_name: lastName } );
+      console.log( firstName + ' has joined the chatroom' );
+    } 
 
     // new chat event
     socket.on( 'new chat', function( chat ) {
-      console.log( 'New chat received from client: ', chat );
-      io.emit( 'new chat', chat );
+      if ( userObj ) {
+        console.log( 'New chat received from client: ', chat );
+        io.emit( 'new chat', chat );
+      } else {
+        console.log( "Unauthorized user tried to send a message" );
+      }
     });
 
     // disconnect event
     socket.on('disconnect', function () {
+        firstName = firstName || "A user";
         console.log( firstName + ' cook has left the chatroom' );
       });
   });
@@ -38,11 +44,7 @@ module.exports = function( app, io, passport, sessionStore ) {
         socket.request.session = session;
         passport.initialize()( socket.request, {}, function () {
           passport.session()( socket.request, {}, function () {
-            if ( socket.request.user ) {
-              next ( null, true );
-            } else {
-              next ( new Error ( 'User is not authenticated' ), false );
-            }
+            next ( null, true );
           });
         });
       });
