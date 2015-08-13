@@ -1,51 +1,90 @@
-<div layout layout-sm="column">
-  <md-input-container flex>
-    <label>Step Name</label>
-    <input ng-model="formData.steps[stepArr.length - 1].name">
-  </md-input-container>
-  <md-input-container flex>
-    <label>Step Min Duration</label>
-    <input ng-model="formData.steps[stepArr.length - 1].min_duration">
-  </md-input-container>
-  <md-input-container flex>
-    <label>Step Max Duration</label>
-    <input ng-model="formData.steps[stepArr.length - 1].max_duration">
-  </md-input-container>
+<div layout layout="row">
+  <div flex="55">
+    <md-input-container flex>
+      <label>Step Name</label>
+      <input ng-model="formData.step.name">
+    </md-input-container>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Step Min Duration</label>
+        <input ng-model="formData.step.min_duration">
+      </md-input-container>
+      <md-input-container flex>
+        <label>Step Max Duration</label>
+        <input ng-model="formData.step.max_duration">
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Step Details</label>
+        <textarea ng-model="formData.step.details" columns="1"></textarea>
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Step Tips</label>
+        <input ng-model="formData.tip">
+      </md-input-container>
+      <md-button class="md-icon-button" ui-sref-active="active" ng-click="addNewTip($event)">
+        <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+      </md-button>
+    </div>
+    <div layout layout-sm="column" ng-repeat="tip in tipsList track by $index">
+      <span class="ingredient.name">{{ tip }}</span>
+      <span class="deleteMe">
+        <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-click="removeTip($event, $index)">
+          <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
+        </md-button>
+      </span>
+    </div>
+    <div layout layout-sm="column">
+      <span ng-repeat="ingredient in formData.ingredients track by $index" ng-init="formData.steps[formData.steps.length - 1].ingredients[$index] = {value: false, qty: 0}">
+        <md-input-container flex>
+        <label>Ingredients You Need</label>
+          <input type="checkbox" ng-model="formData.step.ingredients[$index].value">{{ingredient.name}}
+        </md-input-container>
+        <md-input-container flex>
+          <label>Quantity</label>
+          <input ng-model="formData.step.ingredients[$index].qty" value="0">
+        </md-input-container>
+      </span>
+    </div>
+    <md-input-container flex ng-if="formData.tools.length">
+      <label>Kitchen Tools You Need</label>
+      <span ng-repeat="tool in formData.tools track by $index" ng-init="formData.step.tools[$index] = {value: false}">
+        <input type="checkbox" ng-model="formData.step.tools[$index].value">{{tool.name}}
+      </span>
+    </md-input-container>
+    <md-button flex class="md-raised md-primary" ui-sref="createEvent.step" ng-click="addNewStep()">Add Step</md-button>
+    <md-button flex type="submit" class="md-raised md-primary" ng-click="submitEvent()">Submit</md-button>
+
+  </div>
+  <div flex="45">
+    <md-content class="md-padding">
+      <md-card ng-repeat="step in macroSteps track by $index">
+        <md-card-content>
+          <h2 class="md-title">Step {{$index + 1}}</h2>
+          <h4>{{step.name}}</h4>
+          <span>{{step.min_duration}} minutes to {{step.max_duration}} minutes</span>
+          <p>
+            {{step.details}}
+          </p>
+          <md-list>
+            <md-list-item class="md-1-line" ng-repeat="tip in step.tips">
+              <div class="md-list-item-text">
+                <p>{{ tip }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button>Delete Step</md-button>
+        </div>
+      </md-card>
+    </md-content>
+  </div>
 </div>
-<div layout layout-sm="column">
-  <md-input-container flex>
-    <label>Step Details</label>
-    <textarea ng-model="formData.steps[stepArr.length - 1].details" columns="1"></textarea>
-  </md-input-container>
-  <md-input-container flex data-ng-repeat="tip in tipsArr">
-    <label>Step Tips</label>
-    <input ng-model="formData.steps[stepArr.length - 1].tips[tipsArr.length - 1]">
-  </md-input-container>
-  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-show="showAddTip(tip)" ng-click="addNewTip()">
-    <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
-  </md-button>
-</div>
-<div layout layout-sm="column">
-  <md-input-container flex>
-    <label>Ingredients You Need</label>
-    <input ng-model="formData.steps[stepArr.length - 1].ingredients[choices.length - 1].index">
-  </md-input-container>
-  <md-input-container flex>
-    <label>Quantity</label>
-    <input ng-model="formData.steps[stepArr.length - 1].ingredients[choices.length - 1].qty">
-  </md-input-container>
-  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-show="showAddChoice(choice)" ng-click="addNewChoice()">
-    <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
-  </md-button>
-</div>
-<div layout layout-sm="row">
-  <md-input-container flex>
-    <label>Kitchen Tools You Need</label>
-    <input ng-model="formData.steps[stepArr.length - 1].tools[stepArr.length - 1].index">
-  </md-input-container>
-  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-show="showAddTool(tool)" ng-click="addNewTool()">
-    <ng-md-icon icon="cake" style="fill: lightblue" size="24"></ng-md-icon>
-  </md-button>
-</div>
-<md-button flex class="md-raised md-primary" ui-sref="createEvent.step" ng-click="addNewStep()">Add Step</md-button>
-<md-button flex class="md-raised md-primary">Submit</md-button>
+
+
+
+
