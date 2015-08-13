@@ -33,7 +33,7 @@ db.knex.schema.hasTable( 'users' ).then( function ( exists ) {
       user.string( 'gender' );
       user.timestamps();
     }).then( function ( table ) {
-      console.log( 'Created Table: users' );
+      process.verb( 'Created Table: users' );
     });
   }
 });
@@ -51,7 +51,7 @@ db.knex.schema.hasTable( 'ingredients' ).then( function ( exists ) {
       ing.string( 'description', 100 );
       ing.string( 'buy_url' );
     }).then( function ( table ) {
-      console.log( 'Created Table: ingredients' );
+      process.verb( 'Created Table: ingredients' );
     });
   }
 });
@@ -68,7 +68,7 @@ db.knex.schema.hasTable( 'tools' ).then( function ( exists ) {
       tool.string( 'description', 100 );
       tool.string( 'buy_url' );
     }).then( function ( table ) {
-      console.log( 'Created Table: tools' );
+      process.verb( 'Created Table: tools' );
     });
   }
 });
@@ -86,7 +86,7 @@ db.knex.schema.hasTable( 'events' ).then( function ( exists ) {
       event.integer( 'user_id' );
       event.timestamps();
     }).then( function ( table ) {
-      console.log( 'Created Table: events' );
+      process.verb( 'Created Table: events' );
     });
   }
 });
@@ -104,7 +104,7 @@ db.knex.schema.hasTable( 'events_ingredients' ).then( function ( exists ) {
       event_ing.string( 'qty' );
 
     }).then( function ( table ) {
-      console.log( 'Created Table: events_ingredients' );
+      process.verb( 'Created Table: events_ingredients' );
     });
   }
 });
@@ -121,7 +121,7 @@ db.knex.schema.hasTable( 'events_tools' ).then( function ( exists ) {
       event_tool.integer( 'tool_id' );
 
     }).then( function ( table ) {
-      console.log( 'Created Table: events_tools' );
+      process.verb( 'Created Table: events_tools' );
     });
   }
 });
@@ -142,7 +142,7 @@ db.knex.schema.hasTable( 'steps' ).then( function ( exists ) {
       step.integer( 'max_duration' );
 
     }).then( function ( table ) {
-      console.log( 'Created Table: steps' );
+      process.verb( 'Created Table: steps' );
     });
   }
 });
@@ -162,7 +162,7 @@ db.knex.schema.hasTable( 'steps_users' ).then( function ( exists ) {
 
       step_user.timestamps();
     }).then( function ( table ) {
-      console.log( 'Created Table: steps_users' );
+      process.verb( 'Created Table: steps_users' );
     });
   }
 });
@@ -180,7 +180,7 @@ db.knex.schema.hasTable('tips' ).then( function ( exists ) {
       tip.string( 'text' );
 
     }  ).then( function ( table ) {
-      console.log( 'Created Table: tips' );
+      process.verb( 'Created Table: tips' );
     });
   }
 });
@@ -198,7 +198,7 @@ db.knex.schema.hasTable('ingredients_steps' ).then( function ( exists ) {
       ing_step.string( 'qty' );
 
     }).then( function ( table ) {
-      console.log( 'Created Table: ingredients_steps' );
+      process.verb( 'Created Table: ingredients_steps' );
     });
   }
 });
@@ -216,7 +216,7 @@ db.knex.schema.hasTable('steps_tools' ).then( function ( exists ) {
       step_tool.string( 'qty' );
 
     }).then( function ( table ) {
-      console.log( 'Created Table: steps_tools' );
+      process.verb( 'Created Table: steps_tools' );
     });
   }
 });
@@ -232,7 +232,7 @@ db.knex.schema.hasTable('chatmessages' ).then( function ( exists ) {
       msg.string( 'message' );
       msg.timestamps();
     }).then( function ( table ) {
-      console.log( 'Created Table: chatmessages' );
+      process.verb( 'Created Table: chatmessages' );
     });
   }
 });
@@ -248,7 +248,7 @@ db.knex.schema.hasTable('notes' ).then( function ( exists ) {
       note.string( 'note' );
       note.timestamps();
     }).then( function ( table ) {
-      console.log( 'Created Table: notes' );
+      process.verb( 'Created Table: notes' );
     });
   }
 });

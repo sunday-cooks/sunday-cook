@@ -6,7 +6,7 @@ var path              = require( 'path' ),
 module.exports = function( app ) {
   var url_absolute;
 
-  if ( app.isProd() ) {
+  if ( process.isProd() ) {
     url_absolute  = process.env.url_absolute;
   } else {
     url_absolute  = process.env.url_absolute_dev;

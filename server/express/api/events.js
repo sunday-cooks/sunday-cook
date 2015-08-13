@@ -98,7 +98,7 @@ module.exports = function ( app, router ) {
       event.related( 'tools' ).attach( tools );
       chef.related( 'events' ).create( event );
 
-      if ( app.isDev() ) console.log( 'Responding with', { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
+      process.verb( 'Responding with', { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
       res.status(201).json( { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
     });
   });
