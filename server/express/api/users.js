@@ -18,7 +18,9 @@ module.exports = function ( app, router ) {
       req.session.redirect = undefined;
       req.logIn( user, function( err ) {
         if ( err ) { return next( err ); }
-        res.redirect( '/#' + redirect );
+        if ( redirect ) {
+          res.redirect( '/#' + redirect );
+        } else { res.redirect( '/' ); }
       });
     })(req, res, next);
   });

@@ -5,6 +5,7 @@ require( './ingredient' );
 require( './eventingredient' );
 require( './tool' );
 require( './eventtool' );
+require( './chatmessage' );
 
 var Event = db.Model.extend( {
   tableName: 'events',
@@ -26,6 +27,10 @@ var Event = db.Model.extend( {
     return this.belongsToMany( 'Tool' ).through( 'EventTool' );
   },
 
+  chatMessages: function () {
+    return this.hasMany( 'ChatMessage' );
+  },
+
   eventDetails: function () {
     var event = {};
 
@@ -43,12 +48,13 @@ var Event = db.Model.extend( {
 
   fetchEvent: function ( id ) {
     return new this( { id: id } ).fetch( {
-      require: true,
+      //require: true,
       withRelated: [
         'ingredients',
         'steps',
         'chef',
-        'tools'
+        'tools',
+        'chatMessages',
         ],
     });
   },

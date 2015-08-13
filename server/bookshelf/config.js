@@ -229,7 +229,10 @@ db.knex.schema.hasTable('chatmessages' ).then( function ( exists ) {
   if ( !exists ) {
     db.knex.schema.createTable( 'chatmessages', function ( msg ) {
       msg.increments( 'id' ).primary();
-      msg.string( 'message' );
+      msg.string( 'text' );
+      msg.integer( 'user_id' );
+      msg.string( 'profilepic_url' );
+      msg.integer( 'event_id' );
       msg.timestamps();
     }).then( function ( table ) {
       process.verb( 'Created Table: chatmessages' );
