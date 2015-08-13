@@ -9,7 +9,9 @@
       </md-list> <!-- end of list -->
     </div>
 
-    <md-input-container>
+    <md-button class="md-raised md-primary" ng-if="!chatCtrl.chat.name"><a href="/api/fb" style="text-decoration: none; color: white;">Log in to Chat</a></md-button>
+
+    <md-input-container ng-if="chatCtrl.chat.name">
       <label>Add something to the mix</label>
       <form ng-submit="chatCtrl.sendChat(chatCtrl.chat.chatText)">
         <input type="text" ng-model="chatCtrl.chat.chatText">

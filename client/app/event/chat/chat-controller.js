@@ -16,12 +16,17 @@ angular.module( "chat", ['btford.socket-io'] )
       vm.chat.chatText = '';
     }
     // Socket events
+    socketService.on( '', function(  ) {
+
+    });
+
     socketService.on( 'new chat', function(newChat) {
       vm.chats.push(newChat);
     });
 
     socketService.on('user name', function( name ) {
       vm.chat.name = name.first_name + ' ' + name.last_name;
+      socketService.emit( 'event id', { eventId: ""} );
     });
     // make methods available in the view
     vm.sendChat = sendChat;
