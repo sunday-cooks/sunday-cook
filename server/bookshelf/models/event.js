@@ -1,7 +1,7 @@
 var db        = require( '../config' ),
-    Promise  = require( 'bluebird' );
-require( './step' );
+    Promise   = require( 'bluebird' );
 require( './user' );
+require( './step' );
 require( './ingredient' );
 require( './eventingredient' );
 require( './tool' );
@@ -34,17 +34,18 @@ var Event = db.Model.extend( {
 
   // This is a promise!!!
   eventDetails: function () {
+    var thisEvent = this;
     var event = {};
 
-    event.name = this.get( 'name' );
-    event.description = this.get( 'description' );
-    event.ingredients = this.related( 'ingredients' ).toJSON();
-    event.tools = this.related( 'tools' ).toJSON();
+    event.name = thisEvent.get( 'name' );
+    event.description = thisEvent.get( 'description' );
+    event.ingredients = thisEvent.related( 'ingredients' ).toJSON();
+    event.tools = thisEvent.related( 'tools' ).toJSON();
 
-    return this.related( 'chef' ).fetch( { columns: [ 'id', 'first_name', 'last_name' ] } )
+    return db.model( 'User' ).fetchUserbyId( thisEvent.related( 'chef' ).get( 'id' ) )
     .then( function ( chef ) {
-      event.chef = chef;
-      return this.related( 'steps' ).fetch( { withRelated: [ 'ingredients', 'tools' ] } );
+      event.chef = chef.toJSON();
+      return thisEvent.related( 'steps' ).fetch( { withRelated: [ 'ingredients', 'tools' ] } );
     })
     .then( function( steps ) {
       event.steps = steps.toJSON();
