@@ -56,7 +56,7 @@ angular.module("video", [])
             scope.localStream = $sce.trustAsResourceUrl( URL.createObjectURL( localMedia ) );
             scope.$apply();
           }, function ( error ) {
-            console.log( error.message );
+            console.log( error );
           });
         }
 
