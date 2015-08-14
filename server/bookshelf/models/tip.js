@@ -7,6 +7,12 @@ var Tip = db.Model.extend( {
   step: function () {
     this.belongsTo( 'Step' );
   },
+}, {
+
+  newTip: function ( options ) {
+    return new this( options ).save();
+  },
+
 });
 
 module.exports = db.model( 'Tip', Tip );

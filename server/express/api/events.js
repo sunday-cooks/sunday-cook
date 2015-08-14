@@ -1,16 +1,16 @@
 var Event       = require( '../../bookshelf/models/event' ),
-    Events      = require( '../../bookshelf/collections/events' ),
-    Ingredient  = require( '../../bookshelf/models/ingredient' ),
-    Tool        = require( '../../bookshelf/models/tool' ),
-    Tip         = require( '../../bookshelf/models/tip' ),
-    Step        = require( '../../bookshelf/models/step' ),
-    User        = require( '../../bookshelf/models/user' ),
     Promise     = require( 'bluebird' ),
     _           = require( 'lodash' );
+                  require( '../../bookshelf/collections/events' );
+                  require( '../../bookshelf/models/ingredient' );
+                  require( '../../bookshelf/models/tool' );
+                  require( '../../bookshelf/models/tip' );
+                  require( '../../bookshelf/models/step' );
+                  require( '../../bookshelf/models/user' );
 
 module.exports = function ( app, router ) {
   router.get( '/events', function ( req, res, next ) {
-    Events.fetchEvents()
+    db.collection( 'Events' ).fetchEvents()
     .then( function ( coll ) {
       res.json( coll.toJSON() );
     });
@@ -18,7 +18,7 @@ module.exports = function ( app, router ) {
 
   router.get( '/events/:eventid', function ( req, res, next ) {
     var eventid = req.params.eventid;
-    Event.fetchEvent( eventid )
+    db.model( 'Event' ).fetchEventbyId( eventid )
     .then( function ( event ) {
       if ( !event ) { res.sendStatus( 400 ); }
       else {
@@ -38,22 +38,23 @@ module.exports = function ( app, router ) {
 
     // Create our ingredients models and their promise
     var ingredients = _.map( data.ingredients, function ( ingredient ) {
-      return new Ingredient( { name: ingredient.name, buy_url: ingredient.buy_url } ).save();
+
+      return db.model( 'Ingredient' ).newIngredient( { name: ingredient.name, buy_url: ingredient.buy_url } );
     });
 
     // Create our tools models and their promise
     var tools = _.map( data.tools, function ( tool ) {
-      return new Tool( tool ).save();
+      return db.model( 'Tool' ).newTool( tool );
     });
 
     // Create our steps models and their promise
     var steps = _.map( data.steps, function( step ) {
-      return new Step( {
+      return db.model( 'Step' ).newStep( {
         name: step.name,
         min_duration: step.min_duration,
         max_duration: step.max_duration,
         details: step.details,
-      } ).save();
+      });
     });
 
     Promise.all( ingredients )
@@ -92,14 +93,14 @@ module.exports = function ( app, router ) {
 
 
         _.each( step.tips, function( tiptext ) {
-          new Tip( { text: tiptext } ).save().then( function( tip ) {
+          db.model( 'Tip' ).newTip( { text: tiptext } ).then( function( tip ) {
             step_model.related( 'tips' ).create( tip );
           });
         });
       });
 
       steps = coll;
-      return new Event( { name: data.name, description: data.description } ).save();
+      return db.model( 'Event' );
     })
     .then( function ( event ) {
       _.each( steps, function ( step ) {

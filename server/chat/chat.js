@@ -1,9 +1,9 @@
 var db            = require( '../bookshelf/config' ),
-    ChatMessage   = require( '../bookshelf/models/chatmessage' ),
-    ChatMessages  = require( '../bookshelf/collections/chatmessages' ),
-    cookieParser  = require( 'cookie-parser' ),
-    Event         = require( '../bookshelf/models/event' ),
-    User          = require( '../bookshelf/models/user' );
+    cookieParser  = require( 'cookie-parser' );
+                    require( '../bookshelf/models/chatmessage' );
+                    require( '../bookshelf/collections/chatmessages' );
+                    require( '../bookshelf/models/event' );
+                    require( '../bookshelf/models/user' );
 
 module.exports = function( app, io, passport, sessionStore ) {
 
@@ -21,14 +21,15 @@ module.exports = function( app, io, passport, sessionStore ) {
     socket.on( 'event id', function( id ) {
       eventId = id;
       socket.join( id );
-      Event.fetchEvent( id )
+      db.model( 'Event' ).fetchEventbyId( id )
       .then( function ( event ) {
         return event.related( 'chatMessages' ).fetch();
       })
       .then( function ( messages ) {
         messages.forEach( function ( message ) {
           var messageObj = message.toJSON();
-          new User( { id: message.get( 'user_id' ) } ).fetch()
+
+          db.model( 'User' ).fetchUserbyId( message.get( 'user_id' ) )
           .then( function( user ) {
             messageObj.name = user.get( 'first_name' ) + ' ' + user.get( 'last_name' );
             socket.emit( 'new chat', messageObj );
@@ -41,10 +42,10 @@ module.exports = function( app, io, passport, sessionStore ) {
       if ( userObj ) {
         process.verb( 'New chat received from client:', { user: userObj.get( 'first_name' ), text: chat } );
         var messageObj;
-        ChatMessage.newMessage( chat, eventId, userObj )
+        db.model( 'ChatMessage' ).newMessage( chat, eventId, userObj )
         .then( function ( message ) {
           messageObj = message.toJSON();
-          return new User( { id: messageObj.user_id } ).fetch();
+          return db.model( 'User' ).fetchUserbyId( messageObj.user_id );
         })
         .then( function ( user ) {
           messageObj.name = user.get( 'first_name' ) + ' ' + user.get( 'last_name' );

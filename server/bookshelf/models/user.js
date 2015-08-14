@@ -41,7 +41,7 @@ var User = db.Model.extend( {
   },
 
   deserializeUser: function ( email, done ) {
-    User.fetchUser( email )
+    db.model( 'User' ).fetchUser( email )
     .then( function ( user ) {
       done( null, user ? user : false );
     })
@@ -51,16 +51,16 @@ var User = db.Model.extend( {
   },
 
   fbAuthentication: function ( req, accessToken, refreshToken, profile, done ) {
-    User.fetchUserbyFBId( profile.id )
+    db.model( 'User' ).fetchUserbyFBId( profile.id )
     .then( function ( user ) {
-      if ( !req.user || req.user.email === user.get( 'email' ) ) {
+      if ( !req.user || req.user.get( 'email' ) === user.get( 'email' ) ) {
         return done( null, user );
       }
 
       return done( null, false );
     })
     .catch( function ( error ) {
-      var user = req.user || new User();
+      var user = req.user || new this();
 
       if ( user ) {
         user.set( 'fb_id', profile.id );
