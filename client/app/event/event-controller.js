@@ -154,7 +154,9 @@ angular.module('event', ['video', 'chat', 'step', 'steps', 'stepPercent', 'ngMat
         $rootScope.$broadcast('changedStep', currentStep);
       }
     };
-    var markComplete = function () {};
+    var markComplete = function () {
+
+    };
     return {
       steps: steps,
       currentStep: currentStep,

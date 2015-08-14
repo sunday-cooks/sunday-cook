@@ -1,13 +1,26 @@
-<md-list ng-controller="ListCtrl">
-  <md-list-item ng-click="changeToStep(step.number)" ng-repeat="step in steps">
-  <small>{{ step.number }}</small>
-      <md-icon md-svg-icon="{{}}"></md-icon>
-      <p> {{ step.title }} </p>
-      <p>  {{ step.min_duration }} </p>
-      <md-switch class="md-secondary" ng-model="step.isComplete"></md-switch>
-    </md-list-item>
-<!--     <md-list-item ng-click="navigateTo('data usage', $event)">
-      <md-icon md-svg-icon="cached"></md-icon>
-      <p>Data Usage</p>
-    </md-list-item> -->
-</md-list>
+<section class="sun-steps">
+  <div layout="row" class="sun-steps__title">
+    <div flex>
+      <h4>Your recipe steps</h4>
+    </div>
+    <div flex>15 steps</div>
+  </div>
+  <div layout="row" class="sun-steps__step-container">
+    <md-list ng-controller="ListCtrl" style="width: 100%;">
+      <md-list-item ng-click="changeToStep(step.number)" ng-repeat="step in steps track by $index">
+        <div class="sun-steps__step" layout="row" ng-class="{active: step.number === currentStep}">
+          <div class="single-steps__step-number" flex="5">
+            {{ step.number }}
+          </div>
+          <div class="single-steps__step-content" flex="95">
+            <p> {{ step.title }} </p>
+            <p>  {{ step.tabs[1].ingredients.length }} ingredients in this step</p>
+            <md-switch class="md-secondary" ng-model="step.isComplete"></md-switch>
+          </div>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</section>
+
+
