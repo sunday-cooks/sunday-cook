@@ -1,0 +1,28 @@
+md-toolbar {
+  min-height: 55px;
+}
+.md-toolbar-tools {
+  height: 55px;
+  background-color: #FFFFFF;
+  color: $md-font-base;
+  .sun-main-title {
+    font-size: 32px;
+    margin-right: 10px;
+  }
+  .sun-main-subtitle {
+    font-size: 18px;
+    color: lighten($md-font-base, 15%);
+  }
+  .sun-toolbar-help {
+    font-size: 14px;
+    color: lighten($md-font-base, 15%);
+  }
+}
+
+.chat-header {
+  background-color: #FFFFFF;
+}
+
+.md-tab {
+  text-transform: capitalize;
+}
