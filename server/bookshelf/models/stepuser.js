@@ -15,6 +15,12 @@ var StepUser = db.Model.extend( {
     return this.belongsTo( 'User' );
   },
 
+}, {
+
+  newStepUser: function ( options ) {
+    return new this( options ).save();
+  },
+
 });
 
 module.exports = db.model( 'StepUser', StepUser );

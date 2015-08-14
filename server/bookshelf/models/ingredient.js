@@ -13,6 +13,12 @@ var Ingredient = db.Model.extend({
     return this.belongsToMany( 'Step' ).through( 'IngredientStep' );
   }
 
+}, {
+
+  newIngredient: function ( options ) {
+    return new this( options ).save();
+  },
+
 });
 
 module.exports = db.model( 'Ingredient', Ingredient );

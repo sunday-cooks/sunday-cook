@@ -56,7 +56,11 @@ var Event = db.Model.extend( {
 
 }, {
 
-  fetchEvent: function ( id ) {
+  newEvent: function ( options ) {
+    return new this( options ).save();
+  },
+
+  fetchEventbyId: function ( id ) {
     return new this( { id: id } ).fetch( {
       //require: true,
       withRelated: [
