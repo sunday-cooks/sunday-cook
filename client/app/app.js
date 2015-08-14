@@ -9,17 +9,21 @@ angular.module('app', [
   ])
   .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider, $locationProvider ) {
 
+    // var authenticated = function ( $q, userModel ) {
+    //   var deferred = $q.defer();
+    //   userModel.getUserInfo( function( isLoggedIn ) {
+    //     if ( isLoggedIn ) {
+    //       deferred.resolve();
+    //     } else {
+    //       deferred.reject();
+    //     }
+    //   });
+    //   return deferred.promise;
+    // };
     // configure $locationProvider
     $locationProvider.html5Mode(false);
 
     $urlRouterProvider.otherwise( '/' );
-
-    // var customBlueMap = $mdThemingProvider.extendPalette( 'light-blue', {
-    //     'contrastDefaultColor': 'light',
-    //     'contrastDarkColors': [ '50' ],
-    //     '50': 'ffffff'
-    //   });
-    //  $mdThemingProvider.definePalette( 'customBlue', customBlueMap );
 
       $mdThemingProvider.theme( 'default' )
         .primaryPalette( 'amber', {
@@ -36,8 +40,8 @@ angular.module('app', [
     $stateProvider
       .state( 'event', {
         url: '/',
-        templateUrl: "app/event/event.html", // gallery of events (static page)
-        controller: "eventCtrl"
+        templateUrl: "app/event/events.html", // gallery of events (static page)
+        controller: "eventsCtrl",
       })
       .state( 'events', {
         url: '/events/:eventId',
@@ -47,7 +51,8 @@ angular.module('app', [
       .state( 'createEvent', {
         url: '/create-event',
         templateUrl: "app/create/create-event.html",
-        controller: "createCtrl"
+        controller: "createCtrl",
+        // resolve: { authenticated: authenticated },
       })
       .state( 'createEvent.event', {
         url: '/event-details',
