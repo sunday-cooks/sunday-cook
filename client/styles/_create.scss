@@ -12,7 +12,7 @@ md-card.smallCardWrap.ng-scope.md-default-theme {
   right: -10px;
 }    
 .iName, .iBrand, .iQty {
-  color: $md-primary;
+  color: gold;
 }
 md-card-content.stepBox {
   position:relative;
@@ -22,7 +22,7 @@ md-card-content.stepBox h4.md-title.ng-binding {
   font-size: 18px;
 }
 md-card-content.stepBox span.stepTitle.ng-binding {
-  color: $md-primary;
+  color: gold;
 }
 md-card-content.stepBox h4.md-title {
   margin:0;
@@ -30,7 +30,7 @@ md-card-content.stepBox h4.md-title {
   font-weight:normal;
 }
 md-card-content.stepBox h4.stepTitle {
-  color: $md-primary;
+  color: gold;
   font-weight:normal;
   margin-bottom:0;
 }
@@ -82,8 +82,8 @@ button.md-raised.submission.md-button:hover, button.md-raised.submission.md-butt
  color: white;
 }
 ng-md-icon.iconGold {
-  fill: $md-primary;
+  fill: gold;
 }
 ng-md-icon.iconRed {
-  fill: $md-accent;
+  fill: tomato;
 }
