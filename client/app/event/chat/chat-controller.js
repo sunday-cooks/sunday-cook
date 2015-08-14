@@ -13,8 +13,7 @@ angular.module( "chat", ['btford.socket-io'] )
     vm.chat = {};
     // Controller methods
     function sendChat( chat ) {
-      vm.chat.timeStamp = new Date();
-      socketService.emit( 'new chat', {createdOn: vm.chat.timeStamp, text: vm.chat.chatText, name: vm.chat.name } );
+      socketService.emit( 'new chat', vm.chat.chatText );
       vm.chat.chatText = '';
     }
     // Socket events

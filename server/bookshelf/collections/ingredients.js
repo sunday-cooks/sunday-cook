@@ -1,8 +1,8 @@
 var db = require('../config');
-var Ingredient = require('../models/ingredient');
+require('../models/ingredient');
 
 var Ingredients = db.Collection.extend( {
-  model: Ingredient,
+  model: 'Ingredient',
 }, {
   fetchLike: function ( match ) {
     return new this()
@@ -12,4 +12,4 @@ var Ingredients = db.Collection.extend( {
   },
 });
 
-module.exports = Ingredients;
+module.exports = db.collection( 'Ingredients', Ingredients );

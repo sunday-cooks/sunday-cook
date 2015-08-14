@@ -1,6 +1,6 @@
-var db    = require( '../config' ),
-    Step  = require( './step' ),
-    User  = require( './user' );
+var db    = require( '../config' );
+require( './step' );
+require( './user' );
 
 var StepUser = db.Model.extend( {
 
@@ -8,13 +8,13 @@ var StepUser = db.Model.extend( {
   hasTimestamps: true,
 
   step: function () {
-    return this.belongsTo( Step );
+    return this.belongsTo( 'Step' );
   },
 
   user: function () {
-    return this.belongsTo( User );
+    return this.belongsTo( 'User' );
   },
 
 });
 
-module.exports = StepUser;
+module.exports = db.model( 'StepUser', StepUser );

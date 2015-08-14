@@ -34,11 +34,6 @@ module.exports = function ( app, router ) {
       return new Tool( tool ).save();
     });
 
-    // Create our tips models and their promise
-    var tips = _.map( data.steps.tips, function ( tip ) {
-      return new Tip( { text: tip } ).save();
-    });
-
     // Create our steps models and their promise
     var steps = _.map( data.steps, function( step ) {
       return new Step( {
@@ -56,10 +51,6 @@ module.exports = function ( app, router ) {
     })
     .then ( function( coll ) {
       tools = coll;
-      return Promise.all( tips );
-    })
-    .then( function ( coll ) {
-      tips = coll;
       return Promise.all( steps );
     })
     .then( function ( coll ) {
@@ -87,8 +78,11 @@ module.exports = function ( app, router ) {
 
         step_model.related( 'tools' ).attach( step_tools );
 
-        _.each( tips, function( tip ) {
-          tip.related( 'step' ).create( step_model );
+
+        _.each( step.tips, function( tiptext ) {
+          new Tip( { text: tiptext } ).save().then( function( tip ) {
+            step_model.related( 'tips' ).create( tip );
+          });
         });
       });
 
@@ -102,8 +96,9 @@ module.exports = function ( app, router ) {
 
       event.related( 'ingredients' ).attach( ingredients );
       event.related( 'tools' ).attach( tools );
-      event.related( 'chef' ).attach( chef );
+      chef.related( 'events' ).create( event );
 
+      process.verb( 'Responding with', { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
       res.status(201).json( { id: event.get( 'id' ), created_at: event.get( 'created_at' ) } );
     });
   });

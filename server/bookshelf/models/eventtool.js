@@ -1,19 +1,19 @@
-var db    = require( '../config' ),
-    Tool  = require( './tool' ),
-    Event = require( './event' );
+var db = require( '../config' );
+require( './tool' );
+require( './event' );
 
 var EventTool = db.Model.extend({
 
   tableName: 'events_tools',
 
   event: function () {
-    return this.belongsTo( Event );
+    return this.belongsTo( 'Event' );
   },
 
   tool: function () {
-    return this.belongsTo( Tool );
+    return this.belongsTo( 'Tool' );
   },
 
 });
 
-module.exports = EventTool;
+module.exports = db.model( 'EventTool', EventTool );

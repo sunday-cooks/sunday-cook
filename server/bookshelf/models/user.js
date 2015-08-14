@@ -1,13 +1,22 @@
 var db      = require( '../config' ),
-    Event   = require( './event' ),
     Promise = require( 'bluebird' );
+              require( './event' );
+              require( './chatmessage' );
 
 var User = db.Model.extend( {
   tableName: 'users',
   hasTimestamps: true,
 
   events: function () {
-    return this.hasMany( Event );
+    return this.hasMany( 'Event' );
+  },
+
+  chatMessages: function () {
+    return this.hasMany( 'ChatMessage' );
+  },
+
+  getProfilePicURL: function () {
+    return 'https://graph.facebook.com/' + this.get( 'fb_id' ) + '/picture';
   },
 }, {
 
@@ -63,4 +72,4 @@ var User = db.Model.extend( {
   },
 });
 
-module.exports = User;
+module.exports = db.model( 'User', User );
