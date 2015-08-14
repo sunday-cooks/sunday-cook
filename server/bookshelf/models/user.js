@@ -20,6 +20,10 @@ var User = db.Model.extend( {
   },
 }, {
 
+  fetchUserbyId: function ( id ) {
+    return new this( { id: id } ).fetch( { columns: [ 'first_name', 'last_name' ] } );
+  },
+
   fetchUser: function ( email ) {
     return new this( { email: email } ).fetch( { require: true } );
   },
@@ -29,7 +33,11 @@ var User = db.Model.extend( {
   },
 
   serializeUser: function ( user, done ) {
-    done( null, user.get( 'email' ) );
+    if ( user ) {
+      done( null, user.get( 'email' ) );
+    } else {
+      done( null, false );
+    }
   },
 
   deserializeUser: function ( email, done ) {

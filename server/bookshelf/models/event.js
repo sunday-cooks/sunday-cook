@@ -1,6 +1,7 @@
-var db = require( '../config' );
-require( './step' );
+var db        = require( '../config' ),
+    Promise   = require( 'bluebird' );
 require( './user' );
+require( './step' );
 require( './ingredient' );
 require( './eventingredient' );
 require( './tool' );
@@ -31,17 +32,26 @@ var Event = db.Model.extend( {
     return this.hasMany( 'ChatMessage' );
   },
 
+  // This is a promise!!!
   eventDetails: function () {
+    var thisEvent = this;
     var event = {};
 
-    event.name = this.get( 'name' );
-    event.description = this.get( 'description' );
-    event.ingredients = this.related( 'ingredients' ).toJSON();
-    event.steps = this.related( 'steps' ).toJSON();
-    event.chef = this.related( 'chef' ).toJSON();
-    event.tools = this.related( 'tools' ).toJSON();
+    event.name = thisEvent.get( 'name' );
+    event.description = thisEvent.get( 'description' );
+    event.ingredients = thisEvent.related( 'ingredients' ).toJSON();
+    event.tools = thisEvent.related( 'tools' ).toJSON();
 
-    return event;
+    return db.model( 'User' ).fetchUserbyId( thisEvent.related( 'chef' ).get( 'id' ) )
+    .then( function ( chef ) {
+      event.chef = chef.toJSON();
+      return thisEvent.related( 'steps' ).fetch( { withRelated: [ 'ingredients', 'tools' ] } );
+    })
+    .then( function( steps ) {
+      event.steps = steps.toJSON();
+
+      return event;
+    });
   },
 
 }, {

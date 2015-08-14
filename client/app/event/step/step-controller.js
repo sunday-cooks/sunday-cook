@@ -15,6 +15,7 @@ angular.module('step', ['ngMaterial', 'stepPercent'])
     $scope.markComplete = function () {
       console.log('current is: ', currentStep);
       step[currentStep -1].isComplete = true;
+      $scope.nextStep(currentStep);
     };
 
     $scope.prevStep = function () {
@@ -28,6 +29,7 @@ angular.module('step', ['ngMaterial', 'stepPercent'])
     };
 
     $scope.nextStep = function () {
+      console.log('I should be fired');
       if (step[currentStep] ) {
         currentStep += 1;
         console.log('What is life in all reality', currentStep);

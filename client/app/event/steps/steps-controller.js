@@ -9,10 +9,12 @@ angular.module('steps', ['ngMaterial', 'event'])
   .controller('ListCtrl', function ($scope, stepsModel) {
     var steps = stepsModel.steps;
     $scope.steps = stepsModel.steps;
+    $scope.currentStep = stepsModel.currentStep;
     //$scope.isComplete = stepsModel.steps;
     //$scope.markComplete = stepsModel.steps[currentStepNumber].isComplete;
     $scope.changeToStep = function (clickedStep) {
       stepsModel.goToStep(clickedStep);
+      $scope.currentStep = clickedStep;
     };
   })
   .directive('steps', function () {
