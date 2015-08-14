@@ -9,18 +9,19 @@ module.exports = function ( app, router ) {
     var stepid = req.params.stepid;
 
     Promise.join( Event.fetchEvent( eventid ), Step.fetchStep( stepid ),
-      function( event, step ) {
+      function ( event, step ) {
         if ( !event ) { res.sendStatus( 400 ); return Promise.reject( new Error( "invalid event id specified" ) ); }
         else if ( !step ) { res.sendStatus( 400 ); return Promise.reject( new Error( "invalid step id specified" ) ); }
         else {
-          return step.done.where( { step_id: stepid, user_id: req.user.get( 'id' ) } ).fetch();
+          return step.related( 'done' ).where( { step_id: stepid, user_id: req.user.get( 'id' ) } ).fetch();
         }
     })
     .then( function ( step_user ) {
       var done = false;
-      if ( step_user ) { done = step_user.get( 'done' ); }
+      if ( step_user ) { done = step_user.pivot.get( 'done' ); }
       else {
         done = true;
+
         return new StepUser( { step_id: stepid, user_id: req.user.get( 'id' ), done: true } ).save();
       }
 
