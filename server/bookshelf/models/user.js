@@ -20,6 +20,10 @@ var User = db.Model.extend( {
   },
 }, {
 
+  fetchUserbyId: function ( id ) {
+    return new this( { id: id } ).fetch( { columns: [ 'first_name', 'last_name' ] } );
+  },
+
   fetchUser: function ( email ) {
     return new this( { email: email } ).fetch( { require: true } );
   },
