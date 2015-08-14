@@ -4,7 +4,8 @@ angular.module('app', [
   'ngMaterial',
   'ngMdIcons',
   'createEvent',
-  'ngAnimate'
+  'ngAnimate',
+  'ngMessages'
   ])
   .config( function ( $urlRouterProvider, $httpProvider, $stateProvider, $mdThemingProvider, $locationProvider ) {
 
