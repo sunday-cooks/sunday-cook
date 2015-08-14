@@ -1,6 +1,6 @@
 (function () {
 
-angular.module( 'createEvent', [ 'ngMaterial' ] )
+angular.module( 'createEvent', [ 'ngMaterial', 'ngMessages' ] )
   .controller( 'createCtrl', createCtrl)
   .factory('processForm', processFunction);
 
@@ -27,8 +27,7 @@ angular.module( 'createEvent', [ 'ngMaterial' ] )
     $scope.toolsList = [];
 
       //step tips
-    $scope.addNewTip = function($event) {
-      $event.preventDefault();
+    $scope.addNewTip = function() {
       $scope.formData.step.tips.push($scope.formData.tip);
       $scope.formData.tip = '';
       $scope.tipList();
@@ -47,8 +46,9 @@ angular.module( 'createEvent', [ 'ngMaterial' ] )
       console.log($scope.formData);
       var data = JSON.stringify($scope.formData);
       processForm.sendData(data)
-        .success(function () {
-          console.log('Data has been posted!');
+        .success(function (error, data) {
+          console.log('Data has been posted!', data);
+
         })
         .error(function (error) {
           console.log('Doh! here lies the, ', error, ' and', error.message);
@@ -112,6 +112,11 @@ angular.module( 'createEvent', [ 'ngMaterial' ] )
       $scope.formData.steps.push($scope.formData.step);
       $scope.formData.step = { name: '', min_duration: '', max_duration: '', details: '', tips: [], ingredients: {'0':{'value': '', 'qty': ''}}, tools: {'0':{'value': ''}} };
       $scope.tipList();
+      $scope.stepList();
+    };
+    $scope.removeStep = function($event, $index) {
+      $event.preventDefault();
+      $scope.formData.steps.splice($index, 1);
       $scope.stepList();
     };
 
