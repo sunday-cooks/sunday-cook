@@ -13,7 +13,11 @@ module.exports = function ( app, router ) {
     Event.fetchEvent( eventid )
     .then( function ( event ) {
       if ( !event ) { res.sendStatus( 400 ); }
-      else { res.json( event.eventDetails() ); }
+      else {
+        event.eventDetails().then( function ( event ) {
+          res.json( event );
+        });
+      }
     });
   });
 
@@ -89,12 +93,21 @@ module.exports = function ( app, router ) {
       steps = coll;
       return new Event( { name: data.name, description: data.description } ).save();
     })
-    .then( function( event ) {
-      _.each( steps, function( step ) {
+    .then( function ( event ) {
+      _.each( steps, function ( step ) {
           event.related( 'steps' ).create( step );
       });
 
-      event.related( 'ingredients' ).attach( ingredients );
+      var ingrel = event.related( 'ingredients' );
+
+      ingredients.forEach( function ( ingredient, index ) {
+        event.related( 'ingredients' ).attach( {
+          ingredient_id: ingredient.get( 'id' ),
+          event_id: event.get( 'id' ),
+          qty: data.ingredients[index].qty,
+        });
+      });
+
       event.related( 'tools' ).attach( tools );
       chef.related( 'events' ).create( event );
 

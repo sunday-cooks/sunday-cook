@@ -29,7 +29,11 @@ var User = db.Model.extend( {
   },
 
   serializeUser: function ( user, done ) {
-    done( null, user.get( 'email' ) );
+    if ( user ) {
+      done( null, user.get( 'email' ) );
+    } else {
+      done( null, false );
+    }
   },
 
   deserializeUser: function ( email, done ) {
