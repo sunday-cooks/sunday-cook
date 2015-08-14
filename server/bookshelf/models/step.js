@@ -1,11 +1,11 @@
-var db = require( '../config' );
-require( './tip' );
-require( './ingredient' );
-require( './ingredientstep' );
-require( './tool' );
-require( './steptool' );
-require( './user' );
-require( './stepuser' );
+var db =  require( '../config' );
+          require( './tip' );
+          require( './ingredient' );
+          require( './ingredientstep' );
+          require( './tool' );
+          require( './steptool' );
+          require( './user' );
+          require( './stepuser' );
 
 var Step = db.Model.extend( {
   tableName: 'steps',
@@ -27,7 +27,12 @@ var Step = db.Model.extend( {
   }
 
 }, {
-  fetchStep: function ( id ) {
+
+  newStep: function ( options ) {
+    return new this( options ).save();
+  },
+
+  fetchStepbyId: function ( id ) {
     return new this( { id: id } ).fetch( {
       require: true,
       withRelated: [

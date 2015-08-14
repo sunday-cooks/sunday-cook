@@ -1,7 +1,8 @@
 var path              = require( 'path' ),
-    User              = require( '../bookshelf/models/user' ),
     passport          = require( 'passport' ),
-    FacebookStrategy  = require( 'passport-facebook' ).Strategy;
+    FacebookStrategy  = require( 'passport-facebook' ).Strategy,
+    db                = require( '../bookshelf/config' );
+                        require( '../bookshelf/models/user' );
 
 module.exports = function( app ) {
   var url_absolute;
@@ -19,10 +20,10 @@ module.exports = function( app ) {
       enableProof: false,
       passReqToCallback: true,
       profileFields: [ 'id', 'email', 'first_name', 'gender', 'last_name' ],
-    }, User.fbAuthentication ));
+    }, db.model( 'User' ).fbAuthentication ));
 
-  passport.serializeUser( User.serializeUser );
-  passport.deserializeUser( User.deserializeUser );
+  passport.serializeUser( db.model( 'User' ).serializeUser );
+  passport.deserializeUser( db.model( 'User' ).deserializeUser );
 
   app.use( passport.initialize() );
   app.use( passport.session() );
