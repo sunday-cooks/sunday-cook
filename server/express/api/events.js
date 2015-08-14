@@ -1,4 +1,5 @@
 var Event       = require( '../../bookshelf/models/event' ),
+    Events      = require( '../../bookshelf/collections/events' ),
     Ingredient  = require( '../../bookshelf/models/ingredient' ),
     Tool        = require( '../../bookshelf/models/tool' ),
     Tip         = require( '../../bookshelf/models/tip' ),
@@ -8,7 +9,14 @@ var Event       = require( '../../bookshelf/models/event' ),
     _           = require( 'lodash' );
 
 module.exports = function ( app, router ) {
-  router.get( '/events/:eventid', function( req, res, next ) {
+  router.get( '/events', function ( req, res, next ) {
+    Events.fetchEvents()
+    .then( function ( coll ) {
+      res.json( coll.toJSON() );
+    });
+  });
+
+  router.get( '/events/:eventid', function ( req, res, next ) {
     var eventid = req.params.eventid;
     Event.fetchEvent( eventid )
     .then( function ( event ) {
