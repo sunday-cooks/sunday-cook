@@ -1,26 +1,28 @@
-<step-percent></step-percent>
-<div ng-controller="stepCtrl">
+<div ng-controller="stepCtrl" class="sun-step">
   <md-content class="md-padding md-default-theme">
-    <div layout="row">
-      <div flex="80">
-        <div layout="row">
+    <div layout layout-align="start center">
+      <div flex>
+        <div layout="row" layout-align="start center">
+           <span>Step {{step.number}}</span>
+            <h2 style="display: inline-block; font-weight: 400; font-size: 28px; margin-top: 0; margin-bottom: 0; margin-right: 10px;">{{step.title}}</h2>
+        </div>
+      </div>
+      <div flex>
+        <div layout="row" layout-align="end center">
           <div flex>
-            <div layout="column">
-              <div style="display: block">
-                <md-button ng-click="prevStep()" class="md-icon-button"  style="height: 30px; width: 30px;">
-                  <ng-md-icon class="md-icon-step-next" icon="keyboard_arrow_left" style="fill: #7F90A6" size="24"></ng-md-icon>
-                </md-button>
-                <span> step <b>{{step.number}}</b> of {{stepsLength}}</span>
-                <md-button ng-click="nextStep()" class="md-icon-button" style="height: 30px; width: 30px; margn: 0;">
-                  <ng-md-icon class="md-icon-step-next" icon="keyboard_arrow_right" style="fill: #7F90A6" size="24"></ng-md-icon>
-                </md-button>
-              </div>
-              <h2 style="display: inline-block; font-weight: 400; font-size: 28px; margin-top: 0; margin-bottom: 0; margin-right: 10px;">{{step.title}}</h2>
-            </div>
+            <md-button ng-click="prevStep()" class="md-icon-button"  style="height: 30px; width: 30px;">
+              prev.
+            </md-button>
+            <!-- <span> step <b>{{step.number}}</b> of {{stepsLength}}</span> -->
+            <md-button ng-click="nextStep()" class="md-icon-button" style="height: 30px; width: 30px; margn: 0;">
+              next
+            </md-button>
+          </div>
+          <div flex>
+            <button class="md-raised md-primary md-button" ng-click="markComplete()" layout-align="end"> Mark Complete </button>
           </div>
         </div>
       </div>
-      <button class="md-primary md-button md-default-theme" ng-click="markComplete()" layout-align="end"> Mark Complete </button>
     </div>
   </md-content>
   <div class="sample tabsdemoDynamicTabs"  layout="column">
