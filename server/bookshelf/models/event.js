@@ -39,12 +39,15 @@ var Event = db.Model.extend( {
     event.name = this.get( 'name' );
     event.description = this.get( 'description' );
     event.ingredients = this.related( 'ingredients' ).toJSON();
-    event.chef = this.related( 'chef' ).toJSON();
     event.tools = this.related( 'tools' ).toJSON();
 
-    return this.related( 'steps' ).fetch( { withRelated: [ 'ingredients', 'tools' ] } )
-    .then( function( coll ) {
-      event.steps = coll.toJSON();
+    return this.related( 'chef' ).fetch( { columns: [ 'id', 'first_name', 'last_name' ] } )
+    .then( function ( chef ) {
+      event.chef = chef;
+      return this.related( 'steps' ).fetch( { withRelated: [ 'ingredients', 'tools' ] } );
+    })
+    .then( function( steps ) {
+      event.steps = steps.toJSON();
 
       return event;
     });
