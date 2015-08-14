@@ -17,19 +17,20 @@
   <div class="" layout="column" layout-margin layout-fill>
     <div>
       <md-content>
-        <md-toolbar style="background-color: #FFFFFF; color: #444;">
+        <md-toolbar>
           <div class="md-toolbar-tools">
             <!-- <md-button class="md-icon-button" aria-label="Settings">
               <ng-md-icon icon="menu" style="fill: #7F90A6; position: relative; top: 8px" size="24"></ng-md-icon>
             </md-button> -->
-            <h2 style="font-size: 32px;">
+            <h2 class="sun-main-title">
               Roasted chicken with a side salad
             </h2>
-            <span flex></span>
-            <md-button class="md-icon-button" aria-label="Favorite">
+            <span flex class="sun-main-subtitle"> with Chef Spencer</span>
+            <!-- <md-button class="md-icon-button" aria-label="Favorite">
               <ng-md-icon icon="cake" style="fill: #7F90A6; position: relative; top: 8px" size="24"></ng-md-icon>
 
-            </md-button>
+            </md-button> -->
+            <span class="sun-toolbar-help">Need help?</span>
             <md-button class="md-icon-button" aria-label="More">
               <ng-md-icon icon="more_vert" style="fill: #7F90A6; position: relative; top: 8px" size="24"></ng-md-icon>
 
@@ -39,7 +40,7 @@
       </md-content>
       <div>
         <md-content>
-          <md-tabs md-dynamic-height>
+          <md-tabs md-no-disconnect md-dynamic-height md-no-bar>
             <md-tab label="Home">
             </md-tab>
             <md-tab label="Cook Info">
@@ -53,6 +54,8 @@
           </md-tabs>
         </md-content>
       </div>
+
+
     </div>
 
 
