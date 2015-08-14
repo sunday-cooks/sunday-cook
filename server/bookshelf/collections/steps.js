@@ -1,8 +1,8 @@
-var db = require('../config');
-require('../models/step');
+var db    = require( '../config' ),
+    Step  = require( '../models/step' );
 
 var Steps = db.Collection.extend( {
-  model: 'Step',
+  model: Step,
 });
 
 module.exports = db.collection( 'Steps', Steps );
