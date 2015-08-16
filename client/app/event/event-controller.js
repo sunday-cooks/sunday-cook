@@ -145,12 +145,8 @@ angular.module('event', ['video', 'chat', 'step', 'steps', 'events', 'stepPercen
       }
     ];
 
-    $rootScope.$on('previousStep', function(event, mass) {
-      $rootScope.$broadcast('regressBar', mass);
-    });
-
-    $rootScope.$on('nextStep', function(event, mass) {
-      $rootScope.$broadcast('progressBar', mass);
+    $rootScope.$on('stepChange', function(event, mass) {
+      $rootScope.$broadcast('stepChage', mass);
     });
 
     var currentStep = 1;
@@ -161,10 +157,9 @@ angular.module('event', ['video', 'chat', 'step', 'steps', 'events', 'stepPercen
     var nextStep = function () {};
     var previousStep = function () {};
     var goToStep = function (desiredStep) {
-
       if (steps[desiredStep -1]) {
         currentStep = desiredStep;
-        $rootScope.$broadcast('changedStep', currentStep);
+        $rootScope.$broadcast('goToStep', currentStep);
       }
     };
     var markComplete = function () {

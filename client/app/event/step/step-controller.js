@@ -22,9 +22,9 @@ angular.module('step', ['ngMaterial', 'stepPercent'])
       if (currentStep - 1 > 0) {
         currentStep -= 1;
         init();
-        $scope.$emit('previousStep', currentStep);
+        $scope.$emit('stepChange', currentStep);
       } else {
-        console.log('no luck pops, this is the first step');
+        console.log('this is the first step');
       }
     };
 
@@ -32,24 +32,17 @@ angular.module('step', ['ngMaterial', 'stepPercent'])
       console.log('I should be fired');
       if (step[currentStep] ) {
         currentStep += 1;
-        console.log('What is life in all reality', currentStep);
         init();
-        $scope.$emit('nextStep', currentStep);
+        $scope.$emit('stepChange', currentStep);
       } else {
-        console.log('no luck pops, end of the line');
+        console.log('this is the last step');
       }
     };
 
-    $scope.$on('changedStep', function(event, mass) {
+    $scope.$on('goToStep', function(event, mass) {
       currentStep = mass;
       init();
     });
-
-    //$scope.$watch
-
-    // $scope.goToStep = function () {
-
-    // }
 
     var selected = null,
         previous = null;
@@ -57,8 +50,8 @@ angular.module('step', ['ngMaterial', 'stepPercent'])
     $scope.$watch('selectedIndex', function(current, old){
       previous = selected;
       selected = step[currentStep].tabs[current];
-      if ( old + 1 && (old !== current)) $log.debug('Goodbye ' + previous.title + '!');
-      if ( current + 1 ) $log.debug('Hello ' + selected.title + '!');
+      // if ( old + 1 && (old !== current)) $log.debug('Goodbye ' + previous.title + '!');
+      // if ( current + 1 ) $log.debug('Hello ' + selected.title + '!');
     });
 
     init();

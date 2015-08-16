@@ -1,7 +1,7 @@
 <section class="sun-steps">
   <div layout="row" class="sun-steps__title">
     <div flex>
-      <h4>Your recipe steps</h4>
+      <h4>Steps</h4>
     </div>
     <div flex>15 steps</div>
   </div>
@@ -13,8 +13,8 @@
             {{ step.number }}
           </div>
           <div class="single-steps__step-content" flex="95">
-            <p> {{ step.title }} </p>
-            <p>  {{ step.tabs[1].ingredients.length }} ingredients in this step</p>
+            <!-- <p> {{ step.title }} </p>
+            <p>  {{ step.tabs[1].ingredients.length }} ingredients in this step</p> -->
             <md-switch class="md-secondary" ng-model="step.isComplete"></md-switch>
           </div>
         </div>
