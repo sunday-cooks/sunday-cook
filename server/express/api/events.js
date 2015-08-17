@@ -110,7 +110,7 @@ module.exports = function ( app, router ) {
       });
 
       steps = coll;
-      return db.model( 'Event' );
+      return db.model( 'Event' ).newEvent();
     })
     .then( function ( event ) {
       _.each( steps, function ( step ) {
