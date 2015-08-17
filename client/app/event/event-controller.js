@@ -121,11 +121,7 @@ angular.module('event', ['video', 'chat', 'step', 'steps', 'events', 'stepPercen
     return eventObject;
 
     function getEventDetails(eventId, callback) {
-      $http.get('/api/events/:eventId', {
-        params: {
-          eventId: eventId
-        }
-      })
+      $http.get('/api/events/' + eventId)
       .then(function (result) {
         eventObject.info = result;
         callback( result );
