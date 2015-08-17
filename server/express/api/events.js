@@ -20,7 +20,7 @@ module.exports = function ( app, router ) {
   router.get( '/events/:eventid', function ( req, res, next ) {
     var eventid = parseInt( req.params.eventid );
 
-    if ( !( _.isNaN( eventid ) && _.isNumber( eventid ) ) ) {
+    if ( _.isNaN( eventid ) || !_.isNumber( eventid ) ) {
       eventid = url.parse( req.url, true ).query.eventId;
     }
 
