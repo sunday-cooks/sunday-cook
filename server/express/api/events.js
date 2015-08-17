@@ -1,6 +1,7 @@
 var Event       = require( '../../bookshelf/models/event' ),
     Promise     = require( 'bluebird' ),
-    _           = require( 'lodash' );
+    _           = require( 'lodash' ),
+    url         = require( 'url' );
                   require( '../../bookshelf/collections/events' );
                   require( '../../bookshelf/models/ingredient' );
                   require( '../../bookshelf/models/tool' );
@@ -17,16 +18,25 @@ module.exports = function ( app, router ) {
   });
 
   router.get( '/events/:eventid', function ( req, res, next ) {
-    var eventid = req.params.eventid;
-    db.model( 'Event' ).fetchEventbyId( eventid )
-    .then( function ( event ) {
-      if ( !event ) { res.sendStatus( 400 ); }
-      else {
-        event.eventDetails().then( function ( event ) {
-          res.json( event );
-        });
-      }
-    });
+    var eventid = req.params.eventId;
+
+    if ( !_.isNumber( eventid ) ) {
+      eventid = url.parse( req.url, true ).query.eventId;
+    }
+
+    if ( _.isNumber( eventid ) ) {
+      db.model( 'Event' ).fetchEventbyId( eventid )
+      .then( function ( event ) {
+        if ( !event ) { res.sendStatus( 400 ); }
+        else {
+          event.eventDetails().then( function ( event ) {
+            res.json( event );
+          });
+        }
+      });
+    } else {
+      res.sendStatus( 400 );
+    }
   });
 
   router.post( '/events/create', function ( req, res, next ) {
