@@ -50,7 +50,7 @@ angular.module("video", [])
         function getLocalStream () {
           navigator.getUserMedia({
             video: true,
-            audio: true,
+            audio: false,
           }, function ( stream ) {
             localMedia = stream;
             scope.localStream = $sce.trustAsResourceUrl( URL.createObjectURL( localMedia ) );

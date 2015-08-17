@@ -10,24 +10,9 @@ angular.module( "chat", ['btford.socket-io'] )
     // temporary container for chats
     vm.chats = [
       {
-        name: 'Phil',
+        name: 'Spencer',
         text: 'Cannot wait to get my cook on! Hey Everyone!!!',
         created_at: '5 min',
-      },
-      {
-        name: 'Phil',
-        text: 'Is there anyone here???',
-        created_at: '3 min',
-      },
-      {
-        name: 'Spencer',
-        text: 'Hello Phil!',
-        created_at: '2 min',
-      },
-      {
-        name: 'Phil',
-        text: 'Sweet, hey Spencer. I have a quick question for you. Did you buy the specified marinade or did you decide to make your own?',
-        created_at: '1 min',
       },
     ];
     // chat object

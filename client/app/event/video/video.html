@@ -1,12 +1,12 @@
-<div flex class="sun-video">
+<div flex class="sun-video" style="overflow: hidden;">
   <div layout="row">
     <div flex>
-      <video id="my-video" autoplay style="height: 200px; border: 1px dashed rgba(0,0,0,0.3);" ng-src="{{ localStream }}"></video>
+      <video id="my-video" autoplay style="width: auto; height: 100%;" ng-src="{{ localStream }}"></video>
     </div>
     <div flex>
-      <video id="user-video" autoplay style="height: 200px; border: 1px dashed rgba(0,0,0,0.3);" ng-src="{{ incomingStream }}"></video>
+      <video id="user-video" autoplay style="width: auto; height: 100%;" ng-src="{{ incomingStream }}"></video>
     </div>
-  <!-- <span>{{ id }}</span> -->
+  <span style="position: absolute; right: 5px; top: 5px;">{{ id }}</span>
   <div style="background-color: rgba(255,255,255,0.4);  width: 98%; position: absolute; bottom: 0; left: 0; padding: 0px 10px;">
     <div>
       <form action="" ng-submit="makeCall( $event, peerID )">
