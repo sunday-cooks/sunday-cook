@@ -45,22 +45,27 @@ angular.module('app', [
       })
       .state( 'events', {
         url: '/events/:eventId',
-        templateUrl: "app/event/event.html", // actual app
-        controller: "eventCtrl"
+        templateUrl: 'app/event/event.html', // actual app
+        controller: 'eventCtrl',
+        resolve: {
+          load: function(stepsModel) {
+            return stepsModel.LoadData();
+          }
+        }
       })
       .state( 'createEvent', {
         url: '/create-event',
-        templateUrl: "app/create/create-event.html",
-        controller: "createCtrl",
+        templateUrl: 'app/create/create-event.html',
+        controller: 'createCtrl',
         // resolve: { authenticated: authenticated },
       })
       .state( 'createEvent.event', {
         url: '/event-details',
-        templateUrl: "app/create/event-details.html",
+        templateUrl: 'app/create/event-details.html',
       })
       .state( 'createEvent.step', {
         url: '/step-details',
-        templateUrl: "app/create/step-details.html",
+        templateUrl: 'app/create/step-details.html',
       });
 
   });

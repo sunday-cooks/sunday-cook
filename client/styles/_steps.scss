@@ -1,5 +1,7 @@
 .sun-steps > * {
   flex: 1 1 0%;
+  padding: 9px;
+  //background-color: #edf2fe;
 }
 
 .sun-steps {
@@ -13,6 +15,8 @@
     div:last-child {
       color: lighten($md-font-base, 20%);
       text-align: right;
+      position: relative;
+      top: 3px;
     }
     //border-bottom: 1px dashed lighten($md-font-base, 50%);
     padding-bottom: 20px;
@@ -20,6 +24,9 @@
 
 
   .sun-steps__step-container {
+    .complete {
+      background-color: red;
+    }
     position: relative;
     overflow: hidden;
     md-list {

@@ -1,0 +1,413 @@
+{
+  "name": "Apricot Chicken",
+  "details": "Every year about this time we are inundated with fresh apricots from our neighbor’s tree. And every year I tell myself I’m going to make a chicken dish with them, but never get around to it. Instead, we’ll make apricot jam, apricot cobbler, apricot tart, or just eat them straight. Finally this year, we’ve experimented with apricot chicken and I’m quite please with the results. The additions of rosemary, Tabasco, and especially cinnamon really brighten up the flavors and make the dish more interesting than you would expect. We served it over rice, but it would be also pretty good with some egg noodles.",
+  "serving_size": 6,
+  "total_steps": 7,
+  "ingredients": [
+    {
+      "ingredient": "apricots",
+      "amount": 2,
+      "details": "Roughly chopped, pits removed and discarded",
+      "measurement": "pounds",
+    },
+    {
+      "ingredient": "sugar",
+      "amount": 1,
+      "measurement": "cup"
+    },
+    {
+      "ingredient": "cider vinegar",
+      "amount": 2,
+      "measurement": "tablespoon"
+    },
+    {
+      "ingredient": "skinless chicken breasts",
+      "amount": 1,
+      "details": "Cut into 1 to 2-inch pieces",
+      "measurement": "pounds",
+    },
+    {
+      "ingredient": "salt",
+    },
+    {
+      "ingredient": "unsalted butter",
+      "amount": 1,
+      "details": "can sub olive oil",
+      "measurement": "tablespoon"
+    },
+    {
+      "ingredient": "olive oil",
+      "amount": 3,
+      "measurement": "tablespoon",
+    },
+    {
+      "ingredient": "onion",
+      "amount": "whole",
+    },
+    {
+      "ingredient": "chicken stock or broth",
+      "amount": 2,
+      "measurement": "cup",
+      "details": "use gluten-free stock if you are cooking gluten free",
+    },
+    {
+      "ingredient": "fresh rosemary",
+      "amount": 1,
+      "measurement": "tablespoon",
+    },
+    {
+      "ingredient": "cinnamon",
+      "amount": 1,
+      "measurement": "teaspoon",
+    },
+    {
+      "ingredient": "tabasco",
+      "amount": 2,
+      "measurement": "teaspoon",
+      "details": "can be any type of hot sauce and you can as much as you would like"
+    },
+    {
+      "ingredient": "black pepper,"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Prepare Apricots",
+      "isComplete": "false",
+      "step": 1,
+      "total": 8,
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Place the chopped apricots in a large bowl. Stir in the sugar and the vinegar. Let sit while you brown the chicken in the next step.",
+          "tips": ["stir in the sugar and vinegar slowly so it doesn\'t clump"],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "apricots",
+              "amount": 2,
+              "details": "Roughly chopped, pits removed and discarded",
+              "measurement": "pounds",
+            },
+            {
+              "ingredient": "sugar",
+              "amount": 1,
+              "measurement": "cup"
+            },
+            {
+              "ingredient": "cider vinegar",
+              "amount": 2,
+              "measurement": "tablespoon"
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "bowl",
+              "description": "large enough to fit the ingredients within"
+            },
+            {
+              "name": "stick",
+              "description": "to stir the sugar and the vinegar in with the apricots",
+            }
+          ]
+        },
+      ],
+    },
+    {
+      "title": "Cook the chicken",
+      "isComplete": "false",
+      "number": 2,
+      "total": 8,
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "In a large sauté pan, heat 1 tablespoon of the butter and 1 tablespoon of olive oil over medium-high heat. Working in batches, place chicken pieces in the pan, without crowding the pan, and brown them on each side. As the chicken cooks, sprinkle salt over it. Once the chicken is browned, remove the pieces from the pan to a bowl and set aside.",
+          "tips": ["Make sure the chicken is only lightly brown"],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "unsalted butter",
+              "amount": 1,
+              "details": "can sub olive oil",
+              "measurement": "tablespoon"
+            },
+            {
+              "ingredient": "olive oil",
+              "amount": 3,
+              "measurement": "tablespoon",
+            },
+            {
+              "ingredient": "skinless chicken breasts",
+              "amount": 2,
+              "details": "Cut into 1 to 2-inch pieces",
+              "measurement": "pounds",
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "frying pan",
+              "description": "large enough to fit the ingredients within",
+            },
+            {
+              "name": "flat table",
+              "description": "for you to be able to prepare the chicken",
+            }
+          ]
+        },
+      ],
+    },
+    {
+      "title": "Sauté the onions",
+      "isComplete": "false",
+      "number": 3,
+      "total": 8,
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Add the remaining oil to the pan and sauté the onion until it begins to brown. As the onion cooks and releases moisture, use a flat edged spatula or wooden spoon to scrape off the browned bits from the chicken (called fond) from the bottom of the pan.",
+          "tips": ["Make sure the chicken is only lightly brown"],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "onion",
+              "amount": "whole",
+            },
+            {
+              "ingredient": "olive oil",
+              "amount": 3,
+              "measurement": "tablespoon",
+            },
+            {
+              "ingredient": "skinless chicken breasts",
+              "amount": 2,
+              "details": "Cut into 1 to 2-inch pieces",
+              "measurement": "pounds",
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Spatula",
+              "description": "used to scrape off the brown bits on the chicken"
+            },
+            {
+              "name": "Wooden spoon",
+              "description": "used to scrape off the brown bits on the chicken",
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "title": "Add the chicken stock",
+      "isComplete": "false",
+      "number": 4,
+      "total":8,
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Once the onions have browned a bit, add the chicken stock and lower the heat to medium.",
+          "tips": ["lower the heat even more if you want the chicken more tender."],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "olive oil",
+              "amount": 3,
+              "measurement": "tablespoon",
+            },
+            {
+              "ingredient": "onion",
+              "amount": "whole",
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Oven",
+              "description": "Bring that temp down",
+            },
+          ]
+        },
+      ]
+    },
+    {
+      "title": "Purée the apricots",
+      "isComplete": "false",
+      "number": 5,
+      "total": 8,
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Put about 2/3 of the apricots, along with any juice they have given up, into a blender and blend into a purée. Pour the purée into the pan with the chicken stock and onions.",
+          "tips": ["Make sure to allow the blender to do its magic."],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "apricots",
+              "amount": 2,
+              "details": "Roughly chopped, pits removed and discarded",
+              "measurement": "pounds",
+            },
+            {
+              "ingredient": "chicken stock or broth",
+              "amount": "2",
+              "measurement": "cup",
+              "details": "use gluten-free stock if you are cooking gluten free",
+            },
+            {
+              "ingredient": "onion",
+              "amount": "whole",
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Blender",
+              "description": "Any type of blender will do for this step",
+            },
+          ]
+        },
+      ]
+    },
+    {
+      "title": "Add the seasonings",
+      "isComplete": "false",
+      "number": "6",
+      "total": "8",
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Add the cinnamon, rosemary and Tabasco and taste. Bring to a simmer, then lower the heat and gently simmer for 10-20 minutes.",
+          "tips": ["You may need to add some salt."],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "fresh rosemary",
+              "amount": "1",
+              "measurement": "tablespoon",
+            },
+            {
+              "ingredient": "cinnamon",
+              "amount": "1",
+              "measurement": "teaspoon",
+            },
+            {
+              "ingredient": "tabasco",
+              "amount": "2",
+              "measurement": "teaspoon",
+              "details": "can be any type of hot sauce and you can as much as you would like"
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Pan",
+              "description": "Make sure it\'s large enough to fit the ingredients",
+            },
+          ]
+        },
+      ]
+    },
+    {
+      "title": "Simmer when ready",
+      "isComplete": "false",
+      "number": "7",
+      "total": "8",
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "When you are ready to serve, put the chicken and the remaining apricot pieces into the pan and simmer gently for 5 minutes.",
+          "tips": [],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "apricots",
+              "amount": "1.5",
+              "details": "Roughly chopped, pits removed and discarded",
+              "measurement": "pounds",
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Pan",
+              "description": "Make sure it\'s large enough to fit the ingredients",
+            },
+            {
+              "name": "Oven",
+              "description": "",
+            }
+          ]
+        },
+      ]
+    },
+    {
+      "title": "Serve with rice",
+      "isComplete": "false",
+      "number": "8",
+      "total": "8",
+      "tabs": [
+        {
+          "title": "About",
+          "steps": "Serve hot with rice.",
+          "tips": ["Prepare the rice however you\'d like"],
+        },
+        {
+          "title": "Ingredients",
+          "ingredients": [
+            {
+              "ingredient": "rice",
+              "amount": "4",
+              "details": "Any type of rice will work",
+              "measurement": "cups"
+            },
+          ]
+        },
+        {
+          "title": "Tools",
+          "tools": [
+            {
+              "name": "Pan",
+              "description": "Make sure it\'s large enough to fit the ingredients",
+            },
+            {
+              "name": "Oven",
+              "description": ""
+            }
+          ]
+        },
+      ]
+    },
+  ]
+}
+
