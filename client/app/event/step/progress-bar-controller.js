@@ -1,29 +1,18 @@
 angular.module('stepPercent', ['ngMaterial', 'event'])
     .controller('progressCtrl', function ($scope, stepsModel) {
-      $scope.mode = 'query';
+      $scope.mode = 'determinate';
       var currentStep = stepsModel.currentStep;
       var stepsLength = stepsModel.steps.length;
 
+      $scope.determinateValue = currentStep / stepsLength * 100;
 
-      function init() {
-        $scope.determinateValue = currentStep / stepsLength * 100;
-        //console.log('PARTY CITYTTTETEFSE', percentage);
-      }
-
-      init();
       $scope.determinateValue2 = 45;
-      $scope.$on('changedStep', function(event, mass) {
-        currentStep = mass;
-        init();
+      $scope.$on('goToStep', function(event, currentStep) {
+        $scope.determinateValue = currentStep / stepsLength * 100;
       });
 
-      $scope.$on('regressBar', function(event, mass) {
-        currentStep = mass;
-        init();
-      });
-      $scope.$on('progressBar', function(event, mass) {
-        currentStep = mass;
-        init();
+      $scope.$on('stepChange', function(event, currentStep) {
+        $scope.determinateValue = currentStep / stepsLength * 100;
       });
 
     })

@@ -1,8 +1,8 @@
 md-toolbar {
-  min-height: 55px;
+  min-height: 60px;
 }
 .md-toolbar-tools {
-  height: 55px;
+  height: 60px;
   background-color: #FFFFFF;
   color: $md-font-base;
   .sun-main-title {
@@ -25,4 +25,20 @@ md-toolbar {
 
 .md-tab {
   text-transform: capitalize;
+}
+
+.sun-toolbar {
+  md-tabs-canvas {
+    height: 60px;
+  }
+  .md-tab {
+    line-height: 40px;
+    padding: 12px 16px;
+  }
+  md-pagination-wrapper {
+    height: 60px;
+  }
+  md-tabs .md-tab {
+    font-size: 14px;
+  }
 }

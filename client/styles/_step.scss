@@ -1,7 +1,65 @@
 .sun-step {
+  .sun-step__tab-container {
+    padding: 16px 0 0 16px;
+  }
+  .sun-step__header-step {
+    color: lighten($md-font-base, 20%);
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .sun-step__header {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
   .md-button.md-primary.md-raised {
     font-weight: 500;
     font-size: 16px;
     padding: 5px 13px 3px;
+  }
+  .sun-step__step-buttons {
+    margin-right: 10px;
+  }
+  .sun-step__secondary-button.md-button {
+    background-color: $secondary-background;
+    box-shadow: none;
+    min-width: 55px;
+    margin: 1px;
+    padding: 5px 10px 3px;
+    &:hover {
+      background-color: darken($secondary-background, 5%);
+    }
+  }
+}
+
+.sun-step__tab-content {
+  h4 {
+    margin: 10px 0;
+  }
+  .demo-tab {
+    padding: 10px 15px;
+  }
+  .sun-step__detail-list-item {
+    min-height: 30px;
+    padding-left: 0;
+    > div {
+      position: relative;
+      padding-left: 15px;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 5px;
+        height: 5px;
+        border-radius: 10px;
+        background-color: lighten($md-primary, 10%);
+      }
+    }
   }
 }

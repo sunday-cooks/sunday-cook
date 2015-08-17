@@ -1,15 +1,20 @@
-<div flex>
-  <div style="position: relative; background-size: cover; min-height:425px; background-color: #b3e5fc;">
-  <video id="my-video" autoplay style="height: 200px; border: 1px dashed black;" ng-src="{{ localStream }}"></video>
-  <video id="user-video" autoplay style="height: 200px; border: 1px dashed black;" ng-src="{{ incomingStream }}"></video>
-    <span>{{ id }}</span>
-    <div style="background-color: rgba(255,255,255,0.4);  position: absolute; bottom: 0; left: 0; padding: 15px;">
-      <div style="width: 40px; height: 40px; border-radius: 50px; background-color: #ffc107; margin-right: 10px; margin-top: 8px; float: left;"></div>
-      <div style="float: left; margin-top: 4px;">
-        <form action="" ng-submit="makeCall( $event, peerID )">
-        <input type="text" style="display: block; font-size: 16px; margin-bottom: 2px; color: #444;" placeholder="Call user id ..." ng-model="peerID">
-        <button style="text-decoration: none; color: #03a9f4; font-size: 14px;">Make call</button>
-        </form>
-      </div>
+<div flex class="sun-video">
+  <div layout="row">
+    <div flex>
+      <video id="my-video" autoplay style="height: 200px; border: 1px dashed rgba(0,0,0,0.3);" ng-src="{{ localStream }}"></video>
+    </div>
+    <div flex>
+      <video id="user-video" autoplay style="height: 200px; border: 1px dashed rgba(0,0,0,0.3);" ng-src="{{ incomingStream }}"></video>
+    </div>
+  <!-- <span>{{ id }}</span> -->
+  <div style="background-color: rgba(255,255,255,0.4);  width: 98%; position: absolute; bottom: 0; left: 0; padding: 0px 10px;">
+    <div>
+      <form action="" ng-submit="makeCall( $event, peerID )">
+        <md-input-container style="padding-bottom: 10px; padding-top: 5px;">
+          <label>Peer ID</label>
+          <input type="text" placeholder="Call user id ..." ng-model="peerID" >
+        </md-input-container>
+      </form>
     </div>
   </div>
+</div>
