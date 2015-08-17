@@ -5,8 +5,9 @@ angular.module('event', ['video', 'chat', 'step', 'steps', 'events', 'stepPercen
     $scope.loc = $location.path();
 
     $scope.eventModel = eventModel;
-    $scope.eventModel.getEventDetails($scope.eventId, function(eventObj){
-      console.log( eventObj );
+
+    $scope.eventModel.getEventDetails( $scope.eventId, function( results ){
+      console.log( results );
     });
 
     $rootScope.$on('$stateChangeStart',

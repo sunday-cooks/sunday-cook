@@ -1,5 +1,8 @@
 angular.module( 'events', ['event'])
-  .controller( 'EventsController', function( $scope, eventModel ) {
-    $scope.eventsList = eventModel.eventObject.getEventDetails();
+  .controller( 'eventsCtrl', function( $scope, eventModel ) {
+    $scope.eventsList = eventModel.getEventDetails( '', function( results ) {
+      console.log( results );
+    });
+
     console.log( $scope.eventsList );
   });
