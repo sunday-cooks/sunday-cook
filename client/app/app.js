@@ -40,7 +40,7 @@ angular.module('app', [
     $stateProvider
       .state( 'event', {
         url: '/',
-        templateUrl: "app/event/events.html", // gallery of events (static page)
+        templateUrl: "app/events/events.html", // gallery of events (static page)
         controller: "eventsCtrl",
       })
       .state( 'events', {
