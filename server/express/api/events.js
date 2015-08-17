@@ -44,7 +44,7 @@ module.exports = function ( app, router ) {
         chef        = req.user;
 
     // Our user is not logged in.
-    if ( !chef ) { res.redirect( '/' ); return; }
+    if ( !chef ) { res.sendStatus( 400 ); return; }
 
     // Create our ingredients models and their promise
     var ingredients = _.map( data.ingredients, function ( ingredient ) {
