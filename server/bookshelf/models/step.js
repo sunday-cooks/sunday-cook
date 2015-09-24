@@ -1,30 +1,47 @@
-var db = require( '../config' );
-var Tip = require( './tip' );
-var Ingredient = require( './ingredient' );
-var Tool = require( './tool' );
-var StepTool = require( './steptool' );
-var User = require( './user' );
-var StepUser = require( './stepuser' );
+var db =  require( '../config' );
+          require( './tip' );
+          require( './ingredient' );
+          require( './ingredientstep' );
+          require( './tool' );
+          require( './steptool' );
+          require( './user' );
+          require( './stepuser' );
 
-var Step = db.Model.extend({
+var Step = db.Model.extend( {
   tableName: 'steps',
 
-  ingredients: function() {
-    return this.hasMany( Ingredient ).through( IngredientStep );
+  ingredients: function () {
+    return this.belongsToMany( 'Ingredient' ).through( 'IngredientStep' ).withPivot( 'qty' );
   },
 
-  tools: function() {
-    return this.hasMany( Tool ).through( StepTool );
+  tools: function () {
+    return this.belongsToMany( 'Tool' ).through( 'StepTool' );
   },
 
-  tips: function() {
-    return this.hasMany( Tip );
+  tips: function () {
+    return this.hasMany( 'Tip' );
   },
 
-  done: function() {
-    return this.hasOne( User ).through( StepUser );
+  done: function () {
+    return this.belongsToMany( 'User' ).through( 'StepUser' ).withPivot( 'done' );
   }
 
+}, {
+
+  newStep: function ( options ) {
+    return new this( options ).save();
+  },
+
+  fetchStepbyId: function ( id ) {
+    return new this( { id: id } ).fetch( {
+      require: true,
+      withRelated: [
+        'ingredients',
+        'tools',
+        'tips'
+        ],
+    });
+  },
 });
 
-module.exports = Step;
+module.exports = db.model( 'Step', Step );

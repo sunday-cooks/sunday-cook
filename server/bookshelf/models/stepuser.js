@@ -1,19 +1,26 @@
-var db = require( '../config' );
-var Step = require('./step');
-var User = require('./user');
+var db    = require( '../config' );
+require( './step' );
+require( './user' );
 
-var StepUser = db.Model.extend({
+var StepUser = db.Model.extend( {
 
   tableName: 'steps_users',
+  hasTimestamps: true,
 
-  step: function() {
-    return this.belongsTo( Step );
+  step: function () {
+    return this.belongsTo( 'Step' );
   },
 
-  user: function() {
-    return this.belongsTo( User );
+  user: function () {
+    return this.belongsTo( 'User' );
+  },
+
+}, {
+
+  newStepUser: function ( options ) {
+    return new this( options ).save();
   },
 
 });
 
-module.exports = StepUser;
+module.exports = db.model( 'StepUser', StepUser );

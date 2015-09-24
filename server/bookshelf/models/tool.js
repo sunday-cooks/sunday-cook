@@ -1,7 +1,13 @@
-var db = require('../config');
+var db = require( '../config' );
 
-var Tool = db.Model.extend({
+var Tool = db.Model.extend( {
   tableName: 'tools',
+}, {
+
+  newTool: function ( options ) {
+    return new this( options ).save();
+  }
+
 });
 
-module.exports = Tool;
+module.exports = db.model( 'Tool', Tool );

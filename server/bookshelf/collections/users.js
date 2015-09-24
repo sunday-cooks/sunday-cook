@@ -1,8 +1,15 @@
-var db = require('../config');
-var User = require('../models/user');
+var db    = require( '../config' ),
+    User  = require( '../models/user' );
 
-var Users = new db.Collection();
+var Users = db.Collection.extend( {
+  model: User,
+}, {
 
-Users.model = User;
+  // This is a promise!!
+  fetchUsers: function () {
+    return new this().fetch( { columns: [ 'id', 'first_name', 'last_name' ] } );
+  },
 
-module.exports = Users;
+});
+
+module.exports = db.collection( 'Users', Users );

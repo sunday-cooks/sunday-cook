@@ -1,19 +1,19 @@
 var db = require( '../config' );
-var Step = require('./step');
-var Tool = require('./tool');
+require( './step' );
+require( './tool' );
 
-var StepTool = db.Model.extend({
+var StepTool = db.Model.extend( {
 
   tableName: 'steps_tools',
 
-  step: function() {
-    return this.belongsTo( Step );
+  step: function () {
+    return this.belongsTo( 'Step' );
   },
 
-  tool: function() {
-    return this.belongsTo( Tool );
+  tool: function () {
+    return this.belongsTo( 'Tool' );
   },
 
 });
 
-module.exports = StepTool;
+module.exports = db.model( 'StepTool', StepTool );

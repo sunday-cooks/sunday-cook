@@ -1,0 +1,39 @@
+<div class="chat" flex="40" ng-controller="ChatController as chatCtrl">
+  <section>
+    <div class="chat-content">
+      <div layout="row" class="chat-content__title">
+        <div flex>
+          <h4>Kitchen small talk</h4>
+        </div>
+        <div flex>2 active chefs</div>
+      </div>
+      <div layout="row" class="chat-content__message-box">
+        <md-list>
+          <md-list-item ng-repeat="chat in chatCtrl.chats | orderBy:'createdOn':true ">
+            <div class="chat-content__single-chat" layout="row">
+              <!-- <div class="single-chat__image" flex="5">
+                <span><img src="{{ chat.profilepic_url }}" style="border-radius: 50%;"></span>
+              </div> -->
+              <div class="single-chat__content" flex="100">
+                <span>{{ chat.name }}</span>
+                {{ chat.text }}
+                <small>{{ chat.created_at | date:'HH:mm:ss' }}</small>
+              </div>
+            </div>
+          </md-list-item>
+        </md-list> <!-- end of list -->
+      </div>
+      <div layout="row" >
+        <a href="/api/fb/?redirect={{ chatCtrl.loc }}" ng-if="!chatCtrl.chat.name"><md-button class="md-raised md-primary">Log in to Chat</md-button></a>
+        <md-input-container ng-if="chatCtrl.chat.name" style="padding-bottom: 0;">
+          <form ng-submit="chatCtrl.sendChat(chatCtrl.chat.chatText)" class="chat-content__submit">
+            <md-input-container style="padding-bottom: 0;">
+              <label>Add something to the mix</label>
+              <input type="text" ng-model="chatCtrl.chat.chatText">
+            </md-input-container>
+          </form>
+        </md-input-container> <!-- end of input container -->
+      </div>
+    </div>
+  </section> <!-- end of content container -->
+</div>

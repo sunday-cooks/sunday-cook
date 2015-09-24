@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
   <title></title>
   <!-- injector:bower:css -->
@@ -7,12 +7,59 @@
 
   <!-- injector:css -->
   <!-- endinjector -->
+<style>
+  body {
+    color: #394453 !important;
+  }
+</style>
 </head>
-<body>
+<body layout="row">
+  <div class="" layout="column" layout-margin layout-fill>
+    <div>
+      <md-content>
+        <md-toolbar class="sun-toolbar">
+          <div class="md-toolbar-tools">
+            <div flex="20">
+              <h2 class="sun-main-title">
+                Roasted chicken
+              </h2>
+            </div>
+            <span flex="70" class="sun-main-subtitle">
+              <md-content>
+                <md-tabs md-no-disconnect md-dynamic-height md-no-bar>
+                  <md-tab label="Home">
+                  </md-tab>
+                  <md-tab label="Cook Info">
+                  </md-tab>
+                  <md-tab label="Ingredients">
+                  </md-tab>
+                  <md-tab label="Kitchen Tools">
+                  </md-tab>
+                  <md-tab label="Results">
+                  </md-tab>
+                </md-tabs>
+              </md-content>
+            </span>
+            <span flex="10" class="sun-toolbar-help">Need help?</span>
+            <md-button class="md-icon-button" aria-label="More">
+              <ng-md-icon icon="more_vert" style="fill: #7F90A6; position: relative; top: 8px" size="24"></ng-md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+      </md-content>
+    </div>
+    <div class="" layout="column" layout-fill>
+      <main class="content-wrapper" flex>
+        <ui-view></ui-view>
+      </main>
+    </div>
+  </div>
   <!-- injector:bower:js -->
   <!-- endinjector -->
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script>
+
   <!-- injector:js -->
   <!-- endinjector -->
 </body>

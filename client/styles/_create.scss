@@ -1,0 +1,89 @@
+md-card-content.smallCard {
+  padding: 5px 46px 5px 5px;
+  position: relative;
+  font-size: 14px;
+}
+md-card.smallCardWrap.ng-scope.md-default-theme {
+  margin:0 0 1em;;
+}
+.deleteMe {
+  position: absolute; 
+  top: -7px;
+  right: -10px;
+}    
+.iName, .iBrand, .iQty {
+  color: gold;
+}
+md-card-content.stepBox {
+  position:relative;
+}
+md-card-content.stepBox h4.md-title.ng-binding {
+  margin:0;
+  font-size: 18px;
+}
+md-card-content.stepBox span.stepTitle.ng-binding {
+  color: gold;
+}
+md-card-content.stepBox h4.md-title {
+  margin:0;
+  font-size: 18px;
+  font-weight:normal;
+}
+md-card-content.stepBox h4.stepTitle {
+  color: gold;
+  font-weight:normal;
+  margin-bottom:0;
+}
+md-card-content.stepBox md-list-item.md-no-proxy, md-card-content.stepBox md-list-item .md-no-style {
+  padding-left:0;
+  margin-top:0;
+  min-height:0;
+}
+md-card-content.stepBox p {
+  margin:0;
+}
+md-card-content.stepBox md-list {
+  padding-top:0;
+}
+md-card-content.stepBox span.range {
+  font-size:12px;
+}
+md-card-content.stepBox button.md-icon-button.md-button.md-default-theme {
+  position: absolute;
+  top: 0px;
+  right: -5px;
+}
+#status-buttons h2 {
+  display:inline;
+  font-weight:normal;
+}
+label.washedOut {
+  margin-top:1em;
+  padding-left: 2px;
+  top:-2px;
+  color: rgba(0,0,0,0.26);
+  border-bottom: 1px dotted rgba(0,0,0,0.16);
+  line-height:1.4em;
+  width:98%;
+  margin-bottom:1em;
+}
+md-input-container .md-input {
+  border-style: dotted;
+}
+label.washedOutFull {
+  width:100%;
+}
+button.md-raised.submission.md-button {
+ background-color: #4ac4b8;
+ color: white;
+}
+button.md-raised.submission.md-button:hover, button.md-raised.submission.md-button:focus, button.md-raised.submission.md-button:active {
+ background-color: lightseagreen;
+ color: white;
+}
+ng-md-icon.iconGold {
+  fill: gold;
+}
+ng-md-icon.iconRed {
+  fill: tomato;
+}

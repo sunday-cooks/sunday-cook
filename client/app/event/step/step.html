@@ -1,0 +1,87 @@
+<div ng-controller="stepCtrl" class="sun-step">
+  <md-content class="md-default-theme sun-step__tab-container">
+    <div layout layout-align="start center">
+      <div flex>
+        <div layout="row" layout-align="start center">
+           <span class="sun-step__header-step">Step {{step.number}}</span>
+            <h2 class="sun-step__header">{{step.title}}</h2>
+        </div>
+      </div>
+      <div flex>
+        <div layout="row" layout-align="end center">
+          <div  class="sun-step__step-buttons">
+            <button class="md-raised sun-step__secondary-button md-button" ng-click="prevStep()">Prev.</button>
+            <button class="md-raised md-button sun-step__secondary-button" ng-click="nextStep()">Next</button>
+          </div>
+          <button class="md-raised md-primary md-button" ng-click="markComplete()" layout-align="end"> Mark Complete </button>
+        </div>
+      </div>
+    </div>
+  </md-content>
+  <div class="sample tabsdemoDynamicTabs sun-step__tab-content"  layout="column">
+    <md-content class="md-padding" style="padding-top: 0;">
+      <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="">
+        <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+
+          <div class="demo-tab tab{{$index%4}}" label="{{$index%4}}">
+            <div ng-switch on="tab.title">
+              <div ng-switch-when="About">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Step Details</h4>
+                    <md-list-item class="md-1-line sun-step__detail-list-item" ng-repeat="step in tab.steps">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        {{ step }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                  <div flex>
+                    <h4>Tips</h4>
+                    <md-list-item class="md-1-line sun-step__detail-list-item" ng-repeat="tip in tab.tips">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        {{ tip }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-switch-when="Ingredients">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Ingredients</h4>
+                    <md-list-item class="md-1-line " ng-repeat="ingredients in tab.ingredients" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        <h4>{{ ingredients.name }}</h4>
+                        {{ ingredients.description }}
+                        {{ ingredients.image }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-switch-when="Tools">
+                <div layout="row" style="text-align: left !important;">
+                  <div flex>
+                    <h4>Tools</h4>
+                    <md-list-item class="md-1-line " ng-repeat="tools in tab.tools" style="padding-left: 0px; min-height: 35px;">
+                      <div class="md-list-item-text md-1-line-bullet-icon">
+                        <h4>{{ tools.name }}</h4>
+                        {{ tools.description }}
+                      </div>
+                    </md-list-item>
+                  </div>
+                </div>
+              </div>
+              <div ng-bind="tab.content" ng-switch-default>
+                What the fuck
+              </div>
+            </div>
+            <!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">Remove Tab</md-button> -->
+          </div>
+
+
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div>
+</div>

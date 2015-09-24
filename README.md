@@ -5,6 +5,7 @@
 
 <p><sup><strong>A project by the Charming Chino Dev Team</strong></sup></p>
 
+<img src="sunday_cook.png" height="600">
 
 ## Description
 Sunday Cooking Club is a social cooking events platform. It combines realtime video and chat with progress tracking tools and curated content to give users a fun, engaging culinary experience from the comfort of their own home. From up-and-coming chefs looking to garner an online following to geographically seperated friends who want to share a meal together, Sunday Cooking Club provides an rich online experience for cooks of all levels.
@@ -48,3 +49,4 @@ grunt
 ## Contributing
 
 Sunday Cooking Club welcomes contributors. To begin contributing, please, see the [contributing guidelines](CONTRIBUTING.md).
+

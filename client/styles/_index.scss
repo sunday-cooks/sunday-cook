@@ -1,0 +1,44 @@
+md-toolbar {
+  min-height: 60px;
+}
+.md-toolbar-tools {
+  height: 60px;
+  background-color: #FFFFFF;
+  color: $md-font-base;
+  .sun-main-title {
+    font-size: 32px;
+    margin-right: 10px;
+  }
+  .sun-main-subtitle {
+    font-size: 18px;
+    color: lighten($md-font-base, 15%);
+  }
+  .sun-toolbar-help {
+    font-size: 14px;
+    color: lighten($md-font-base, 15%);
+  }
+}
+
+.chat-header {
+  background-color: #FFFFFF;
+}
+
+.md-tab {
+  text-transform: capitalize;
+}
+
+.sun-toolbar {
+  md-tabs-canvas {
+    height: 60px;
+  }
+  .md-tab {
+    line-height: 40px;
+    padding: 12px 16px;
+  }
+  md-pagination-wrapper {
+    height: 60px;
+  }
+  md-tabs .md-tab {
+    font-size: 14px;
+  }
+}

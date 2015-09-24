@@ -1,11 +1,18 @@
-var db = require('../config');
-var Event = require('./event');
-var User = require('./user');
+var db    = require( '../config' );
+require( './event' );
+require( './user' );
 
-var Note = db.Model.extend({
+var Note = db.Model.extend( {
   tableName: 'notes',
-  user: this.belongsTo(User),
-  event: this.belongsTo(Event),
+  hasTimestamps: true,
+
+  user: function() {
+    return this.belongsTo( 'User' );
+  },
+
+  event: function() {
+    this.belongsTo( 'Event' );
+  },
 });
 
-module.exports = Note;
+module.exports = db.model( 'Note', Note );

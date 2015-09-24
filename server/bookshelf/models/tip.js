@@ -1,11 +1,18 @@
-var db = require('../config');
-var Step = require('./step');
+var db = require( '../config' );
+require( './step' );
 
-var Tip = db.Model.extend({
+var Tip = db.Model.extend( {
   tableName: 'tips',
-  step: function() {
-    this.belongsTo(Step);
+
+  step: function () {
+    this.belongsTo( 'Step' );
   },
+}, {
+
+  newTip: function ( options ) {
+    return new this( options ).save();
+  },
+
 });
 
-module.exports = Tip;
+module.exports = db.model( 'Tip', Tip );

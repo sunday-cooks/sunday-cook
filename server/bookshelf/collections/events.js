@@ -1,8 +1,17 @@
-var db = require('../config');
-var Event = require('../models/event');
+var db    = require( '../config' ),
+    Event = require( '../models/event' );
 
-var Events = new db.Collection();
+var Events = db.Collection.extend( {
+  model: Event,
+}, {
 
-Events.model = Event;
+  fetchEvents: function () {
+    return new this().fetch( { columns: [ 'id', 'name', 'description', 'user_id' ], withRelated: [ {
+      'chef': function ( qb ) {
+        qb.column( 'id', 'first_name', 'last_name' );
+      }}]});
+  },
 
-module.exports = Events;
+});
+
+module.exports = db.collection( 'Events', Events );

@@ -1,0 +1,79 @@
+<div layout layout-sm="column">
+  <md-input-container flex>
+    <label>Event Name</label>
+    <input ng-model="formData.name" name="name" md-maxlength="50" required>
+    <div ng-messages="userForm.name.$error">
+      <div ng-message="md-maxlength">Please shorten your Event Name to less than 50 characters.</div>
+    </div>
+  </md-input-container>
+</div>
+<div layout layout-sm="column">
+  <md-input-container flex>
+    <label>About the Cook</label>
+    <textarea ng-model="formData.description" columns="1" required name="description" md-maxlength="500"></textarea>
+    <div ng-messages="userForm.description.$error">
+      <div ng-message="md-maxlength">Please shorten your Chef Description to less than 500 characters.</div>
+    </div>
+  </md-input-container>
+</div>
+<div layout layout-sm="column">
+  <md-input-container flex>
+    <label>Ingredients You Need</label>
+    <input ng-model="formData.ingredient.name" name="ingredientName">
+  </md-input-container>
+  <md-input-container flex>
+    <label>Brand of Choice</label>
+    <input ng-model="formData.ingredient.buy_url" name="ingredientUrl">
+  </md-input-container>
+  <md-input-container flex>
+    <label>Quantity</label>
+    <input ng-model="formData.ingredient.qty" name="ingredientQty">
+  </md-input-container>
+  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-click="addNewChoice()">
+    <ng-md-icon icon="add_circle" class="iconGold" size="24"></ng-md-icon>
+  </md-button>
+</div>
+<div layout-wrap layout-gt-sm="row" layout-sm="column">
+  <md-card ng-repeat="ingredient in ingredientsList track by $index" flex="33" class="smallCardWrap">
+    <md-card-content class="smallCard">
+      <div class="ingredientName"><span class="iName">Ingredient:</span> {{ ingredient.name }}</div>
+      <div class="ingredientBrand"><span class="iBrand">Brand:</span> {{ ingredient.buy_url }}</div>
+      <div class="ingredientQty"><span class="iQty">Qty:</span> {{ ingredient.qty }}</div>
+      <span class="deleteMe">
+        <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-click="removeIngredient($event, $index)">
+          <ng-md-icon icon="remove_circle_outline" class="iconRed" size="24"></ng-md-icon>
+        </md-button>
+      </span>
+    </md-card-content>
+  </md-card>
+</div>
+<div layout layout-sm="row">
+  <md-input-container flex>
+    <label>Kitchen Tools You Need</label>
+    <input ng-model="formData.tool.name">
+  </md-input-container>
+  <md-input-container flex data>
+    <label>Link to Purchase</label>
+    <input ng-model="formData.tool.buy_url" name="url" type="url">
+    <div ng-messages="userForm.url.$error">
+      <div ng-message="type">Please enter a valid URL.</div>
+    </div>
+  </md-input-container>
+  <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-click="addNewTool()">
+    <ng-md-icon icon="add_circle" class="iconGold" size="24"></ng-md-icon>
+  </md-button>
+</div>
+<div layout-wrap layout-gt-sm="row" layout-sm="column">
+  <md-card ng-repeat="tool in toolsList track by $index" flex="33" class="smallCardWrap">
+    <md-card-content class="smallCard">
+      <div><span class="iName">Tool:</span> {{ tool.name }}</div>
+      <div><span class="iName">Link to Buy:</span> {{ tool.buy_url }}</div>
+      <span class="deleteMe">
+        <md-button class="md-icon-button" aria-label="Favorite" ui-sref-active="active" ng-click="removeTool($event, $index)">
+          <ng-md-icon icon="remove_circle_outline" class="iconRed" size="24"></ng-md-icon>
+        </md-button>
+      </span>
+    </md-card-content>
+  </md-card>
+</div>
+<md-button flex class="md-raised md-primary" ng-click="startSteps()" ui-sref="createEvent.step">Add Step</md-button>
