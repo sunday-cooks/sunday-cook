@@ -18,13 +18,13 @@ module.exports = function ( app, router ) {
   });
 
   router.get( '/events/:eventid', function ( req, res, next ) {
-    var eventid = req.params.eventId;
+    var eventid = parseInt( req.params.eventid );
 
-    if ( !_.isNumber( eventid ) ) {
+    if ( _.isNaN( eventid ) || !_.isNumber( eventid ) ) {
       eventid = url.parse( req.url, true ).query.eventId;
     }
 
-    if ( _.isNumber( eventid ) ) {
+    if ( !_.isNaN( eventid ) && _.isNumber( eventid ) ) {
       db.model( 'Event' ).fetchEventbyId( eventid )
       .then( function ( event ) {
         if ( !event ) { res.sendStatus( 400 ); }
