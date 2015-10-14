@@ -1,7 +1,7 @@
 # Sunday Cooking Club
-[![Build Status](https://travis-ci.org/charming-chino/charming-chino.svg?branch=master)](https://travis-ci.org/charming-chino/charming-chino)
-[![Dependency Status](https://david-dm.org/charming-chino/charming-chino.svg)](https://david-dm.org/charming-chino/charming-chino)
-[![devDependency Status](https://david-dm.org/charming-chino/charming-chino/dev-status.svg)](https://david-dm.org/charming-chino/charming-chino#info=devDependencies)
+[![Build Status](https://travis-ci.org/sunday-cooks/sunday-cook.svg?branch=master)](https://travis-ci.org/sunday-cooks/sunday-cook)
+[![Dependency Status](https://david-dm.org/sunday-cooks/sunday-cook.svg)](https://david-dm.org/sunday-cooks/sunday-cook)
+[![devDependency Status](https://david-dm.org/sunday-cooks/sunday-cook/dev-status.svg)](https://david-dm.org/sunday-cooks/sunday-cook#info=devDependencies)
 
 <p><sup><strong>A project by the Charming Chino Dev Team</strong></sup></p>
 
